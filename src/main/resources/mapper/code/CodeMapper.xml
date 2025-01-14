@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper">
+	<sql id="sqlFetchNextStatement">
+        <if test="fetchNext != null and fetchNext != ''">
+        <![CDATA[
+            LIMIT ${offset} , ${fetchNext}
+        ]]>
+        </if>
+    </sql>
+    
+	<select id="selectCodeDetail" parameterType="Map" resultType="CodeVO">
+		SELECT
+			DOMAIN_ID
+			, COMPANY_CD
+			, CODE_DIV
+			, CODE
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN CODE_NM
+				WHEN #{languageCd} = 'en-US' THEN 
+					CASE
+						WHEN CODE_ENG_NM IS NULL OR CODE_ENG_NM = '' THEN CODE_NM
+						ELSE CODE_ENG_NM
+					END
+				ELSE CODE_NM
+			END AS CODE_NM
+			, USE_YN
+			, CREATE_USR
+			, CREATE_DT
+			, UPDATE_USR
+			, UPDATE_DT 
+		FROM 
+			CODE_DETAIL
+		<where>
+			AND USE_YN = 'Y'
+			<if test="domainId != null and domainId != ''">
+				AND DOMAIN_ID = #{domainId}
+			</if>
+			<if test="companyCd != null and companyCd != ''">
+				AND COMPANY_CD = #{companyCd}
+			</if>
+			<if test="codeDiv != null and codeDiv != ''">
+				AND CODE_DIV = #{codeDiv}
+			</if>
+		</where>
+		ORDER BY 
+			SORT_ORD
+	</select>
+	
+	<select id="selectCodeByName" parameterType="Map" resultType="CodeVO">
+		SELECT
+			DOMAIN_ID
+			, COMPANY_CD
+			, CODE_DIV
+			, CODE
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN CODE_NM
+				WHEN #{languageCd} = 'en-US' THEN 
+					CASE
+						WHEN CODE_ENG_NM IS NULL OR CODE_ENG_NM = '' THEN CODE_NM
+						ELSE CODE_ENG_NM
+					END
+				ELSE CODE_NM
+			END AS CODE_NM
+			, USE_YN
+			, CREATE_USR
+			, CREATE_DT
+			, UPDATE_USR
+			, UPDATE_DT 
+		FROM 
+			CODE_DETAIL
+		<where>
+			AND DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND CODE_DIV = #{codeDiv}
+			AND CODE_NM = #{codeNm}
+			AND USE_YN = 'Y'
+		</where>
+	</select>
+</mapper>

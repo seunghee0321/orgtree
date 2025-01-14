@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.api.SyncDeptMasterMapper">
+	<sql id="sqlFetchNextStatement">
+		<if test="fetchNext != null and fetchNext != ''">
+	        <![CDATA[
+	            LIMIT ${offset} , ${fetchNext}
+	        ]]>
+		</if>
+	</sql>
+	
+	<delete id="deleteSyncDeptMaster" parameterType="Map">
+		DELETE FROM
+			sync_dept_master_${tempDomainId}
+		<where>
+			COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+		</where>
+	</delete>
+		
+	<insert id="insertSyncDeptMaster" parameterType="Map" >
+		INSERT INTO 
+			sync_dept_master_${tempDomainId} (
+				SYNC_DATE
+				, DOMAIN_ID
+				, COMPANY_CD
+				, DEPT_CD
+				, DEPT_NM
+				, DEPT_ENG_NM
+				, PARENT_DEPT_CD
+				, DEPT_ORD
+				, MANUAL_MNG_YN
+				, DEPT_USE_YN
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES
+		<foreach collection="deptList" item="item" separator=",">
+		(
+			DATE_FORMAT(now(), '%Y-%m-%d')
+			, #{item.domainId}
+			, #{item.companyCd}
+			, #{item.deptCd}
+			, #{item.deptNm}
+			, #{item.deptEngNm}
+			, #{item.parentDeptCd}
+			, #{item.deptOrd}
+			, #{item.manualMngYn}
+			, #{item.deptUseYn}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+		</foreach>
+	</insert>
+	
+	<insert id="insertDeptMasterFromSync" parameterType="Map" >
+		REPLACE INTO 
+			DEPT_MASTER (
+				DOMAIN_ID
+				, COMPANY_CD
+				, DEPT_CD
+				, DEPT_NM
+				, DEPT_ENG_NM
+				, PARENT_DEPT_CD
+				, DEPT_ORD
+				, MANUAL_MNG_YN
+				, DEPT_USE_YN
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		SELECT
+			DOMAIN_ID
+			, COMPANY_CD
+			, DEPT_CD
+			, DEPT_NM
+			, DEPT_ENG_NM
+			, PARENT_DEPT_CD
+			, DEPT_ORD
+			, 'N'
+			, DEPT_USE_YN
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		FROM
+			sync_dept_master_${tempDomainId}
+		WHERE 
+			DEPT_CD NOT IN (SELECT DEPT_CD FROM DEPT_MASTER WHERE MANUAL_MNG_YN = 'Y' AND DOMAIN_ID = #{domainId} AND COMPANY_CD = #{companyCd})
+			AND DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+	</insert>
+	
+</mapper>

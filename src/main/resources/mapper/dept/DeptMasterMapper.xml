@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.dept.DeptMasterMapper">
+	<sql id="sqlFetchNextStatement">
+		<if test="fetchNext != null and fetchNext != ''">
+	        <![CDATA[
+	            LIMIT ${offset} , ${fetchNext}
+	        ]]>
+		</if>
+	</sql>
+		
+	<select id="selectDeptList" resultType="DeptMasterVO" parameterType="Map" >
+		SELECT
+			DOMAIN_ID
+			, COMPANY_CD
+			, DEPT_CD
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN DEPT_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN DEPT_ENG_NM IS NULL OR DEPT_ENG_NM = '' THEN DEPT_NM
+						ELSE DEPT_ENG_NM
+					END
+				ELSE DEPT_NM
+			END AS DEPT_NM
+			, PARENT_DEPT_CD
+			, DEPT_ORD
+			, DEPT_USE_YN
+			, MANUAL_MNG_YN
+			, UPDATE_USR
+			, UPDATE_DT
+			, CREATE_USR
+			, CREATE_DT
+		FROM
+			DEPT_MASTER
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			<if test="parentDeptCd != null and parentDeptCd != ''">
+				AND PARENT_DEPT_CD = #{parentDeptCd}
+			</if>
+			<if test='incDeptUseYn == null or incDeptUseYn == "false"'>
+				AND DEPT_USE_YN = 'Y'
+			</if>
+		</where>
+		ORDER BY
+			DEPT_ORD, DEPT_NM
+	</select>
+	
+	<select id="selectParentDeptCd" resultType="String" parameterType="Map" >
+		SELECT
+			PARENT_DEPT_CD
+		FROM DEPT_MASTER
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND DEPT_CD = #{deptCd}
+		</where>
+	</select>
+	
+	<select id="selectDeptInfo" resultType="DeptMasterVO" parameterType="Map" >
+		SELECT
+			D1.DOMAIN_ID
+			, D1.COMPANY_CD
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+						ELSE C.COMPANY_ENG_NM
+					END
+				ELSE C.COMPANY_NM
+			END AS COMPANY_NM
+			, D1.DEPT_CD
+			, D1.DEPT_NM
+			, D1.DEPT_ENG_NM
+			<if test='parentDeptCd != "0"'>
+				, CASE
+					WHEN #{languageCd} = 'ko-KR' THEN D2.DEPT_NM
+					WHEN #{languageCd} = 'en-US' THEN
+						CASE
+							WHEN D2.DEPT_ENG_NM IS NULL OR D2.DEPT_ENG_NM = '' THEN D2.DEPT_NM
+							ELSE D2.DEPT_ENG_NM
+						END
+					ELSE D2.DEPT_NM
+				END AS PARENT_DEPT_NM
+			</if>
+			, D1.PARENT_DEPT_CD
+			, D1.DEPT_ORD
+			, D1.MANUAL_MNG_YN
+			, D1.DEPT_USE_YN
+			, D1.UPDATE_USR
+			, D1.UPDATE_DT
+			, D1.CREATE_USR
+			, D1.CREATE_DT
+		FROM
+			DEPT_MASTER D1
+			INNER JOIN COMPANY_MASTER C ON (D1.COMPANY_CD = C.COMPANY_CD AND D1.DOMAIN_ID = C.DOMAIN_ID)
+			<if test='parentDeptCd != "0"'>
+				INNER JOIN DEPT_MASTER D2 ON (D1.PARENT_DEPT_CD = D2.DEPT_CD AND D1.DOMAIN_ID = D2.DOMAIN_ID AND D1.COMPANY_CD = D2.COMPANY_CD)
+			</if>
+		<where>
+			D1.DOMAIN_ID = #{domainId}
+			AND D1.COMPANY_CD = #{companyCd}
+			AND D1.DEPT_CD = #{deptCd}
+		</where>
+	</select>
+	
+	<insert id="insertDeptInfo" parameterType="Map" >
+		INSERT INTO 
+			DEPT_MASTER (
+				DOMAIN_ID
+				, COMPANY_CD
+				, DEPT_CD
+				, DEPT_NM
+				, DEPT_ENG_NM
+				, PARENT_DEPT_CD
+				, DEPT_ORD
+				, MANUAL_MNG_YN
+				, DEPT_USE_YN
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES (
+			#{domainId}
+			, #{companyCd}
+			, #{deptCd}
+			, #{deptNm}
+			, #{deptEngNm}
+			, #{parentDeptCd}
+			, #{deptOrd}
+			, #{manualMngYn}
+			, #{deptUseYn}
+			, #{usrId}
+			, now()
+			, #{usrId}
+			, now()
+		)
+	</insert>
+	
+	<update id="updateDeptInfo" parameterType="Map" >
+		UPDATE
+			DEPT_MASTER
+		<set>
+			PARENT_DEPT_CD = #{parentDeptCd},
+			DEPT_NM = #{deptNm},
+			DEPT_ENG_NM = #{deptEngNm},
+			DEPT_ORD = #{deptOrd},
+			MANUAL_MNG_YN = #{manualMngYn},
+			DEPT_USE_YN = #{useYn},
+			UPDATE_USR = #{usrId},
+			UPDATE_DT = now()
+		</set>
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND DEPT_CD = #{deptCd}
+		</where>
+	</update>
+	
+	<update id="updateDeptParent" parameterType="Map" >
+		UPDATE
+			DEPT_MASTER
+		<set>
+			PARENT_DEPT_CD = #{parentDeptNew},
+			UPDATE_USR = #{usrId},
+			UPDATE_DT = now()
+		</set>
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND DEPT_CD = #{deptCd}
+			<if test="parentDeptOld != null and parentDeptOld != ''">
+				AND PARENT_DEPT_CD = #{parentDeptOld}
+			</if>
+		</where>
+	</update>
+	
+	<insert id="insertUpdateDeptInfo" parameterType="Map" >
+		INSERT INTO 
+			DEPT_MASTER (
+				DOMAIN_ID
+				, COMPANY_CD
+				, DEPT_CD
+				, DEPT_NM
+				, DEPT_ENG_NM
+				, PARENT_DEPT_CD
+				, DEPT_ORD
+				, MANUAL_MNG_YN
+				, DEPT_USE_YN
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES (
+			#{domainId}
+			, #{companyCd}
+			, #{deptCd}
+			, #{deptNm}
+			, #{deptEngNm}
+			, #{parentDeptCd}
+			, #{deptOrd}
+			, #{manualMngYn}
+			, #{deptUseYn}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+		ON DUPLICATE KEY UPDATE
+			DOMAIN_ID = #{domainId}
+			, COMPANY_CD = #{companyCd}
+			, DEPT_CD = #{deptCd}
+			, DEPT_NM = #{deptNm}
+			, DEPT_ENG_NM = #{deptEngNm}
+			, PARENT_DEPT_CD = #{parentDeptCd}
+			, DEPT_ORD = #{deptOrd}
+			, MANUAL_MNG_YN = #{manualMngYn}
+			, DEPT_USE_YN = #{deptUseYn}
+			, UPDATE_USR = #{createUsr}
+			, UPDATE_DT = now()
+	</insert>
+	
+	<update id="updateDeptMasterUseNot" parameterType="Map">
+		UPDATE DEPT_MASTER
+		<set>
+			DEPT_USE_YN = 'N'
+		</set>
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND MANUAL_MNG_YN != 'Y'
+		</where>
+	</update>
+	
+	<select id="selectDeptCdByParent" parameterType="Map" resultType="DeptMasterVO">
+		SELECT
+			DEPT_CD
+		FROM DEPT_MASTER
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND PARENT_DEPT_CD = #{parentDeptCd}
+		</where>
+	</select>
+	
+	<select id="selectDeptCdByDeptNmCnt" parameterType="Map" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM (
+			SELECT *
+			FROM DEPT_MASTER
+			<where>
+				DOMAIN_ID = #{domainId}
+				AND COMPANY_CD = #{companyCd}
+				AND DEPT_NM = #{deptNm}
+			</where>
+		) A
+	</select>
+	
+	<select id="selectDeptCdByDeptNm" parameterType="Map" resultType="DeptMasterVO">
+		SELECT
+			DEPT_CD
+		FROM DEPT_MASTER
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND DEPT_NM = #{deptNm}
+		</where>
+	</select>
+    
+</mapper>

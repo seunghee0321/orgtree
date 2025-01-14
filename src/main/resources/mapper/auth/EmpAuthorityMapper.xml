@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.auth.EmpAuthorityMapper">
+	<sql id="sqlFetchNextStatement">
+        <if test="fetchNext != null and fetchNext != ''">
+        <![CDATA[
+            LIMIT ${offset} , ${fetchNext}
+        ]]>
+        </if>
+    </sql> 
+    
+    <insert id="insertEmpAuthority" parameterType="Map">
+		INSERT INTO 
+			EMP_AUTHORITY (
+				EMAIL
+				, AUTHORITY_NAME
+				, DOMAIN_ID
+				, COMPANY_CD
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES (
+			#{email}
+			, #{authorityName}
+			, #{domainId}
+			, #{companyCd}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+	</insert>
+	
+   	<delete id="deleteEmpAuthority" parameterType="Map">
+		DELETE FROM
+			EMP_AUTHORITY
+		WHERE
+			EMAIL = #{email}
+			AND COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+	</delete> 
+	
+	<insert id="insertUpdateEmpAuthority" parameterType="Map">
+		INSERT INTO 
+			EMP_AUTHORITY (
+				EMAIL
+				, AUTHORITY_NAME
+				, DOMAIN_ID
+				, COMPANY_CD
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES (
+			#{email}
+			, #{authorityName}
+			, #{domainId}
+			, #{companyCd}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+		ON DUPLICATE KEY UPDATE
+			EMAIL = #{email}
+			, AUTHORITY_NAME = #{authorityName}
+			, DOMAIN_ID = #{domainId}
+			, COMPANY_CD = #{companyCd}
+			, UPDATE_USR = #{createUsr}
+			, UPDATE_DT = now()
+	</insert>
+	
+	<insert id="insertEmpRoleAdmin" parameterType="EmpAuthorityVO">
+		INSERT INTO 
+			EMP_AUTHORITY (
+				EMAIL
+				, AUTHORITY_NAME
+				, DOMAIN_ID
+				, COMPANY_CD
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES (
+			#{email}
+			, #{authorityName}
+			, #{domainId}
+			, #{companyCd}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+	</insert>
+	
+	<delete id="deleteEmpRoleAdmin" parameterType="EmpAuthorityVO">
+		DELETE FROM
+			EMP_AUTHORITY
+		WHERE
+			EMAIL = #{email}
+			AND COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+			AND AUTHORITY_NAME = #{authorityName}
+	</delete>
+	
+	<update id="updateEmpAuthorityXref" parameterType="Map">
+		UPDATE
+			EMP_AUTHORITY
+		<set>
+			COMPANY_CD = #{companyCd},
+			UPDATE_USR = #{updateUsr},
+			UPDATE_DT = now()
+		</set>
+		<where>
+			DOMAIN_ID = #{oldDomainId}
+			AND COMPANY_CD = #{oldCompanyCd}
+			AND EMAIL = #{oldEmail}
+		</where>
+	
+	</update>
+	
+	<select id="selectEmpAuthorityListCnt" parameterType="Map" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM (
+			SELECT
+				A.DOMAIN_ID
+				, A.COMPANY_CD
+				, CASE
+					WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+					WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+						ELSE C.COMPANY_ENG_NM
+					END
+					ELSE C.COMPANY_NM
+				END AS COMPANY_NM
+				, CASE
+					WHEN #{languageCd} = 'ko-KR' THEN E.EMP_NM
+					WHEN #{languageCd} = 'en-US' THEN
+						CASE
+							WHEN E.EMP_ENG_NM IS NULL OR E.EMP_ENG_NM = '' THEN E.EMP_NM
+							ELSE E.EMP_ENG_NM
+						END
+					ELSE E.EMP_NM
+				END AS EMP_NM
+				, A.EMAIL
+				, E.DEPT_CD
+				, CASE
+					WHEN #{languageCd} = 'ko-KR' THEN D.DEPT_NM
+					WHEN #{languageCd} = 'en-US' THEN
+						CASE
+							WHEN D.DEPT_ENG_NM IS NULL OR D.DEPT_ENG_NM = '' THEN D.DEPT_NM
+							ELSE D.DEPT_ENG_NM
+						END
+					ELSE D.DEPT_NM
+				END AS DEPT_NM
+				, SF_GET_CODE_NM(#{languageCd}, 'CM002', E.POS_CD, A.COMPANY_CD, A.DOMAIN_ID) AS POS_NM
+				, E.EMP_NO
+				, SF_GET_CODE_NM(#{languageCd}, 'CM001', E.EMP_STATUS_CD, A.COMPANY_CD, A.DOMAIN_ID) AS EMP_STATUS_NM
+				, A.AUTHORITY_NAME
+			FROM EMP_AUTHORITY A
+				INNER JOIN EMP_MASTER E ON (E.EMAIL = A.EMAIL AND E.DOMAIN_ID = A.DOMAIN_ID AND E.COMPANY_CD = A.COMPANY_CD)
+				INNER JOIN COMPANY_MASTER C ON (A.COMPANY_CD = C.COMPANY_CD AND A.DOMAIN_ID = C.DOMAIN_ID)
+				INNER JOIN DEPT_MASTER D ON (E.DEPT_CD = D.DEPT_CD AND E.COMPANY_CD = D.COMPANY_CD AND E.DOMAIN_ID = D.DOMAIN_ID)
+			<where>
+				A.DOMAIN_ID = #{domainId}
+				AND A.COMPANY_CD = #{companyCd}
+				AND A.AUTHORITY_NAME = 'ROLE_ADMIN'
+				<if test="empNm != null and empNm != ''">
+					AND (E.EMP_NM LIKE CONCAT('%', #{empNm}, '%') OR E.EMP_ENG_NM LIKE CONCAT('%', #{empNm}, '%'))
+				</if>
+			</where>
+		) B
+	</select>
+	
+	<select id="selectEmpAuthorityList" parameterType="Map" resultType="EmpAuthListVO">
+		SELECT
+			A.DOMAIN_ID
+			, A.COMPANY_CD
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+						ELSE C.COMPANY_ENG_NM
+					END
+				ELSE C.COMPANY_NM
+			END AS COMPANY_NM
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN E.EMP_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN E.EMP_ENG_NM IS NULL OR E.EMP_ENG_NM = '' THEN E.EMP_NM
+						ELSE E.EMP_ENG_NM
+					END
+				ELSE E.EMP_NM
+			END AS EMP_NM
+			, A.EMAIL
+			, E.DEPT_CD
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN D.DEPT_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN D.DEPT_ENG_NM IS NULL OR D.DEPT_ENG_NM = '' THEN D.DEPT_NM
+						ELSE D.DEPT_ENG_NM
+					END
+				ELSE D.DEPT_NM
+			END AS DEPT_NM
+			, SF_GET_CODE_NM(#{languageCd}, 'CM002', E.POS_CD, A.COMPANY_CD, A.DOMAIN_ID) AS POS_NM
+			, E.EMP_NO
+			, SF_GET_CODE_NM(#{languageCd}, 'CM001', E.EMP_STATUS_CD, A.COMPANY_CD, A.DOMAIN_ID) AS EMP_STATUS_NM
+			, A.AUTHORITY_NAME
+			, D.DEPT_ORD
+		FROM EMP_AUTHORITY A
+			INNER JOIN EMP_MASTER E ON (E.EMAIL = A.EMAIL AND E.DOMAIN_ID = A.DOMAIN_ID AND E.COMPANY_CD = A.COMPANY_CD)
+			INNER JOIN COMPANY_MASTER C ON (A.COMPANY_CD = C.COMPANY_CD AND A.DOMAIN_ID = C.DOMAIN_ID)
+			INNER JOIN DEPT_MASTER D ON (E.DEPT_CD = D.DEPT_CD AND E.COMPANY_CD = D.COMPANY_CD AND E.DOMAIN_ID = D.DOMAIN_ID)
+		<where>
+			A.DOMAIN_ID = #{domainId}
+			AND A.COMPANY_CD = #{companyCd}
+			AND A.AUTHORITY_NAME = 'ROLE_ADMIN'
+			<if test="empNm != null and empNm != ''">
+				AND (E.EMP_NM LIKE CONCAT('%', #{empNm}, '%') OR E.EMP_ENG_NM LIKE CONCAT('%', #{empNm}, '%'))
+			</if>
+		</where>
+		ORDER BY DEPT_ORD, DEPT_NM, EMP_NM
+		LIMIT #{offset}, #{fetchNext}
+	</select>
+	
+	<select id="selectEmpRoleUserListCnt" parameterType="Map" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM (
+			SELECT
+				A.DOMAIN_ID
+				, A.COMPANY_CD
+				, CASE
+					WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+					WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+						ELSE C.COMPANY_ENG_NM
+					END
+					ELSE C.COMPANY_NM
+				END AS COMPANY_NM
+				, CASE
+					WHEN #{languageCd} = 'ko-KR' THEN E.EMP_NM
+					WHEN #{languageCd} = 'en-US' THEN
+						CASE
+							WHEN E.EMP_ENG_NM IS NULL OR E.EMP_ENG_NM = '' THEN E.EMP_NM
+							ELSE E.EMP_ENG_NM
+						END
+					ELSE E.EMP_NM
+				END AS EMP_NM
+				, A.EMAIL
+				, E.DEPT_CD
+				, CASE
+					WHEN #{languageCd} = 'ko-KR' THEN D.DEPT_NM
+					WHEN #{languageCd} = 'en-US' THEN
+						CASE
+							WHEN D.DEPT_ENG_NM IS NULL OR D.DEPT_ENG_NM = '' THEN D.DEPT_NM
+							ELSE D.DEPT_ENG_NM
+						END
+					ELSE D.DEPT_NM
+				END AS DEPT_NM
+				, SF_GET_CODE_NM(#{languageCd}, 'CM002', E.POS_CD, A.COMPANY_CD, A.DOMAIN_ID) AS POS_NM
+				, E.EMP_NO
+				, SF_GET_CODE_NM(#{languageCd}, 'CM001', E.EMP_STATUS_CD, A.COMPANY_CD, A.DOMAIN_ID) AS EMP_STATUS_NM
+				, A.AUTHORITY_NAME
+			FROM EMP_AUTHORITY A
+				INNER JOIN EMP_MASTER E ON (E.EMAIL = A.EMAIL AND E.DOMAIN_ID = A.DOMAIN_ID AND E.COMPANY_CD = A.COMPANY_CD)
+				INNER JOIN COMPANY_MASTER C ON (A.COMPANY_CD = C.COMPANY_CD AND A.DOMAIN_ID = C.DOMAIN_ID)
+				INNER JOIN DEPT_MASTER D ON (E.DEPT_CD = D.DEPT_CD AND E.COMPANY_CD = D.COMPANY_CD AND E.DOMAIN_ID = D.DOMAIN_ID)
+			<where>
+				A.DOMAIN_ID = #{domainId}
+				AND A.COMPANY_CD = #{companyCd}
+				<if test="empNm != null and empNm != ''">
+					AND (E.EMP_NM LIKE CONCAT('%', #{empNm}, '%') OR E.EMP_ENG_NM LIKE CONCAT('%', #{empNm}, '%'))
+				</if>
+				AND A.EMAIL NOT IN (
+					SELECT 
+						EMAIL 
+					FROM 
+						EMP_AUTHORITY 
+					WHERE 
+						DOMAIN_ID = #{domainId}
+						AND COMPANY_CD = #{companyCd}
+						AND AUTHORITY_NAME = 'ROLE_ADMIN'
+				)
+			</where>
+		) B
+	</select>
+	
+	<select id="selectEmpRoleUserList" parameterType="Map" resultType="EmpAuthListVO">
+		SELECT
+			A.DOMAIN_ID
+			, A.COMPANY_CD
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+						ELSE C.COMPANY_ENG_NM
+					END
+				ELSE C.COMPANY_NM
+			END AS COMPANY_NM
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN E.EMP_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN E.EMP_ENG_NM IS NULL OR E.EMP_ENG_NM = '' THEN E.EMP_NM
+						ELSE E.EMP_ENG_NM
+					END
+				ELSE E.EMP_NM
+			END AS EMP_NM
+			, A.EMAIL
+			, E.DEPT_CD
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN D.DEPT_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN D.DEPT_ENG_NM IS NULL OR D.DEPT_ENG_NM = '' THEN D.DEPT_NM
+						ELSE D.DEPT_ENG_NM
+					END
+				ELSE D.DEPT_NM
+			END AS DEPT_NM
+			, SF_GET_CODE_NM(#{languageCd}, 'CM002', E.POS_CD, A.COMPANY_CD, A.DOMAIN_ID) AS POS_NM
+			, E.EMP_NO
+			, SF_GET_CODE_NM(#{languageCd}, 'CM001', E.EMP_STATUS_CD, A.COMPANY_CD, A.DOMAIN_ID) AS EMP_STATUS_NM
+			, A.AUTHORITY_NAME
+			, D.DEPT_ORD
+		FROM EMP_AUTHORITY A
+			INNER JOIN EMP_MASTER E ON (E.EMAIL = A.EMAIL AND E.DOMAIN_ID = A.DOMAIN_ID AND E.COMPANY_CD = A.COMPANY_CD)
+			INNER JOIN COMPANY_MASTER C ON (A.COMPANY_CD = C.COMPANY_CD AND A.DOMAIN_ID = C.DOMAIN_ID)
+			INNER JOIN DEPT_MASTER D ON (E.DEPT_CD = D.DEPT_CD AND E.COMPANY_CD = D.COMPANY_CD AND E.DOMAIN_ID = D.DOMAIN_ID)
+		<where>
+			A.DOMAIN_ID = #{domainId}
+			AND A.COMPANY_CD = #{companyCd}
+			<if test="empNm != null and empNm != ''">
+				AND (E.EMP_NM LIKE CONCAT('%', #{empNm}, '%') OR E.EMP_ENG_NM LIKE CONCAT('%', #{empNm}, '%'))
+			</if>
+			AND A.EMAIL NOT IN (
+				SELECT 
+					EMAIL 
+				FROM 
+					EMP_AUTHORITY 
+				WHERE 
+					DOMAIN_ID = #{domainId}
+					AND COMPANY_CD = #{companyCd}
+					AND AUTHORITY_NAME = 'ROLE_ADMIN'
+			)
+		</where>
+		ORDER BY DEPT_ORD, DEPT_NM, EMP_NM
+		LIMIT #{offset}, #{fetchNext}
+	</select>
+	
+	<delete id="deleteEmpAuthorityFromSync">
+		DELETE FROM
+			EMP_AUTHORITY
+		WHERE
+			EMAIL NOT IN (SELECT EMAIL FROM EMP_MASTER WHERE MANUAL_MNG_YN = 'Y' AND DOMAIN_ID = #{domainId} AND COMPANY_CD = #{companyCd})
+			AND COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+			AND AUTHORITY_NAME != 'ROLE_ADMIN'
+	</delete>
+	
+</mapper>    

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper">
+	<sql id="sqlFetchNextStatement">
+        <if test="fetchNext != null and fetchNext != ''">
+        <![CDATA[
+            LIMIT ${offset} , ${fetchNext}
+        ]]>
+        </if>
+    </sql>
+    
+	<select id="selectCompanySelBox" parameterType="Map" resultType="CompanyMasterVO">
+		SELECT
+			C.DOMAIN_ID
+			, C.COMPANY_CD
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+						ELSE C.COMPANY_ENG_NM
+					END
+				ELSE C.COMPANY_NM
+			END AS COMPANY_NM
+			, C.LANGUAGE_CD
+			, C.USE_YN
+			, C.CREATE_USR
+			, C.CREATE_DT
+			, C.UPDATE_USR
+			, C.UPDATE_DT 
+		FROM 
+			COMPANY_MASTER C
+		<if test="email != null and email != ''">
+			INNER JOIN EMP_COMPANY_XREF X ON (C.DOMAIN_ID = X.DOMAIN_ID AND C.COMPANY_CD = X.COMPANY_CD)
+		</if>
+		<where>
+			AND C.USE_YN = 'Y'
+			AND C.DOMAIN_ID = #{domainId}
+			<if test="email != null and email != ''">
+				AND X.EMAIL = #{email}
+			</if>
+		</where>
+		ORDER BY 
+			COMPANY_NM
+	</select>
+	
+	<select id="selectCompanyListCnt" parameterType="Map" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM (
+			SELECT
+				DOMAIN_ID
+				, COMPANY_CD
+				, COMPANY_NM
+				, COMPANY_ENG_NM
+				, LANGUAGE_CD
+				, USE_YN
+				, CREATE_USR
+				, CREATE_DT
+				, UPDATE_USR
+				, UPDATE_DT 
+			FROM 
+				COMPANY_MASTER
+			<where>
+				DOMAIN_ID = #{domainId}
+				<if test="companyNm != null and companyNm != ''">
+					AND (COMPANY_NM LIKE CONCAT('%', #{companyNm}, '%') OR COMPANY_ENG_NM LIKE CONCAT('%', #{companyNm}, '%'))
+				</if>
+			</where>
+			ORDER BY 
+				COMPANY_NM
+		) A
+	</select>
+	
+	<select id="selectCompanyList" parameterType="Map" resultType="CompanyMasterVO">
+		SELECT
+			DOMAIN_ID
+			, COMPANY_CD
+			, COMPANY_NM
+			, COMPANY_ENG_NM
+			, LANGUAGE_CD
+			, USE_YN
+			, CREATE_USR
+			, CREATE_DT
+			, UPDATE_USR
+			, UPDATE_DT 
+		FROM 
+			COMPANY_MASTER
+		<where>
+			DOMAIN_ID = #{domainId}
+			<if test="companyNm != null and companyNm != ''">
+				AND (COMPANY_NM LIKE CONCAT('%', #{companyNm}, '%') OR COMPANY_ENG_NM LIKE CONCAT('%', #{companyNm}, '%'))
+			</if>
+		</where>
+		ORDER BY COMPANY_NM
+		LIMIT #{offset}, #{fetchNext}
+	</select>
+	
+	<select id="selectEpSyncCompanyList" parameterType="Map" resultType="CompanyMasterVO">
+		SELECT
+			DOMAIN_ID
+			, COMPANY_CD
+			, EP_EMP_SYNC_API_URL
+			, EP_DEPT_SYNC_API_URL
+			, EP_EMP_DEPT_XREF_SYNC_API_URL
+			, TEMP_DOMAIN_ID
+			, EP_API_AUTH_KEY
+		FROM
+			COMPANY_MASTER
+		<where>
+			AUTO_EP_SYNC_YN = 'Y'
+		</where>
+	</select>
+
+	<select id="selectCompanyForSync" parameterType="Map" resultType="CompanyMasterVO">
+		SELECT
+		DOMAIN_ID
+		, COMPANY_CD
+		, TEMP_DOMAIN_ID
+		, API_AUTH_KEY
+		FROM
+		COMPANY_MASTER
+		<where>
+			COMPANY_CD = #{companyCd}
+		</where>
+	</select>
+
+	<update id="updateApiAuthKey">
+		UPDATE
+		COMPANY_MASTER
+		<set>
+			API_AUTH_KEY = #{apiKey},
+			UPDATE_USR = #{updateUsr},
+			UPDATE_DT = now()
+		</set>
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+		</where>
+	</update>
+
+	<select id="selectApiAuthKey" parameterType="String" resultType="String">
+		SELECT
+			API_AUTH_KEY
+		FROM
+		COMPANY_MASTER
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+		</where>
+	</select>
+
+</mapper>

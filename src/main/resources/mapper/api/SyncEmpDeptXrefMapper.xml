@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.api.SyncEmpDeptXrefMapper">
+	<sql id="sqlFetchNextStatement">
+		<if test="fetchNext != null and fetchNext != ''">
+	        <![CDATA[
+	            LIMIT ${offset} , ${fetchNext}
+	        ]]>
+		</if>
+	</sql>
+	
+	<delete id="deleteSyncEmpDeptXref" parameterType="Map">
+		DELETE FROM
+			sync_emp_dept_xref_${tempDomainId}
+		<where>
+			COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+		</where>
+	</delete>
+		
+	<insert id="insertSyncEmpDeptXref" parameterType="Map" >
+		INSERT INTO 
+			sync_emp_dept_xref_${tempDomainId} (
+				SYNC_DATE
+				, DOMAIN_ID
+				, COMPANY_CD
+				, EMAIL
+				, DEPT_CD
+				, POS_CD
+				, EMP_NO
+				, ADD_YN
+				, HEAD_YN
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES
+		<foreach collection="empDeptXreflist" item="item" separator=",">
+		(
+			DATE_FORMAT(now(), '%Y-%m-%d')
+			, #{item.domainId}
+			, #{item.companyCd}
+			, #{item.email}
+			, #{item.deptCd}
+			, (SELECT POS_CD FROM sync_emp_master_${tempDomainId} WHERE DOMAIN_ID = #{item.domainId} AND COMPANY_CD = #{item.companyCd} AND EMAIL = #{item.email})
+			, #{item.empNo}
+			, #{item.addYn}
+			, #{item.headYn}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+		</foreach>
+	</insert>
+	
+	<insert id="insertEmpDeptXrefFromSync" parameterType="Map" >
+		INSERT INTO 
+			EMP_DEPT_XREF (
+				DOMAIN_ID
+				, COMPANY_CD
+				, DEPT_CD
+				, EMAIL
+				, POS_CD
+				, EMP_NO
+				, ADD_YN
+				, HEAD_YN
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		SELECT
+			DOMAIN_ID
+			, COMPANY_CD
+			, DEPT_CD
+			, EMAIL
+			, POS_CD
+			, EMP_NO
+			, ADD_YN
+			, HEAD_YN
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		FROM
+			sync_emp_dept_xref_${tempDomainId}
+		WHERE 
+			EMAIL NOT IN (SELECT EMAIL FROM EMP_MASTER WHERE MANUAL_MNG_YN = 'Y' AND DOMAIN_ID = #{domainId} AND COMPANY_CD = #{companyCd})
+			AND DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+	</insert>
+</mapper>

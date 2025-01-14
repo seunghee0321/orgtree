@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.api.SyncLogMapper">
+	<sql id="sqlFetchNextStatement">
+		<if test="fetchNext != null and fetchNext != ''">
+	        <![CDATA[
+	            LIMIT ${offset} , ${fetchNext}
+	        ]]>
+		</if>
+	</sql>
+
+	<insert id="insertSyncLog" parameterType="SyncLogVO" >
+		INSERT INTO 
+			sync_log_${tempDomainId} (
+				SYNC_DATE
+				, SYNC_DIV
+				, DOMAIN_ID
+				, COMPANY_CD
+				, EMP_SYNC_RESULT
+				, DEPT_SYNC_RESULT
+				, EMP_DEPT_SYNC_RESULT
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES
+		(
+			DATE_FORMAT(now(), '%Y-%m-%d')
+			, #{syncDiv}
+			, #{domainId}
+			, #{companyCd}
+			, #{empSyncResult}
+			, #{deptSyncResult}
+			, #{empDeptSyncResult}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+	</insert>
+	
+	<select id="selectSuccessSyncLog" parameterType="Map" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			sync_log_${tempDomainId}
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND EMP_SYNC_RESULT = 'S'
+			AND DEPT_SYNC_RESULT ='S'
+			AND EMP_DEPT_SYNC_RESULT = 'S'
+			AND SYNC_DATE = DATE_FORMAT(now(), '%Y-%m-%d')
+			AND SYNC_DIV = 'TOSYNC'
+		</where>
+
+	</select>
+
+	<select id="selectSuccessSyncLogCnt" parameterType="Map" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM (
+			SELECT *
+			FROM
+			sync_log_${tempDomainId}
+			<where>
+				DOMAIN_ID = #{domainId}
+				AND COMPANY_CD = #{companyCd}
+				AND SYNC_DATE = DATE_FORMAT(now(), '%Y-%m-%d')
+				AND SYNC_DIV = 'TOSYNC'
+			</where>
+			ORDER BY CREATE_DT DESC
+			LIMIT 1
+		) A
+		<where>
+			<choose>
+				<when test = 'syncCode == "emp"'>
+					A.EMP_SYNC_RESULT = 'S' AND A.DEPT_SYNC_RESULT = 'P' AND A.EMP_DEPT_SYNC_RESULT = 'P'
+				</when>
+				<when test = 'syncCode == "dept"'>
+					A.EMP_SYNC_RESULT = 'P' AND A.DEPT_SYNC_RESULT = 'S' AND A.EMP_DEPT_SYNC_RESULT = 'P'
+				</when>
+				<when test = 'syncCode == "empDept"'>
+					A.EMP_SYNC_RESULT = 'P' AND A.DEPT_SYNC_RESULT = 'P' AND A.EMP_DEPT_SYNC_RESULT = 'S'
+				</when>
+			</choose>
+
+		</where>
+
+	</select>
+</mapper>

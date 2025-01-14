@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.api.SyncEmpMasterMapper">
+	<sql id="sqlFetchNextStatement">
+		<if test="fetchNext != null and fetchNext != ''">
+	        <![CDATA[
+	            LIMIT ${offset} , ${fetchNext}
+	        ]]>
+		</if>
+	</sql>
+	
+	<delete id="deleteSyncEmpMaster" parameterType="Map">
+		DELETE FROM
+			sync_emp_master_${tempDomainId}
+		<where>
+			COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+		</where>
+	</delete>
+		
+	<insert id="insertSyncEmpMaster" parameterType="Map" >
+		INSERT INTO 
+			sync_emp_master_${tempDomainId} (
+				SYNC_DATE
+				, DOMAIN_ID
+				, COMPANY_CD
+				, EMAIL
+				, EMP_NM
+				, EMP_ENG_NM
+				, EMP_NO
+				, POS_CD
+				, DEPT_CD
+				, ENTER_DT
+				, QUIT_DT
+				, MANUAL_MNG_YN
+				, HIDDEN_YN
+				, EMP_STATUS_CD
+				, JOB_TEL_NO
+				, MOBILE_TEL_NO
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES 
+		<foreach collection="empList" item="item" separator=",">
+		(
+			DATE_FORMAT(now(), '%Y-%m-%d')
+			, #{item.domainId}
+			, #{item.companyCd}
+			, #{item.email}
+			, #{item.empNm}
+			, #{item.empEngNm}
+			, #{item.empNo}
+			, #{item.posCd}
+			, #{item.deptCd}
+			, #{item.enterDt}
+			, #{item.quitDt}
+			, #{item.manualMngYn}
+			, #{item.hiddenYn}
+			, #{item.empStatusCd}
+			, #{item.jobTelNo}
+			, #{item.mobileTelNo}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+		</foreach>
+	</insert>
+	
+	<insert id="insertEmpMasterFromSync" parameterType="Map" >
+		INSERT INTO 
+			EMP_MASTER (
+				DOMAIN_ID
+				, COMPANY_CD
+				, EMAIL
+				, EMP_NM
+				, EMP_ENG_NM
+				, EMP_NO
+				, POS_CD
+				, DEPT_CD
+				, ENTER_DT
+				, QUIT_DT
+				, MANUAL_MNG_YN
+				, HIDDEN_YN
+				, EMP_STATUS_CD
+				, JOB_TEL_NO
+				, MOBILE_TEL_NO
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		SELECT
+			S.DOMAIN_ID
+			, S.COMPANY_CD
+			, S.EMAIL
+			, S.EMP_NM
+			, S.EMP_ENG_NM
+			, S.EMP_NO
+			, S.POS_CD
+			, S.DEPT_CD
+			, S.ENTER_DT
+			, S.QUIT_DT
+			, 'N'
+			, S.HIDDEN_YN
+			, C.CODE
+			, S.JOB_TEL_NO
+			, S.MOBILE_TEL_NO
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		FROM
+			sync_emp_master_${tempDomainId} S
+			INNER JOIN CODE_DETAIL C ON (S.EMP_STATUS_CD = C.CODE_NM AND S.DOMAIN_ID = C.DOMAIN_ID AND S.COMPANY_CD = C.COMPANY_CD)
+		WHERE 
+			S.EMAIL NOT IN (SELECT EMAIL FROM EMP_MASTER WHERE MANUAL_MNG_YN = 'Y' AND DOMAIN_ID = #{domainId} AND COMPANY_CD = #{companyCd})
+			AND S.DOMAIN_ID = #{domainId}
+			AND S.COMPANY_CD = #{companyCd}
+		
+	</insert>
+
+	<insert id="insertEmpMasterFromSyncForApi" parameterType="Map" >
+		INSERT INTO
+			EMP_MASTER (
+						 DOMAIN_ID
+					   , COMPANY_CD
+					   , EMAIL
+					   , EMP_NM
+					   , EMP_ENG_NM
+					   , EMP_NO
+					   , POS_CD
+					   , DEPT_CD
+					   , ENTER_DT
+					   , QUIT_DT
+					   , MANUAL_MNG_YN
+					   , HIDDEN_YN
+					   , EMP_STATUS_CD
+					   , JOB_TEL_NO
+					   , MOBILE_TEL_NO
+					   , UPDATE_USR
+					   , UPDATE_DT
+					   , CREATE_USR
+					   , CREATE_DT
+		)
+		SELECT
+			S.DOMAIN_ID
+			 , S.COMPANY_CD
+			 , S.EMAIL
+			 , S.EMP_NM
+			 , S.EMP_ENG_NM
+			 , S.EMP_NO
+			 , S.POS_CD
+			 , S.DEPT_CD
+			 , S.ENTER_DT
+			 , S.QUIT_DT
+			 , 'N'
+			 , S.HIDDEN_YN
+			 , C.CODE
+			 , S.JOB_TEL_NO
+			 , S.MOBILE_TEL_NO
+			 , #{createUsr}
+			 , now()
+			 , #{createUsr}
+			 , now()
+		FROM
+			sync_emp_master_${tempDomainId} S
+				INNER JOIN CODE_DETAIL C ON (S.EMP_STATUS_CD = C.CODE AND S.DOMAIN_ID = C.DOMAIN_ID AND S.COMPANY_CD = C.COMPANY_CD)
+		WHERE
+				S.EMAIL NOT IN (SELECT EMAIL FROM EMP_MASTER WHERE MANUAL_MNG_YN = 'Y' AND DOMAIN_ID = #{domainId} AND COMPANY_CD = #{companyCd})
+		  AND S.DOMAIN_ID = #{domainId}
+		  AND S.COMPANY_CD = #{companyCd}
+
+	</insert>
+	
+	<insert id="insertEmpConfigFromSync" parameterType="Map" >
+		INSERT INTO 
+			EMP_CONFIG (
+				DOMAIN_ID
+				, COMPANY_CD
+				, EMAIL
+				, LANGUAGE_CD
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		SELECT
+			DOMAIN_ID
+			, COMPANY_CD
+			, EMAIL
+			, 'ko-KR'
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		FROM
+			sync_emp_master_${tempDomainId}
+		WHERE 
+			EMAIL NOT IN (SELECT EMAIL FROM EMP_MASTER WHERE MANUAL_MNG_YN = 'Y' AND DOMAIN_ID = #{domainId} AND COMPANY_CD = #{companyCd})
+			AND DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+	</insert>
+	
+	<insert id="insertEmpAuthorityFromSync" parameterType="Map" >
+		INSERT INTO 
+			EMP_AUTHORITY (
+				DOMAIN_ID
+				, COMPANY_CD
+				, EMAIL
+				, AUTHORITY_NAME
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		SELECT
+			DOMAIN_ID
+			, COMPANY_CD
+			, EMAIL
+			, 'ROLE_USER'
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		FROM
+			sync_emp_master_${tempDomainId}
+		WHERE 
+			EMAIL NOT IN (SELECT EMAIL FROM EMP_MASTER WHERE MANUAL_MNG_YN = 'Y' AND DOMAIN_ID = #{domainId} AND COMPANY_CD = #{companyCd})
+			AND DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+	</insert>
+</mapper>

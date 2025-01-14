@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.emp.EmpDeptXrefMapper">
+		
+	<select id="selectEmpDeptXrefList" parameterType="Map" resultType="EmpDeptXrefListVO">
+		SELECT
+			X.DOMAIN_ID
+			, X.COMPANY_CD
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+						ELSE C.COMPANY_ENG_NM
+					END
+				ELSE COMPANY_NM
+			END AS COMPANY_NM
+			, X.DEPT_CD
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN D.DEPT_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN D.DEPT_ENG_NM IS NULL OR D.DEPT_ENG_NM = '' THEN D.DEPT_NM
+						ELSE D.DEPT_ENG_NM
+					END
+				ELSE D.DEPT_NM
+			END AS DEPT_NM
+			, D.DEPT_USE_YN
+			, X.EMAIL
+			, X.POS_CD
+			, SF_GET_CODE_NM(#{languageCd}, 'CM002', X.POS_CD, X.COMPANY_CD, X.DOMAIN_ID) AS POS_NM
+			, X.EMP_NO
+			, X.ADD_YN
+			, X.HEAD_YN
+		FROM EMP_DEPT_XREF X
+			INNER JOIN COMPANY_MASTER C ON (X.COMPANY_CD = C.COMPANY_CD AND X.DOMAIN_ID = C.DOMAIN_ID)
+			INNER JOIN DEPT_MASTER D ON (X.DEPT_CD = D.DEPT_CD AND X.COMPANY_CD = D.COMPANY_CD AND X.DOMAIN_ID = D.DOMAIN_ID)
+		<where>
+			X.DOMAIN_ID = #{domainId}
+			AND X.EMAIL = #{email}
+		</where>
+		ORDER BY X.ADD_YN, COMPANY_NM, DEPT_NM
+	</select>
+	
+		
+	<insert id="insertEmpDeptXref">
+		INSERT INTO 
+			EMP_DEPT_XREF (
+				DOMAIN_ID
+				, COMPANY_CD
+				, EMAIL
+				, DEPT_CD
+				<if test="posCd != null and posCd != ''">
+				, POS_CD
+				</if>
+				<if test="empNo != null and empNo != ''">
+				, EMP_NO
+				</if>
+				, ADD_YN
+				<if test="headYn != null and headYn != ''">
+				, HEAD_YN
+				</if>
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES (
+			#{domainId}
+			, #{companyCd}
+			, #{email}
+			, #{deptCd}
+			<if test="posCd != null and posCd != ''">
+			, #{posCd}
+			</if>
+			<if test="empNo != null and empNo != ''">
+			, #{empNo}
+			</if>
+			, #{addYn}
+			<if test="headYn != null and headYn != ''">
+			, #{headYn}
+			</if>
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+	</insert>
+		
+	<delete id="deleteEmpDeptXref">
+		DELETE FROM
+			EMP_DEPT_XREF
+		WHERE
+			EMAIL = #{email}
+			AND COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+	</delete>
+	
+	<update id="updateEmpDeptXref">
+		UPDATE
+			EMP_DEPT_XREF
+		<set>
+			DEPT_CD = #{deptCd},
+			EMP_NO = #{empNo},
+			POS_CD = #{posCd},
+			HEAD_YN = #{headYn},
+			UPDATE_USR = #{updateUsr},
+			UPDATE_DT = now()
+		</set>
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND EMAIL = #{email}
+			AND ADD_YN = 'N'
+		</where>
+	</update>
+	
+	<update id="updateEmpDeptXrefDetail">
+		UPDATE
+			EMP_DEPT_XREF
+		<set>
+			DOMAIN_ID = #{domainId},
+			COMPANY_CD = #{companyCd},
+			DEPT_CD = #{deptCd},
+			EMP_NO = #{empNo},
+			POS_CD = #{posCd},
+			HEAD_YN = #{headYn},
+			ADD_YN = #{addYn},
+			UPDATE_USR = #{updateUsr},
+			UPDATE_DT = now()
+		</set>
+		<where>
+			DOMAIN_ID = #{oldDomainId}
+			AND COMPANY_CD = #{oldCompanyCd}
+			AND DEPT_CD = #{oldDeptCd}
+			AND EMAIL = #{oldEmail}
+		</where>
+	</update>
+
+	<delete id="deleteEmpDeptXrefDetail">
+		DELETE FROM
+			EMP_DEPT_XREF
+		<where>
+			EMAIL = #{email}
+			AND COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+			AND DEPT_CD = #{deptCd}
+		</where>
+	</delete>
+	
+	<insert id="insertUpdateEmpDeptXref">
+		INSERT INTO 
+			EMP_DEPT_XREF (
+				DOMAIN_ID
+				, COMPANY_CD
+				, EMAIL
+				, DEPT_CD
+				, POS_CD
+				, EMP_NO
+				, ADD_YN
+				, HEAD_YN
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES (
+			#{domainId}
+			, #{companyCd}
+			, #{email}
+			, #{deptCd}
+			, #{posCd}
+			, #{empNo}
+			, #{addYn}
+			, #{headYn}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+		ON DUPLICATE KEY UPDATE
+			DOMAIN_ID = #{domainId}
+			, COMPANY_CD = #{companyCd}
+			, EMAIL = #{email}
+			, DEPT_CD = #{deptCd}
+			, POS_CD = #{posCd}
+			, EMP_NO = #{empNo}
+			, ADD_YN = #{addYn}
+			, HEAD_YN = #{headYn}
+			, UPDATE_USR = #{createUsr}
+			, UPDATE_DT = now()
+	</insert>
+	
+	<delete id="deleteEmpDeptXrefFromSync">
+		DELETE FROM
+			EMP_DEPT_XREF
+		<where>
+			EMAIL NOT IN (SELECT EMAIL FROM EMP_MASTER WHERE MANUAL_MNG_YN = 'Y' AND DOMAIN_ID = #{domainId} AND COMPANY_CD = #{companyCd})
+			AND COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+		</where>
+	</delete>
+	
+	<delete id="deleteAllEmpDeptXref">
+		DELETE FROM
+			EMP_DEPT_XREF
+		<where>
+			EMAIL = #{email}
+			AND COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+		</where>
+		
+	</delete>
+
+</mapper>

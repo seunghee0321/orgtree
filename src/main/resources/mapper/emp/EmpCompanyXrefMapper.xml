@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.emp.EmpCompanyXrefMapper">
+	<sql id="sqlFetchNextStatement">
+        <if test="fetchNext != null and fetchNext != ''">
+        <![CDATA[
+            LIMIT ${offset} , ${fetchNext}
+        ]]>
+        </if>
+    </sql>
+    
+    <select id="selectEmpCompanyXrefListCnt" resultType="int">
+    	SELECT 
+    		COUNT(*) 
+    	FROM (
+    		SELECT
+				E.DOMAIN_ID
+				, C.COMPANY_CD
+				, E.EMAIL
+				, C.COMPANY_NM
+				, C.COMPANY_ENG_NM
+				, C.LANGUAGE_CD
+				, C.USE_YN
+			FROM
+				EMP_COMPANY_XREF E
+				INNER JOIN COMPANY_MASTER C ON (E.DOMAIN_ID = C.DOMAIN_ID AND E.COMPANY_CD = C.COMPANY_CD)
+			<where>
+				E.DOMAIN_ID = #{domainId}
+				AND E.EMAIL = #{email}
+			</where>
+    	) A
+	</select>
+	
+	<select id="selectEmpCompanyXrefList" resultType="EmpCompanyXrefVO">
+		SELECT
+			E.DOMAIN_ID
+			, C.COMPANY_CD
+			, E.EMAIL
+			, C.COMPANY_NM
+			, C.COMPANY_ENG_NM
+			, C.LANGUAGE_CD
+			, C.USE_YN
+		FROM
+			EMP_COMPANY_XREF E
+			INNER JOIN COMPANY_MASTER C ON (E.DOMAIN_ID = C.DOMAIN_ID AND E.COMPANY_CD = C.COMPANY_CD)
+		<where>
+			E.DOMAIN_ID = #{domainId}
+			AND E.EMAIL = #{email}
+		</where>
+		LIMIT #{offset}, #{fetchNext}
+	</select>
+	
+	<delete id="deleteEmpCompanyXref">
+		DELETE FROM EMP_COMPANY_XREF
+		<where>
+			DOMAIN_ID = #{domainId}
+			<if test="companyCd != null and companyCd != ''">
+				AND COMPANY_CD = #{companyCd}
+			</if>
+			AND EMAIL = #{email}
+		</where>
+			
+	</delete>
+	
+	<insert id="insertEmpCompanyXref">
+		INSERT INTO 
+			EMP_COMPANY_XREF (
+				DOMAIN_ID
+				, COMPANY_CD
+				, EMAIL
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES (
+			#{domainId}
+			, #{companyCd}
+			, #{email}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+		ON DUPLICATE KEY UPDATE
+			DOMAIN_ID = #{domainId}
+			, COMPANY_CD = #{companyCd}
+			, EMAIL = #{email}
+			, UPDATE_USR = #{createUsr}
+			, UPDATE_DT = now()
+	</insert>
+
+</mapper>

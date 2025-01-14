@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.config.EmpConfigMapper">
+	<sql id="sqlFetchNextStatement">
+        <if test="fetchNext != null and fetchNext != ''">
+        <![CDATA[
+            LIMIT ${offset} , ${fetchNext}
+        ]]>
+        </if>
+    </sql> 
+    
+    <select id="selectEmpConfig" parameterType="Map" resultType="EmpConfigVO">
+    	SELECT
+			a.DOMAIN_ID
+			, a.COMPANY_CD
+			, a.EMAIL
+			, b.LANGUAGE_CD
+			, b.CREATE_USR
+			, b.CREATE_DT
+			, DATE_FORMAT(b.CREATE_DT, '%Y-%m-%d') AS CREATE_DT_F
+			, b.UPDATE_USR
+			, b.UPDATE_DT     	
+			, DATE_FORMAT(b.UPDATE_DT, '%Y-%m-%d') AS UPDATE_DT_F
+    	FROM
+    		EMP_MASTER a
+    		LEFT OUTER JOIN EMP_CONFIG b ON (a.DOMAIN_ID = b.DOMAIN_ID AND a.COMPANY_CD = b.COMPANY_CD AND a.EMAIL = b.EMAIL)
+    	WHERE
+    		a.DOMAIN_ID = #{domainId}		
+    		AND a.COMPANY_CD = #{companyCd}		
+    		AND a.EMAIL = #{email}		
+    </select>
+        
+	<insert id="insertEmpConfig" parameterType="EmpConfigVO" >
+		INSERT INTO EMP_CONFIG (
+			DOMAIN_ID
+			, COMPANY_CD
+			, EMAIL
+			, LANGUAGE_CD
+			, CREATE_USR
+			, CREATE_DT
+			, UPDATE_USR
+			, UPDATE_DT  
+		)
+		VALUES (
+			#{domainId}
+			, #{companyCd}
+			, #{email}
+			, #{languageCd}
+			, #{createUsr}
+			, NOW()
+			, #{createUsr}
+			, NOW()			
+		)
+	</insert>	
+	
+	
+	<insert id="insertEmpConfigInfo" parameterType="Map">
+		INSERT INTO EMP_CONFIG (
+			DOMAIN_ID
+			, COMPANY_CD
+			, EMAIL
+			, LANGUAGE_CD
+			, UPDATE_USR
+			, UPDATE_DT
+			, CREATE_USR
+			, CREATE_DT
+		)
+		VALUES (
+			#{domainId}
+			, #{companyCd}
+			, #{email}
+			, #{languageCd}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+	</insert>
+
+    <delete id="deleteEmpConfig" parameterType="EmpConfigVO">
+    	DELETE FROM EMP_CONFIG
+    	WHERE
+    		DOMAIN_ID = #{domainId}		
+    		AND COMPANY_CD = #{companyCd}		
+    		AND EMAIL = #{email}	
+    </delete> 
+    
+    <update id="updateEmpConfig" parameterType="Map">
+		UPDATE
+			EMP_CONFIG
+		<set>
+			<if test="languageCd != null and languageCd != ''">
+				LANGUAGE_CD = #{languageCd},
+			</if>
+			UPDATE_USR = #{updateUsr},
+			UPDATE_DT = now()
+		</set>
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND EMAIL = #{email}
+		</where>
+	</update>
+	
+		
+	<delete id="deleteEmpConfigInfo"  parameterType="Map">
+		DELETE FROM
+			EMP_CONFIG
+		WHERE
+			EMAIL = #{email}
+			AND COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+	</delete>
+	
+	<insert id="insertUpdateEmpConfigInfo">
+		INSERT INTO EMP_CONFIG (
+			DOMAIN_ID
+			, COMPANY_CD
+			, EMAIL
+			, LANGUAGE_CD
+			, CREATE_USR
+			, CREATE_DT
+			, UPDATE_USR
+			, UPDATE_DT  
+		)
+		VALUES (
+			#{domainId}
+			, #{companyCd}
+			, #{email}
+			, #{languageCd}
+			, #{createUsr}
+			, NOW()
+			, #{createUsr}
+			, NOW()			
+		)
+		ON DUPLICATE KEY UPDATE
+			DOMAIN_ID = #{domainId}
+			, COMPANY_CD = #{companyCd}
+			, EMAIL = #{email}
+			, LANGUAGE_CD = #{languageCd}
+			, UPDATE_USR = #{createUsr}
+			, UPDATE_DT = now()
+	</insert>	
+	
+	<update id="updateEmpConfigXref">
+		UPDATE
+			EMP_CONFIG
+		<set>
+			COMPANY_CD = #{companyCd},
+			UPDATE_USR = #{updateUsr},
+			UPDATE_DT = now()
+		</set>
+		<where>
+			DOMAIN_ID = #{oldDomainId}
+			AND COMPANY_CD = #{oldCompanyCd}
+			AND EMAIL = #{oldEmail}
+		</where>
+	
+	</update>
+	
+	<delete id="deleteEmpConfigFromSync">
+		DELETE FROM
+			EMP_CONFIG
+		WHERE
+			EMAIL NOT IN (SELECT EMAIL FROM EMP_MASTER WHERE MANUAL_MNG_YN = 'Y' AND DOMAIN_ID = #{domainId} AND COMPANY_CD = #{companyCd})
+			AND COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+	</delete>
+</mapper>    

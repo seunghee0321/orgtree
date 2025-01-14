@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbinc.cloudoffice.orgtree.mapper.emp.EmpMapper">
+    <select id="selectEmpListCnt" parameterType="Map" resultType="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM
+			(SELECT
+				CASE
+					WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+					WHEN #{languageCd} = 'en-US' THEN
+						CASE
+							WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+							ELSE C.COMPANY_ENG_NM
+						END
+					ELSE C.COMPANY_NM
+				END AS COMPANY_NM
+				, X.DOMAIN_ID
+				, X.COMPANY_CD
+				, X.ADD_YN
+				, X.DEPT_CD
+				, CASE
+					WHEN #{languageCd} = 'ko-KR' THEN D.DEPT_NM
+					WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN D.DEPT_ENG_NM IS NULL OR D.DEPT_ENG_NM = '' THEN D.DEPT_NM
+						ELSE D.DEPT_ENG_NM
+					END
+					ELSE D.DEPT_NM
+				END AS DEPT_NM
+				, CASE
+					WHEN #{languageCd} = 'ko-KR' THEN E.EMP_NM
+					WHEN #{languageCd} = 'en-US' THEN
+						CASE
+							WHEN E.EMP_ENG_NM IS NULL OR E.EMP_ENG_NM = '' THEN E.EMP_NM
+							ELSE E.EMP_ENG_NM
+						END
+					ELSE E.EMP_NM
+				END AS EMP_NM
+				, SF_GET_CODE_NM(#{languageCd}, 'CM002', X.POS_CD, X.COMPANY_CD, X.DOMAIN_ID) AS POS_NM
+				, X.EMP_NO
+				, E.EMAIL
+				, E.JOB_TEL_NO
+				, E.MOBILE_TEL_NO
+				, SF_GET_CODE_NM(#{languageCd}, 'CM001', E.EMP_STATUS_CD, X.COMPANY_CD, X.DOMAIN_ID) AS EMP_STATUS_NM
+				, E.MANUAL_MNG_YN
+				, CO.SORT_ORD
+				, D.DEPT_ORD
+			FROM EMP_MASTER E
+				INNER JOIN EMP_DEPT_XREF X ON (E.EMAIL = X.EMAIL AND E.DOMAIN_ID = X.DOMAIN_ID)
+				INNER JOIN COMPANY_MASTER C ON (X.COMPANY_CD = C.COMPANY_CD AND X.DOMAIN_ID = C.DOMAIN_ID)
+				INNER JOIN DEPT_MASTER D ON (X.DEPT_CD = D.DEPT_CD AND X.COMPANY_CD = D.COMPANY_CD AND X.DOMAIN_ID = D.DOMAIN_ID)
+				LEFT JOIN CODE_DETAIL CO ON (CO.CODE = X.POS_CD AND CO.DOMAIN_ID = X.DOMAIN_ID AND CO.COMPANY_CD = X.COMPANY_CD)
+			<where>
+				X.DOMAIN_ID = #{domainId}
+				AND X.COMPANY_CD = #{companyCd}
+				<if test='includeHidden == "N"'>
+					AND (E.HIDDEN_YN = 'N' OR E.HIDDEN_YN IS NULL OR E.HIDDEN_YN = '')
+				</if>
+				<if test="companyStatusCd != null and companyStatusCd != ''">
+					AND E.EMP_STATUS_CD = #{companyStatusCd}
+				</if>
+				<if test="empNm != null and empNm != ''">
+					AND ( REPLACE(E.EMP_NM, ' ', '') LIKE REPLACE(CONCAT('%', #{empNm}, '%'), ' ','') OR REPLACE(E.EMP_ENG_NM, ' ', '') LIKE REPLACE(CONCAT('%', #{empNm}, '%'), ' ','') )
+				</if>
+				<if test="email != null and email != ''">
+					AND E.EMAIL LIKE CONCAT('%',#{email},'%')
+				</if>
+				<if test="empNo != null and empNo != ''">
+					AND X.EMP_NO LIKE CONCAT('%',#{empNo},'%')
+				</if>
+				<if test="jobTelNo != null and jobTelNo != ''">
+					AND E.JOB_TEL_NO LIKE CONCAT('%',#{jobTelNo},'%')
+				</if>
+				<if test="mobileTelNo != null and mobileTelNo != ''">
+					AND E.MOBILE_TEL_NO LIKE CONCAT('%',#{mobileTelNo},'%')
+				</if>
+				<if test="deptCd != null and deptCd != ''">
+					AND X.DEPT_CD = #{deptCd}
+				</if>
+				<if test="addYn != null and addYn != ''">
+					AND X.ADD_YN = #{addYn}
+				</if>
+				<if test="manualMngYn != null and manualMngYn != ''">
+					AND E.MANUAL_MNG_YN = #{manualMngYn}
+				</if>
+				<if test='incDeptUseYn == null or incDeptUseYn == "false"'>
+					AND D.DEPT_USE_YN = 'Y'
+				</if>
+			</where>
+			<if test='includeSub == "Y"'>
+				UNION
+				SELECT
+					CASE
+						WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+						WHEN #{languageCd} = 'en-US' THEN
+							CASE
+								WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+								ELSE C.COMPANY_ENG_NM
+							END
+						ELSE C.COMPANY_NM
+					END AS COMPANY_NM
+					, X.DOMAIN_ID
+					, X.COMPANY_CD
+					, X.ADD_YN
+					, X.DEPT_CD
+					, CASE
+						WHEN #{languageCd} = 'ko-KR' THEN D.DEPT_NM
+						WHEN #{languageCd} = 'en-US' THEN
+							CASE
+								WHEN D.DEPT_ENG_NM IS NULL OR D.DEPT_ENG_NM = '' THEN D.DEPT_NM
+								ELSE D.DEPT_ENG_NM
+							END
+						ELSE D.DEPT_NM
+					END AS DEPT_NM
+					, CASE
+						WHEN #{languageCd} = 'ko-KR' THEN E.EMP_NM
+						WHEN #{languageCd} = 'en-US' THEN
+							CASE
+								WHEN E.EMP_ENG_NM IS NULL OR E.EMP_ENG_NM = '' THEN E.EMP_NM
+								ELSE E.EMP_ENG_NM
+							END
+						ELSE E.EMP_NM
+					END AS EMP_NM
+					, SF_GET_CODE_NM(#{languageCd}, 'CM002', X.POS_CD, X.COMPANY_CD, X.DOMAIN_ID) AS POS_NM
+					, X.EMP_NO
+					, E.EMAIL
+					, E.JOB_TEL_NO
+					, E.MOBILE_TEL_NO
+					, SF_GET_CODE_NM(#{languageCd}, 'CM001', E.EMP_STATUS_CD, X.COMPANY_CD, X.DOMAIN_ID) AS EMP_STATUS_NM
+					, E.MANUAL_MNG_YN
+					, CO.SORT_ORD
+					, D.DEPT_ORD
+				FROM (
+					SELECT
+						SF_GET_EMP_INC_CHILD() AS DEPT_CD
+						, @LEVEL AS LEVEL
+					FROM (
+						SELECT
+							@START_WITH:=#{deptCd}
+							, @DEPT_CD:=@START_WITH
+							, @LEVEL:=0
+						) VARS
+						JOIN DEPT_MASTER
+					WHERE @DEPT_CD IS NOT NULL
+				) FNC 
+				INNER JOIN EMP_MASTER E ON E.DEPT_CD = FNC.DEPT_CD
+				INNER JOIN EMP_DEPT_XREF X ON (E.EMAIL = X.EMAIL AND E.DOMAIN_ID = X.DOMAIN_ID)
+				INNER JOIN COMPANY_MASTER C ON (X.COMPANY_CD = C.COMPANY_CD AND X.DOMAIN_ID = C.DOMAIN_ID)
+				INNER JOIN DEPT_MASTER D ON (X.DEPT_CD = D.DEPT_CD AND X.COMPANY_CD = D.COMPANY_CD AND X.DOMAIN_ID = D.DOMAIN_ID)
+				LEFT JOIN CODE_DETAIL CO ON (CO.CODE = X.POS_CD AND CO.DOMAIN_ID = X.DOMAIN_ID AND CO.COMPANY_CD = X.COMPANY_CD)
+				<where>
+					X.DOMAIN_ID = #{domainId}
+					AND X.COMPANY_CD = #{companyCd}
+					<if test='includeHidden == "N"'>
+						AND (E.HIDDEN_YN = 'N' OR E.HIDDEN_YN IS NULL OR E.HIDDEN_YN = '')
+					</if>
+					<if test="companyCd != null and companyCd != ''">
+						AND C.COMPANY_CD = #{companyCd}
+					</if>
+					<if test="companyStatusCd != null and companyStatusCd != ''">
+						AND E.EMP_STATUS_CD = #{companyStatusCd}
+					</if>
+					<if test="empNm != null and empNm != ''">
+						AND ( REPLACE(E.EMP_NM, ' ', '') LIKE REPLACE(CONCAT('%', #{empNm}, '%'), ' ','') OR REPLACE(E.EMP_ENG_NM, ' ', '') LIKE REPLACE(CONCAT('%', #{empNm}, '%'), ' ','') )
+					</if>
+					<if test="email != null and email != ''">
+						AND E.EMAIL LIKE CONCAT('%',#{email},'%')
+					</if>
+					<if test="empNo != null and empNo != ''">
+						AND X.EMP_NO LIKE CONCAT('%',#{empNo},'%')
+					</if>
+					<if test="jobTelNo != null and jobTelNo != ''">
+						AND E.JOB_TEL_NO LIKE CONCAT('%',#{jobTelNo},'%')
+					</if>
+					<if test="mobileTelNo != null and mobileTelNo != ''">
+						AND E.MOBILE_TEL_NO LIKE CONCAT('%',#{mobileTelNo},'%')
+					</if>
+					<if test="addYn != null and addYn != ''">
+						AND X.ADD_YN = #{addYn}
+					</if>
+					<if test="manualMngYn != null and manualMngYn != ''">
+						AND E.MANUAL_MNG_YN = #{manualMngYn}
+					</if>
+					<if test='incDeptUseYn == null or incDeptUseYn == "false"'>
+						AND D.DEPT_USE_YN = 'Y'
+					</if>
+				</where>
+			</if>
+			) A
+	</select>
+	
+	<select id="selectEmpList" parameterType="Map" resultType="EmpListVO">
+		SELECT
+			CASE
+				WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+						ELSE C.COMPANY_ENG_NM
+					END
+				ELSE C.COMPANY_NM
+			END AS COMPANY_NM
+			, X.DOMAIN_ID
+			, X.COMPANY_CD
+			, X.ADD_YN
+			, X.DEPT_CD
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN D.DEPT_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN D.DEPT_ENG_NM IS NULL OR D.DEPT_ENG_NM = '' THEN D.DEPT_NM
+						ELSE D.DEPT_ENG_NM
+					END
+				ELSE D.DEPT_NM
+			END AS DEPT_NM
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN E.EMP_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN E.EMP_ENG_NM IS NULL OR E.EMP_ENG_NM = '' THEN E.EMP_NM
+						ELSE E.EMP_ENG_NM
+					END
+				ELSE E.EMP_NM
+			END AS EMP_NM
+			, SF_GET_CODE_NM(#{languageCd}, 'CM002', X.POS_CD, X.COMPANY_CD, X.DOMAIN_ID) AS POS_NM
+			, X.EMP_NO
+			, E.EMAIL
+			, E.JOB_TEL_NO
+			, E.MOBILE_TEL_NO
+			, SF_GET_CODE_NM(#{languageCd}, 'CM001', E.EMP_STATUS_CD, X.COMPANY_CD, X.DOMAIN_ID) AS EMP_STATUS_NM
+			, E.MANUAL_MNG_YN
+			, CO.SORT_ORD
+			, D.DEPT_ORD
+		FROM EMP_MASTER E
+			INNER JOIN EMP_DEPT_XREF X ON (E.EMAIL = X.EMAIL AND E.DOMAIN_ID = X.DOMAIN_ID)
+			INNER JOIN COMPANY_MASTER C ON (X.COMPANY_CD = C.COMPANY_CD AND X.DOMAIN_ID = C.DOMAIN_ID)
+			INNER JOIN DEPT_MASTER D ON (X.DEPT_CD = D.DEPT_CD AND X.COMPANY_CD = D.COMPANY_CD AND X.DOMAIN_ID = D.DOMAIN_ID)
+			LEFT JOIN CODE_DETAIL CO ON (CO.CODE = X.POS_CD AND CO.DOMAIN_ID = X.DOMAIN_ID AND CO.COMPANY_CD = X.COMPANY_CD)
+		<where>
+			X.DOMAIN_ID = #{domainId}
+			AND X.COMPANY_CD = #{companyCd}
+			<if test='includeHidden == "N"'>
+				AND (E.HIDDEN_YN = 'N' OR E.HIDDEN_YN IS NULL OR E.HIDDEN_YN = '')
+			</if>
+			<if test="companyStatusCd != null and companyStatusCd != ''">
+				AND E.EMP_STATUS_CD = #{companyStatusCd}
+			</if>
+			<if test="empNm != null and empNm != ''">
+				AND ( REPLACE(E.EMP_NM, ' ', '') LIKE REPLACE(CONCAT('%', #{empNm}, '%'), ' ','') OR REPLACE(E.EMP_ENG_NM, ' ', '') LIKE REPLACE(CONCAT('%', #{empNm}, '%'), ' ','') )
+			</if>
+			<if test="email != null and email != ''">
+				AND E.EMAIL LIKE CONCAT('%',#{email},'%')
+			</if>
+			<if test="empNo != null and empNo != ''">
+				AND X.EMP_NO LIKE CONCAT('%',#{empNo},'%')
+			</if>
+			<if test="jobTelNo != null and jobTelNo != ''">
+				AND E.JOB_TEL_NO LIKE CONCAT('%',#{jobTelNo},'%')
+			</if>
+			<if test="mobileTelNo != null and mobileTelNo != ''">
+				AND E.MOBILE_TEL_NO LIKE CONCAT('%',#{mobileTelNo},'%')
+			</if>
+			<if test="deptCd != null and deptCd != ''">
+				AND X.DEPT_CD = #{deptCd}
+			</if>
+			<if test="addYn != null and addYn != ''">
+				AND X.ADD_YN = #{addYn}
+			</if>
+			<if test="manualMngYn != null and manualMngYn != ''">
+				AND E.MANUAL_MNG_YN = #{manualMngYn}
+			</if>
+			<if test='incDeptUseYn == null or incDeptUseYn == "false"'>
+				AND D.DEPT_USE_YN = 'Y'
+			</if>
+		</where>
+		<if test='includeSub == "Y"'>
+			UNION
+			SELECT
+				CASE
+					WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+					WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+						ELSE C.COMPANY_ENG_NM
+					END
+					ELSE C.COMPANY_NM
+				END AS COMPANY_NM
+				, X.DOMAIN_ID
+				, X.COMPANY_CD
+				, X.ADD_YN
+				, X.DEPT_CD
+				, CASE
+					WHEN #{languageCd} = 'ko-KR' THEN D.DEPT_NM
+					WHEN #{languageCd} = 'en-US' THEN
+						CASE
+							WHEN D.DEPT_ENG_NM IS NULL OR D.DEPT_ENG_NM = '' THEN D.DEPT_NM
+							ELSE D.DEPT_ENG_NM
+						END
+					ELSE D.DEPT_NM
+				END AS DEPT_NM
+				, CASE
+					WHEN #{languageCd} = 'ko-KR' THEN E.EMP_NM
+					WHEN #{languageCd} = 'en-US' THEN
+						CASE
+							WHEN E.EMP_ENG_NM IS NULL OR E.EMP_ENG_NM = '' THEN E.EMP_NM
+							ELSE E.EMP_ENG_NM
+						END
+					ELSE E.EMP_NM
+				END AS EMP_NM
+				, SF_GET_CODE_NM(#{languageCd}, 'CM002', X.POS_CD, X.COMPANY_CD, X.DOMAIN_ID) AS POS_NM
+				, X.EMP_NO
+				, E.EMAIL
+				, E.JOB_TEL_NO
+				, E.MOBILE_TEL_NO
+				, SF_GET_CODE_NM(#{languageCd}, 'CM001', E.EMP_STATUS_CD, X.COMPANY_CD, X.DOMAIN_ID) AS EMP_STATUS_NM
+				, E.MANUAL_MNG_YN
+				, CO.SORT_ORD
+				, D.DEPT_ORD
+			FROM (
+				SELECT
+					SF_GET_EMP_INC_CHILD() AS DEPT_CD
+					, @LEVEL AS LEVEL
+				FROM (
+					SELECT
+						@START_WITH:=#{deptCd}
+						, @DEPT_CD:=@START_WITH
+						, @LEVEL:=0
+					) VARS
+					JOIN DEPT_MASTER
+				WHERE @DEPT_CD IS NOT NULL
+			) FNC 
+			INNER JOIN EMP_MASTER E ON E.DEPT_CD = FNC.DEPT_CD
+			INNER JOIN EMP_DEPT_XREF X ON (E.EMAIL = X.EMAIL AND E.DOMAIN_ID = X.DOMAIN_ID)
+			INNER JOIN COMPANY_MASTER C ON (X.COMPANY_CD = C.COMPANY_CD AND X.DOMAIN_ID = C.DOMAIN_ID)
+			JOIN DEPT_MASTER D ON (X.DEPT_CD = D.DEPT_CD AND X.COMPANY_CD = D.COMPANY_CD AND X.DOMAIN_ID = D.DOMAIN_ID)
+			LEFT JOIN CODE_DETAIL CO ON (CO.CODE = X.POS_CD AND CO.DOMAIN_ID = X.DOMAIN_ID AND CO.COMPANY_CD = X.COMPANY_CD)
+			<where>
+				X.DOMAIN_ID = #{domainId}
+				AND X.COMPANY_CD = #{companyCd}
+				<if test='includeHidden == "N"'>
+					AND (E.HIDDEN_YN = 'N' OR E.HIDDEN_YN IS NULL OR E.HIDDEN_YN = '')
+				</if>
+				<if test="companyStatusCd != null and companyStatusCd != ''">
+					AND E.EMP_STATUS_CD = #{companyStatusCd}
+				</if>
+				<if test="empNm != null and empNm != ''">
+					AND ( REPLACE(E.EMP_NM, ' ', '') LIKE REPLACE(CONCAT('%', #{empNm}, '%'), ' ','') OR REPLACE(E.EMP_ENG_NM, ' ', '') LIKE REPLACE(CONCAT('%', #{empNm}, '%'), ' ','') )
+				</if>
+				<if test="email != null and email != ''">
+					AND E.EMAIL LIKE CONCAT('%',#{email},'%')
+				</if>
+				<if test="empNo != null and empNo != ''">
+					AND X.EMP_NO LIKE CONCAT('%',#{empNo},'%')
+				</if>
+				<if test="jobTelNo != null and jobTelNo != ''">
+					AND E.JOB_TEL_NO LIKE CONCAT('%',#{jobTelNo},'%')
+				</if>
+				<if test="mobileTelNo != null and mobileTelNo != ''">
+					AND E.MOBILE_TEL_NO LIKE CONCAT('%',#{mobileTelNo},'%')
+				</if>
+				<if test="addYn != null and addYn != ''">
+					AND X.ADD_YN = #{addYn}
+				</if>
+				<if test="manualMngYn != null and manualMngYn != ''">
+					AND E.MANUAL_MNG_YN = #{manualMngYn}
+				</if>
+				<if test='incDeptUseYn == null or incDeptUseYn == "false"'>
+					AND D.DEPT_USE_YN = 'Y'
+				</if>
+			</where>
+		</if>
+		ORDER BY DEPT_ORD, DEPT_NM, SORT_ORD, EMP_NM
+		LIMIT #{offset}, #{fetchNext}
+	</select>
+	
+	<select id="selectEmpInfo" parameterType="Map" resultType="EmpDetailVO">
+		SELECT 
+			E.DOMAIN_ID
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN C.COMPANY_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN C.COMPANY_ENG_NM IS NULL OR C.COMPANY_ENG_NM = '' THEN C.COMPANY_NM
+						ELSE C.COMPANY_ENG_NM
+					END
+				ELSE C.COMPANY_NM
+			END AS COMPANY_NM
+			, E.COMPANY_CD
+			, CASE
+				WHEN #{languageCd} = 'ko-KR' THEN D.DEPT_NM
+				WHEN #{languageCd} = 'en-US' THEN
+					CASE
+						WHEN D.DEPT_ENG_NM IS NULL OR D.DEPT_ENG_NM = '' THEN D.DEPT_NM
+						ELSE D.DEPT_ENG_NM
+					END
+				ELSE D.DEPT_NM
+			END AS DEPT_NM
+			, E.DEPT_CD
+			, X.HEAD_YN
+			, X.ADD_YN
+			, E.EMP_NM
+			, E.EMP_ENG_NM
+			, E.EMAIL
+			, X.POS_CD
+			, X.EMP_NO
+			, E.JOB_TEL_NO
+			, E.MOBILE_TEL_NO
+			, E.EMP_STATUS_CD
+			, E.ENTER_DT
+			, E.QUIT_DT
+			, E.HIDDEN_YN
+			, E.MANUAL_MNG_YN
+			, CO.LANGUAGE_CD
+		FROM EMP_MASTER E
+			INNER JOIN COMPANY_MASTER C ON (E.COMPANY_CD = C.COMPANY_CD AND E.DOMAIN_ID = C.DOMAIN_ID)
+			INNER JOIN EMP_DEPT_XREF X ON E.EMAIL = X.EMAIL
+			INNER JOIN DEPT_MASTER D ON (X.DEPT_CD = D.DEPT_CD AND X.COMPANY_CD = D.COMPANY_CD AND X.DOMAIN_ID = D.DOMAIN_ID)
+			INNER JOIN EMP_CONFIG CO ON (E.DOMAIN_ID = CO.DOMAIN_ID AND E.COMPANY_CD = CO.COMPANY_CD AND E.EMAIL = CO.EMAIL)
+		<where>
+			E.DOMAIN_ID = #{domainId}
+			AND E.EMAIL = #{email}
+			AND X.ADD_YN = 'N'
+		</where>
+	</select>
+	
+	<update id="updateEmpMaster">
+		UPDATE
+			EMP_MASTER
+		<set>
+			DEPT_CD = #{deptCd},
+			EMP_NM = #{empNm},
+			EMP_ENG_NM = #{empEngNm},
+			EMP_NO = #{empNo},
+			POS_CD = #{posCd},
+			EMP_STATUS_CD = #{empStatusCd},
+			JOB_TEL_NO = #{jobTelNo},
+			MOBILE_TEL_NO = #{mobileTelNo},
+			MANUAL_MNG_YN = #{manualMngYn},
+			HIDDEN_YN = #{hiddenYn},
+			ENTER_DT = #{enterDt},
+			QUIT_DT = #{quitDt},
+			UPDATE_USR = #{updateUsr},
+			UPDATE_DT = now()
+		</set>
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND EMAIL = #{email}
+		</where>
+	</update>
+	
+	<insert id="insertEmpMaster">
+		INSERT INTO 
+			EMP_MASTER (
+				DOMAIN_ID
+				, COMPANY_CD
+				, EMAIL
+				, EMP_NM
+				<if test="empEngNm != null and empEngNm != ''">
+				, EMP_ENG_NM
+				</if>
+				<if test="empNo != null and empNo != ''">
+				, EMP_NO
+				</if>
+				, POS_CD
+				, DEPT_CD
+				<if test="enterDt != null and enterDt != ''">
+				, ENTER_DT
+				</if>
+				<if test="quitDt != null and quitDt != ''">
+				, QUIT_DT
+				</if>
+				<if test="manualMngYn != null and manualMngYn != ''">
+				, MANUAL_MNG_YN
+				</if>
+				<if test="hiddenYn != null and hiddenYn != ''">
+				, HIDDEN_YN
+				</if>
+				, EMP_STATUS_CD
+				<if test="jobTelNo != null and jobTelNo != ''">
+				, JOB_TEL_NO
+				</if>
+				<if test="mobileTelNo != null and mobileTelNo != ''">
+				, MOBILE_TEL_NO
+				</if>
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES (
+			#{domainId}
+			, #{companyCd}
+			, #{email}
+			, #{empNm}
+			<if test="empEngNm != null and empEngNm != ''">
+			, #{empEngNm}
+			</if>
+			<if test="empNo != null and empNo != ''">
+			, #{empNo}
+			</if>
+			, #{posCd}
+			, #{deptCd}
+			<if test="enterDt != null and enterDt != ''">
+			, #{enterDt}
+			</if>
+			<if test="quitDt != null and quitDt != ''">
+			, #{quitDt}
+			</if>
+			<if test="manualMngYn != null and manualMngYn != ''">
+			, #{manualMngYn}
+			</if>
+			<if test="hiddenYn != null and hiddenYn != ''">
+			, #{hiddenYn}
+			</if>
+			, #{empStatusCd}
+			<if test="jobTelNo != null and jobTelNo != ''">
+			, #{jobTelNo}
+			</if>
+			<if test="mobileTelNo != null and mobileTelNo != ''">
+			, #{mobileTelNo}
+			</if>
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+	</insert>
+	
+	<delete id="deleteEmpMaster">
+		DELETE FROM
+			EMP_MASTER
+		WHERE
+			EMAIL = #{email}
+			AND COMPANY_CD = #{companyCd}
+			AND DOMAIN_ID = #{domainId}
+	</delete>
+	
+	<insert id="insertUpdateEmpMaster">
+		INSERT INTO 
+			EMP_MASTER (
+				DOMAIN_ID
+				, COMPANY_CD
+				, EMAIL
+				, EMP_NM
+				, EMP_ENG_NM
+				, EMP_NO
+				, POS_CD
+				, DEPT_CD
+				, ENTER_DT
+				, QUIT_DT
+				, MANUAL_MNG_YN
+				, HIDDEN_YN
+				, EMP_STATUS_CD
+				, JOB_TEL_NO
+				, MOBILE_TEL_NO
+				, UPDATE_USR
+				, UPDATE_DT
+				, CREATE_USR
+				, CREATE_DT
+			)
+		VALUES (
+			#{domainId}
+			, #{companyCd}
+			, #{email}
+			, #{empNm}
+			, #{empEngNm}
+			, #{empNo}
+			, #{posCd}
+			, #{deptCd}
+			, #{enterDt}
+			, #{quitDt}
+			, #{manualMngYn}
+			, #{hiddenYn}
+			, #{empStatusCd}
+			, #{jobTelNo}
+			, #{mobileTelNo}
+			, #{createUsr}
+			, now()
+			, #{createUsr}
+			, now()
+		)
+		ON DUPLICATE KEY UPDATE
+			DOMAIN_ID = #{domainId}
+			, COMPANY_CD = #{companyCd}
+			, EMAIL = #{email}
+			, EMP_NM = #{empNm}
+			, EMP_ENG_NM = #{empEngNm}
+			, EMP_NO = #{empNo}
+			, POS_CD = #{posCd}
+			, DEPT_CD = #{deptCd}
+			, ENTER_DT = #{enterDt}
+			, QUIT_DT = #{quitDt}
+			, MANUAL_MNG_YN = #{manualMngYn}
+			, HIDDEN_YN = #{hiddenYn}
+			, EMP_STATUS_CD = #{empStatusCd}
+			, JOB_TEL_NO = #{jobTelNo}
+			, MOBILE_TEL_NO = #{mobileTelNo}
+			, UPDATE_USR = #{createUsr}
+			, UPDATE_DT = now()
+	</insert>
+	
+	<update id="updateEmpMasterXrefInfo" parameterType="Map">
+		UPDATE
+			EMP_MASTER
+		<set>
+			COMPANY_CD = #{companyCd},
+			DEPT_CD = #{deptCd},
+			EMP_NO = #{empNo},
+			POS_CD = #{posCd},
+			UPDATE_USR = #{updateUsr},
+			UPDATE_DT = now()
+		</set>
+		<where>
+			DOMAIN_ID = #{oldDomainId}
+			AND COMPANY_CD = #{oldCompanyCd}
+			AND EMAIL = #{oldEmail}
+		</where>
+	</update>
+	
+	<delete id="deleteEmpMasterFromSync" parameterType="Map">
+		DELETE FROM EMP_MASTER
+		<where>
+			DOMAIN_ID = #{domainId}
+			AND COMPANY_CD = #{companyCd}
+			AND MANUAL_MNG_YN != 'Y'
+		</where>
+	</delete>
+</mapper>
