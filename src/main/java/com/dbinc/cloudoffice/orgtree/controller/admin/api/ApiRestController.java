@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.sql.SQLSyntaxErrorException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -180,5 +181,18 @@ public class ApiRestController {
 			return false;
 		}
 		return true;
+	}
+
+	//25/1/15 추가,
+	@ApiOperation(value = "재직 직원 목록 조회")
+	@GetMapping("/sync/employees")
+	public ResponseEntity<List<EmpMasterVO>> getEmployees() {
+		try {
+			List<EmpMasterVO> employees = apiService.getActiveEmployeeList();
+			return new ResponseEntity<>(employees, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 }
