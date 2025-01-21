@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dbinc.cloudoffice.orgtree.vo.SyncLogVO;
 
-@Repository
+//@Repository
 @Mapper
 public interface SyncLogMapper {
 	int insertSyncLog(SyncLogVO syncLogVO);

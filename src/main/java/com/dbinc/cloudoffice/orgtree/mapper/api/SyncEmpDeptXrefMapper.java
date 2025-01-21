@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 
-@Repository
+//@Repository
 @Mapper
 public interface SyncEmpDeptXrefMapper {
 	int deleteSyncEmpDeptXref(Map<String, Object> paramsMap);

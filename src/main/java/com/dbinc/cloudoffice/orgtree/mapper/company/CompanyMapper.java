@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dbinc.cloudoffice.orgtree.vo.CompanyMasterVO;
 
-@Repository
+//@Repository
 @Mapper
 public interface CompanyMapper {
 	List<CompanyMasterVO> selectCompanySelBox(Map<String, Object> paramsMap);

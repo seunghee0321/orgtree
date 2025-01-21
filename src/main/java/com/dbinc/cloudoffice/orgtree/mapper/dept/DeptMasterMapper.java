@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dbinc.cloudoffice.orgtree.vo.DeptMasterVO;
 
-@Repository
+//@Repository
 @Mapper
 public interface DeptMasterMapper {
 	List<DeptMasterVO> selectDeptList(Map<String, Object> paramsMap);

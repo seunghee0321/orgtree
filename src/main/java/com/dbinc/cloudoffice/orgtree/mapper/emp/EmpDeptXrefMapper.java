@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dbinc.cloudoffice.orgtree.vo.EmpDeptXrefListVO;
 
-@Repository
+//@Repository
 @Mapper
 public interface EmpDeptXrefMapper {
 	List<EmpDeptXrefListVO> selectEmpDeptXrefList(Map<String, Object> paramsMap);

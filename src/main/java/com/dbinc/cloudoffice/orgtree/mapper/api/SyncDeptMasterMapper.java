@@ -5,7 +5,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 @Mapper
 public interface SyncDeptMasterMapper {
 	int deleteSyncDeptMaster(Map<String, Object> paramsMap);

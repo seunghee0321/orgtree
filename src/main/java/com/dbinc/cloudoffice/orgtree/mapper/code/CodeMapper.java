@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dbinc.cloudoffice.orgtree.vo.CodeVO;
 
-@Repository
+//@Repository
 @Mapper
 public interface CodeMapper {
 	List<CodeVO> selectCodeDetail(Map<String, Object> paramsMap);

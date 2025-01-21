@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.dbinc.cloudoffice.orgtree.vo.EmpDetailVO;
 import com.dbinc.cloudoffice.orgtree.vo.EmpListVO;
 
-@Repository
+//@Repository
 @Mapper
 public interface EmpMapper {
 	int selectEmpListCnt(Map<String, Object> paramsMap);

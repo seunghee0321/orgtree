@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.dbinc.cloudoffice.orgtree.vo.EmpAuthListVO;
 import com.dbinc.cloudoffice.orgtree.vo.EmpAuthorityVO;
 
-@Repository
+//@Repository
 @Mapper
 public interface EmpAuthorityMapper {
 	int insertEmpAuthority(Map<String, Object> paramsMap);

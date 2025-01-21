@@ -601,3 +601,384 @@ org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean def
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 22:41:37[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 22:41:37[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 16668 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 22:41:37[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 22:41:37[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 22:41:37[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 22:41:37[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 22:41:37[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 22:41:38[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 38 ms. Found 2 JPA repository interfaces.
+INFO  25-01-21 22:41:38[restartedMain] [TomcatWebServer:111] - Tomcat initialized with port 8090 (http)
+INFO  25-01-21 22:41:38[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 22:41:38[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  25-01-21 22:41:38[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.33]
+INFO  25-01-21 22:41:38[restartedMain] [TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+INFO  25-01-21 22:41:38[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  25-01-21 22:41:38[restartedMain] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 1379 ms
+INFO  25-01-21 22:41:38[restartedMain] [HikariDataSource:109] - HikariPool-1 - Starting...
+INFO  25-01-21 22:41:39[restartedMain] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@34419ca4
+INFO  25-01-21 22:41:39[restartedMain] [HikariDataSource:122] - HikariPool-1 - Start completed.
+INFO  25-01-21 22:41:39[restartedMain] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  25-01-21 22:41:39[restartedMain] [Version:44] - HHH000412: Hibernate ORM core version 6.6.2.Final
+INFO  25-01-21 22:41:39[restartedMain] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  25-01-21 22:41:39[restartedMain] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  25-01-21 22:41:39[restartedMain] [pooling:157] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+INFO  25-01-21 22:41:40[restartedMain] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  25-01-21 22:41:40[restartedMain] [LocalContainerEntityManagerFactoryBean:447] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  25-01-21 22:41:40[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'apiRestController' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\controller\admin\api\ApiRestController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'apiService' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\service\admin\api\ApiService.class]: Unsatisfied dependency expressed through constructor parameter 4: No qualifying bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  25-01-21 22:41:40[restartedMain] [LocalContainerEntityManagerFactoryBean:660] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  25-01-21 22:41:40[restartedMain] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+INFO  25-01-21 22:41:40[restartedMain] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+INFO  25-01-21 22:41:40[restartedMain] [StandardService:173] - Stopping service [Tomcat]
+INFO  25-01-21 22:41:40[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 22:41:40[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 4 of constructor in com.dbinc.cloudoffice.orgtree.service.admin.api.ApiService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' in your configuration.
+
+INFO  25-01-21 22:42:52[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 22:42:53[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 24300 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 22:42:53[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 22:42:53[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 22:42:53[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 22:42:53[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 22:42:53[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 22:42:53[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 39 ms. Found 2 JPA repository interfaces.
+INFO  25-01-21 22:42:54[restartedMain] [TomcatWebServer:111] - Tomcat initialized with port 8090 (http)
+INFO  25-01-21 22:42:54[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 22:42:54[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  25-01-21 22:42:54[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.33]
+INFO  25-01-21 22:42:54[restartedMain] [TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+INFO  25-01-21 22:42:54[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  25-01-21 22:42:54[restartedMain] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 1304 ms
+INFO  25-01-21 22:42:54[restartedMain] [HikariDataSource:109] - HikariPool-1 - Starting...
+INFO  25-01-21 22:42:54[restartedMain] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a86ef39
+INFO  25-01-21 22:42:54[restartedMain] [HikariDataSource:122] - HikariPool-1 - Start completed.
+INFO  25-01-21 22:42:54[restartedMain] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  25-01-21 22:42:54[restartedMain] [Version:44] - HHH000412: Hibernate ORM core version 6.6.2.Final
+INFO  25-01-21 22:42:54[restartedMain] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  25-01-21 22:42:54[restartedMain] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  25-01-21 22:42:54[restartedMain] [pooling:157] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+INFO  25-01-21 22:42:55[restartedMain] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  25-01-21 22:42:55[restartedMain] [LocalContainerEntityManagerFactoryBean:447] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  25-01-21 22:42:55[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'apiRestController' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\controller\admin\api\ApiRestController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'apiService' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\service\admin\api\ApiService.class]: Unsatisfied dependency expressed through constructor parameter 4: No qualifying bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  25-01-21 22:42:55[restartedMain] [LocalContainerEntityManagerFactoryBean:660] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  25-01-21 22:42:55[restartedMain] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+INFO  25-01-21 22:42:55[restartedMain] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+INFO  25-01-21 22:42:55[restartedMain] [StandardService:173] - Stopping service [Tomcat]
+INFO  25-01-21 22:42:55[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 22:42:55[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 4 of constructor in com.dbinc.cloudoffice.orgtree.service.admin.api.ApiService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' in your configuration.
+
+INFO  25-01-21 22:46:42[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 22:46:42[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 21636 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 22:46:42[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 22:46:42[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 22:46:42[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 22:46:42[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 22:46:43[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 22:46:43[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 36 ms. Found 2 JPA repository interfaces.
+INFO  25-01-21 22:46:43[restartedMain] [TomcatWebServer:111] - Tomcat initialized with port 8090 (http)
+INFO  25-01-21 22:46:43[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 22:46:43[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  25-01-21 22:46:43[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.33]
+INFO  25-01-21 22:46:43[restartedMain] [TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+INFO  25-01-21 22:46:43[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  25-01-21 22:46:43[restartedMain] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 1342 ms
+INFO  25-01-21 22:46:43[restartedMain] [HikariDataSource:109] - HikariPool-1 - Starting...
+INFO  25-01-21 22:46:44[restartedMain] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6dd1e570
+INFO  25-01-21 22:46:44[restartedMain] [HikariDataSource:122] - HikariPool-1 - Start completed.
+INFO  25-01-21 22:46:44[restartedMain] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  25-01-21 22:46:44[restartedMain] [Version:44] - HHH000412: Hibernate ORM core version 6.6.2.Final
+INFO  25-01-21 22:46:44[restartedMain] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  25-01-21 22:46:44[restartedMain] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  25-01-21 22:46:44[restartedMain] [pooling:157] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+INFO  25-01-21 22:46:45[restartedMain] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  25-01-21 22:46:45[restartedMain] [LocalContainerEntityManagerFactoryBean:447] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  25-01-21 22:46:45[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'apiRestController' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\controller\admin\api\ApiRestController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'apiService' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\service\admin\api\ApiService.class]: Unsatisfied dependency expressed through constructor parameter 4: No qualifying bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  25-01-21 22:46:45[restartedMain] [LocalContainerEntityManagerFactoryBean:660] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  25-01-21 22:46:45[restartedMain] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+INFO  25-01-21 22:46:45[restartedMain] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+INFO  25-01-21 22:46:45[restartedMain] [StandardService:173] - Stopping service [Tomcat]
+INFO  25-01-21 22:46:45[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 22:46:45[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 4 of constructor in com.dbinc.cloudoffice.orgtree.service.admin.api.ApiService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' in your configuration.
+
+INFO  25-01-21 22:49:48[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 22:49:48[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 11048 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 22:49:48[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 22:49:48[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 22:49:48[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 22:49:48[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 22:49:49[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 22:49:49[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+INFO  25-01-21 22:49:50[restartedMain] [TomcatWebServer:111] - Tomcat initialized with port 8090 (http)
+INFO  25-01-21 22:49:50[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 22:49:50[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  25-01-21 22:49:50[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.33]
+INFO  25-01-21 22:49:50[restartedMain] [TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+INFO  25-01-21 22:49:50[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  25-01-21 22:49:50[restartedMain] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 1375 ms
+INFO  25-01-21 22:49:50[restartedMain] [HikariDataSource:109] - HikariPool-1 - Starting...
+INFO  25-01-21 22:49:50[restartedMain] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@58c62c41
+INFO  25-01-21 22:49:50[restartedMain] [HikariDataSource:122] - HikariPool-1 - Start completed.
+INFO  25-01-21 22:49:50[restartedMain] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  25-01-21 22:49:50[restartedMain] [Version:44] - HHH000412: Hibernate ORM core version 6.6.2.Final
+INFO  25-01-21 22:49:50[restartedMain] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  25-01-21 22:49:50[restartedMain] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  25-01-21 22:49:50[restartedMain] [pooling:157] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+INFO  25-01-21 22:49:51[restartedMain] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  25-01-21 22:49:51[restartedMain] [LocalContainerEntityManagerFactoryBean:447] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  25-01-21 22:49:51[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminEmpController' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\controller\admin\emp\AdminEmpController.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'codeService' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\service\common\code\CodeService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  25-01-21 22:49:51[restartedMain] [LocalContainerEntityManagerFactoryBean:660] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  25-01-21 22:49:51[restartedMain] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+INFO  25-01-21 22:49:51[restartedMain] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+INFO  25-01-21 22:49:51[restartedMain] [StandardService:173] - Stopping service [Tomcat]
+INFO  25-01-21 22:49:51[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 22:49:52[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.dbinc.cloudoffice.orgtree.service.common.code.CodeService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' in your configuration.
+
+INFO  25-01-21 22:55:00[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 22:55:00[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 23556 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 22:55:00[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 22:55:00[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 22:55:00[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 22:55:00[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 22:55:01[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 22:55:01[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 37 ms. Found 2 JPA repository interfaces.
+INFO  25-01-21 22:55:02[restartedMain] [TomcatWebServer:111] - Tomcat initialized with port 8090 (http)
+INFO  25-01-21 22:55:02[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 22:55:02[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  25-01-21 22:55:02[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.33]
+INFO  25-01-21 22:55:02[restartedMain] [TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+INFO  25-01-21 22:55:02[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  25-01-21 22:55:02[restartedMain] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 1398 ms
+INFO  25-01-21 22:55:02[restartedMain] [HikariDataSource:109] - HikariPool-1 - Starting...
+INFO  25-01-21 22:55:02[restartedMain] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@41bb350e
+INFO  25-01-21 22:55:02[restartedMain] [HikariDataSource:122] - HikariPool-1 - Start completed.
+INFO  25-01-21 22:55:02[restartedMain] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  25-01-21 22:55:02[restartedMain] [Version:44] - HHH000412: Hibernate ORM core version 6.6.2.Final
+INFO  25-01-21 22:55:02[restartedMain] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  25-01-21 22:55:02[restartedMain] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  25-01-21 22:55:02[restartedMain] [pooling:157] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+INFO  25-01-21 22:55:03[restartedMain] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  25-01-21 22:55:03[restartedMain] [LocalContainerEntityManagerFactoryBean:447] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  25-01-21 22:55:03[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminEmpController' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\controller\admin\emp\AdminEmpController.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'codeService' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\service\common\code\CodeService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  25-01-21 22:55:03[restartedMain] [LocalContainerEntityManagerFactoryBean:660] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  25-01-21 22:55:03[restartedMain] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+INFO  25-01-21 22:55:03[restartedMain] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+INFO  25-01-21 22:55:03[restartedMain] [StandardService:173] - Stopping service [Tomcat]
+INFO  25-01-21 22:55:03[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 22:55:03[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.dbinc.cloudoffice.orgtree.service.common.code.CodeService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' in your configuration.
+
+INFO  25-01-21 23:00:59[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 23:00:59[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 2816 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 23:00:59[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 23:00:59[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 23:00:59[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 23:00:59[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 23:00:59[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 23:00:59[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 40 ms. Found 2 JPA repository interfaces.
+INFO  25-01-21 23:01:00[restartedMain] [TomcatWebServer:111] - Tomcat initialized with port 8090 (http)
+INFO  25-01-21 23:01:00[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 23:01:00[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  25-01-21 23:01:00[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.33]
+INFO  25-01-21 23:01:00[restartedMain] [TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+INFO  25-01-21 23:01:00[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  25-01-21 23:01:00[restartedMain] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 1376 ms
+INFO  25-01-21 23:01:00[restartedMain] [HikariDataSource:109] - HikariPool-1 - Starting...
+INFO  25-01-21 23:01:00[restartedMain] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@bab992b
+INFO  25-01-21 23:01:00[restartedMain] [HikariDataSource:122] - HikariPool-1 - Start completed.
+INFO  25-01-21 23:01:00[restartedMain] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  25-01-21 23:01:00[restartedMain] [Version:44] - HHH000412: Hibernate ORM core version 6.6.2.Final
+INFO  25-01-21 23:01:00[restartedMain] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  25-01-21 23:01:01[restartedMain] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  25-01-21 23:01:01[restartedMain] [pooling:157] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+INFO  25-01-21 23:01:01[restartedMain] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  25-01-21 23:01:01[restartedMain] [LocalContainerEntityManagerFactoryBean:447] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  25-01-21 23:01:02[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminEmpController' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\controller\admin\emp\AdminEmpController.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'codeService' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\service\common\code\CodeService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  25-01-21 23:01:02[restartedMain] [LocalContainerEntityManagerFactoryBean:660] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  25-01-21 23:01:02[restartedMain] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+INFO  25-01-21 23:01:02[restartedMain] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+INFO  25-01-21 23:01:02[restartedMain] [StandardService:173] - Stopping service [Tomcat]
+INFO  25-01-21 23:01:02[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 23:01:02[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.dbinc.cloudoffice.orgtree.service.common.code.CodeService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' in your configuration.
+
+INFO  25-01-21 23:01:51[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 23:01:51[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 26760 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 23:01:51[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 23:01:51[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 23:01:51[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 23:01:51[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 23:01:52[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 23:01:52[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+INFO  25-01-21 23:01:52[restartedMain] [TomcatWebServer:111] - Tomcat initialized with port 8090 (http)
+INFO  25-01-21 23:01:52[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 23:01:52[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  25-01-21 23:01:52[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.33]
+INFO  25-01-21 23:01:52[restartedMain] [TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+INFO  25-01-21 23:01:52[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  25-01-21 23:01:52[restartedMain] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 1361 ms
+INFO  25-01-21 23:01:52[restartedMain] [HikariDataSource:109] - HikariPool-1 - Starting...
+INFO  25-01-21 23:01:53[restartedMain] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5fb76b10
+INFO  25-01-21 23:01:53[restartedMain] [HikariDataSource:122] - HikariPool-1 - Start completed.
+INFO  25-01-21 23:01:53[restartedMain] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  25-01-21 23:01:53[restartedMain] [Version:44] - HHH000412: Hibernate ORM core version 6.6.2.Final
+INFO  25-01-21 23:01:53[restartedMain] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  25-01-21 23:01:53[restartedMain] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  25-01-21 23:01:53[restartedMain] [pooling:157] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+INFO  25-01-21 23:01:54[restartedMain] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  25-01-21 23:01:54[restartedMain] [LocalContainerEntityManagerFactoryBean:447] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  25-01-21 23:01:54[restartedMain] [JpaBaseConfiguration$JpaWebConfiguration:241] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  25-01-21 23:01:56[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  25-01-21 23:01:56[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 23:01:56[restartedMain] [TomcatWebServer:243] - Tomcat started on port 8090 (http) with context path '/'
+INFO  25-01-21 23:01:56[restartedMain] [OrgtreeApplication:59] - Started OrgtreeApplication in 5.065 seconds (process running for 5.5)
+INFO  25-01-21 23:01:56[restartedMain] [JobLauncherApplicationRunner:168] - Running default command line with: []
+INFO  25-01-21 23:02:34[http-nio-8090-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  25-01-21 23:02:34[http-nio-8090-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+INFO  25-01-21 23:02:34[http-nio-8090-exec-1] [DispatcherServlet:554] - Completed initialization in 1 ms
+DEBUG 25-01-21 23:02:53[http-nio-8090-exec-4] [LoggerInterceptor:26] - ■ LoggerInterceptor.preHandle() : START =================================
+DEBUG 25-01-21 23:02:53[http-nio-8090-exec-4] [LoggerInterceptor:27] - ◆ Request URL:http://localhost:8090/rest/admin/api/sync/employees
+DEBUG 25-01-21 23:02:53[http-nio-8090-exec-4] [LoggerInterceptor:39] - ■ LoggerInterceptor.preHandle() : END =================================
+DEBUG 25-01-21 23:02:53[http-nio-8090-exec-4] [LoggerAspect:31] - ■ Controller ===> com.dbinc.cloudoffice.orgtree.controller.admin.api.ApiRestController.getEmployees()
+DEBUG 25-01-21 23:02:53[http-nio-8090-exec-4] [LoggerAspect:31] - ■ Service ===> com.dbinc.cloudoffice.orgtree.service.admin.api.ApiService.getActiveEmployeeList()
+INFO  25-01-21 23:06:34[SpringApplicationShutdownHook] [GracefulShutdown:54] - Commencing graceful shutdown. Waiting for active requests to complete
+INFO  25-01-21 23:06:34[tomcat-shutdown] [GracefulShutdown:76] - Graceful shutdown complete
+INFO  25-01-21 23:06:34[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:660] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  25-01-21 23:06:34[SpringApplicationShutdownHook] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+INFO  25-01-21 23:06:34[SpringApplicationShutdownHook] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.

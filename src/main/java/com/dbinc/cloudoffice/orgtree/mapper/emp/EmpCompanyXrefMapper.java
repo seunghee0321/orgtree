@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dbinc.cloudoffice.orgtree.vo.EmpCompanyXrefVO;
 
-@Repository
+//@Repository
 @Mapper
 public interface EmpCompanyXrefMapper {
 	int selectEmpCompanyXrefListCnt(Map<String, Object> paramsMap);

@@ -323,3 +323,93 @@ org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean def
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+ERROR 25-01-21 22:41:40[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 4 of constructor in com.dbinc.cloudoffice.orgtree.service.admin.api.ApiService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' in your configuration.
+
+ERROR 25-01-21 22:42:55[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 4 of constructor in com.dbinc.cloudoffice.orgtree.service.admin.api.ApiService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' in your configuration.
+
+ERROR 25-01-21 22:46:45[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 4 of constructor in com.dbinc.cloudoffice.orgtree.service.admin.api.ApiService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.company.CompanyMapper' in your configuration.
+
+ERROR 25-01-21 22:49:52[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.dbinc.cloudoffice.orgtree.service.common.code.CodeService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' in your configuration.
+
+ERROR 25-01-21 22:55:03[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.dbinc.cloudoffice.orgtree.service.common.code.CodeService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' in your configuration.
+
+ERROR 25-01-21 23:01:02[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.dbinc.cloudoffice.orgtree.service.common.code.CodeService required a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.dbinc.cloudoffice.orgtree.mapper.code.CodeMapper' in your configuration.
+

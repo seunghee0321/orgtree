@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 //public class OrgtreeApplication extends SpringBootServletInitializer
-@MapperScan(basePackages = "com.dbinc.cloudoffice.orgtree.mapper.api")
+@MapperScan(basePackages = {"com.dbinc.cloudoffice.orgtree.mapper"})
 public class OrgtreeApplication
 {
 	/*

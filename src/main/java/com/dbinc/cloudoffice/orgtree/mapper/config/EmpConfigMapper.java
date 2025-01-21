@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dbinc.cloudoffice.orgtree.vo.EmpConfigVO;
 
-@Repository
+//@Repository
 @Mapper
 public interface EmpConfigMapper
 {
