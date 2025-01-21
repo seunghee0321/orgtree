@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
       .authorizeRequests()
         .antMatchers("/" , "/service" , "/resources/**" , "/create", "/common/**", "/AdminLTE2/**", "/error/**").permitAll()
         .antMatchers("/rest/admin/api/**").permitAll()
+        //.antMatchers("/user/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
         .antMatchers("/user/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
         .antMatchers("/rest/user/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
         .antMatchers("/admin/**").hasRole(Role.ADMIN.name())

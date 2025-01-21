@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -96,4 +97,14 @@ public class WebMvcConfig implements WebMvcConfigurer
     registry.addInterceptor(localeChangeInterceptor());
     registry.addInterceptor(loggerInterceptor).addPathPatterns("/rest/**");
   }
+
+  // 전역 CORS 설정 추가 1/16
+  @Override
+  public void addCorsMappings(CorsRegistry registry) {
+    registry.addMapping("/**")
+            .allowedOrigins("http://localhost:8090", // 필요 없으면 제거 가능?
+                    "chrome-extension://ibegofdgpaggjeecinamkadbcbbgjcba")
+            .allowedMethods("GET", "POST", "PUT", "DELETE");
+  }
+
 }

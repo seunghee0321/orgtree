@@ -615,41 +615,5 @@ public class ApiService {
 		return true;
 	}
 
-	// 25/1/15 추가, mysql에서 테스터 데이터 불러오기
-	// 재직상태코드(EMP_STATUS_CD)가 Y인 직원을 불러옴
-	private final JdbcTemplate jdbcTemplate;
-
-	public List<EmpMasterVO> getActiveEmployeeList() {
-		String sql = "SELECT domain_id AS domainId, company_cd AS companyCd, email, emp_nm AS empNm, " +
-				"emp_eng_nm AS empEngNm, emp_no AS empNo, pos_cd AS posCd, dept_cd AS deptCd, " +
-				"enter_dt AS enterDt, quit_dt AS quitDt, manual_mng_yn AS manualMngYn, " +
-				"emp_status_cd AS empStatusCd, hidden_yn AS hiddenYn, job_tel_no AS jobTelNo, " +
-				"mobile_tel_no AS mobileTelNo, update_usr AS updateUsr, update_dt AS updateDt, " +
-				"create_usr AS createUsr, create_dt AS createDt " +
-				"FROM emp_master WHERE emp_status_cd = 'Y'";
-		return jdbcTemplate.query(sql, (rs, rowNum) -> {
-			EmpMasterVO emp = new EmpMasterVO();
-			emp.setDomainId(rs.getString("domainId"));
-			emp.setCompanyCd(rs.getString("companyCd"));
-			emp.setEmail(rs.getString("email"));
-			emp.setEmpNm(rs.getString("empNm"));
-			emp.setEmpEngNm(rs.getString("empEngNm"));
-			emp.setEmpNo(rs.getString("empNo"));
-			emp.setPosCd(rs.getString("posCd"));
-			emp.setDeptCd(rs.getString("deptCd"));
-			emp.setEnterDt(rs.getString("enterDt"));
-			emp.setQuitDt(rs.getString("quitDt"));
-			emp.setManualMngYn(rs.getString("manualMngYn"));
-			emp.setEmpStatusCd(rs.getString("empStatusCd"));
-			emp.setHiddenYn(rs.getString("hiddenYn"));
-			emp.setJobTelNo(rs.getString("jobTelNo"));
-			emp.setMobileTelNo(rs.getString("mobileTelNo"));
-			emp.setUpdateUsr(rs.getString("updateUsr"));
-			emp.setUpdateDt(rs.getString("updateDt"));
-			emp.setCreateUsr(rs.getString("createUsr"));
-			emp.setCreateDt(rs.getString("createDt"));
-			return emp;
-		});
-	}
 
 }

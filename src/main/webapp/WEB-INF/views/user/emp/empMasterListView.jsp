@@ -455,8 +455,25 @@ function fnInitGrid() {
 	        , { name: 'addYn', 			index: 'addYn', 			width: '25%', 	align: 'center', 	sortable: false}
 	        , { name: 'posNm',			index: 'posNm',				width: '30%', 	align: 'center', 	sortable: false}
 	        , { name: 'empNo', 			index: 'empNo', 			width: '40%', 	align: 'center', 	sortable: false}
-	        , { name: 'email',			index: 'email',				width: '60%', 	align: 'left', 		sortable: false}
-	        , { name: 'jobTelNo',		index: 'jobTelNo',			width: '50%', 	align: 'left', 		sortable: false}
+	        ,
+
+			//{ name: 'email',			index: 'email',				width: '60%', 	align: 'left', 		sortable: false}  1/17 수정
+
+			//1/17 수정
+			{
+				name: 'email',
+				index: 'email',
+				width: '60%',
+				align: 'left',
+				sortable: false,
+				formatter: function (cellValue, options, rowObject) {
+					return `<button class="btn btn-link email-select-btn"
+                        onclick="selectEmployee('${cellValue}')"
+                        title="클릭하여 이메일 선택">
+                    ${cellValue}
+                </button>`;
+				}
+			}, { name: 'jobTelNo',		index: 'jobTelNo',			width: '50%', 	align: 'left', 		sortable: false}
 	        , { name: 'mobileTelNo', 	index: 'mobileTelNo', 		width: '50%', 	align: 'left', 		sortable: false}
 	        , { name: 'empStatusNm',	index: 'empStatusNm',		width: '30%', 	align: 'center', 	sortable: false}
         ],
@@ -486,6 +503,25 @@ function fnInitGrid() {
 	  	},
 	    resizeStop: gfnResizeStop
     });
+}
+
+//1/17 추가
+// 사원 선택 시 부모 창으로 이메일 전달
+function selectEmployee(email) {
+	if (window.opener) {
+		// 구체적인 타입과 출처를 명시하여 보안성 향상
+		window.opener.postMessage({
+			type: 'SELECT_EMAIL',
+			email: email,
+			source: 'organizationChart'
+		}, 'https://mail.google.com');
+
+		// 사용자 경험 개선을 위해 알림 메시지 수정
+		alert('선택한 이메일이 메일 작성 폼에 추가되었습니다.');
+		window.close();
+	} else {
+		alert("팝업 창으로 열려있지 않습니다.");
+	}
 }
 
 //검색조건 텍스트 유효성체크
