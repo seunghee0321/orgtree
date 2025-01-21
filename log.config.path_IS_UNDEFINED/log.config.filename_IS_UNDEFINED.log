@@ -244,34 +244,34 @@ Positive matches:
       - @ConditionalOnClass found required class 'org.springframework.transaction.PlatformTransactionManager' (OnClassCondition)
 
    BatchConfigurerConfiguration.JpaBatchConfiguration matched:
-      - @ConditionalOnClass found required class 'javax.persistence.EntityManagerFactory' (OnClassCondition)
+      - @ConditionalOnClass found required class 'jakarta.persistence.EntityManagerFactory' (OnClassCondition)
 
    BeanValidatorPluginsConfiguration matched:
-      - @ConditionalOnClass found required class 'javax.validation.executable.ExecutableValidator' (OnClassCondition)
+      - @ConditionalOnClass found required class 'jakarta.validation.executable.ExecutableValidator' (OnClassCondition)
 
    DataSourceAutoConfiguration matched:
-      - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+      - @ConditionalOnClass found required classes 'jakarta.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
       - @ConditionalOnMissingBean (types: io.r2dbc.spi.ConnectionFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    DataSourceAutoConfiguration.PooledDataSourceConfiguration matched:
       - AnyNestedCondition 1 matched 1 did not; NestedCondition on DataSourceAutoConfiguration.PooledDataSourceCondition.PooledDataSourceAvailable PooledDataSource found supported DataSource; NestedCondition on DataSourceAutoConfiguration.PooledDataSourceCondition.ExplicitType @ConditionalOnProperty (spring.datasource.type) did not find property 'type' (DataSourceAutoConfiguration.PooledDataSourceCondition)
-      - @ConditionalOnMissingBean (types: javax.sql.DataSource,javax.sql.XADataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnMissingBean (types: jakarta.sql.DataSource,jakarta.sql.XADataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    DataSourceConfiguration.Hikari matched:
       - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
       - @ConditionalOnProperty (spring.datasource.type=com.zaxxer.hikari.HikariDataSource) matched (OnPropertyCondition)
-      - @ConditionalOnMissingBean (types: javax.sql.DataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnMissingBean (types: jakarta.sql.DataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    DataSourceInitializationConfiguration matched:
       - @ConditionalOnClass found required class 'org.springframework.jdbc.datasource.init.DatabasePopulator' (OnClassCondition)
-      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource'; @ConditionalOnMissingBean (types: org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnSingleCandidate (types: jakarta.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource'; @ConditionalOnMissingBean (types: org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    DataSourceJmxConfiguration matched:
       - @ConditionalOnProperty (spring.jmx.enabled=true) matched (OnPropertyCondition)
 
    DataSourceJmxConfiguration.Hikari matched:
       - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
-      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource' (OnBeanCondition)
+      - @ConditionalOnSingleCandidate (types: jakarta.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource' (OnBeanCondition)
 
    DataSourcePoolMetadataProvidersConfiguration.HikariPoolDataSourceMetadataProviderConfiguration matched:
       - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
@@ -280,7 +280,7 @@ Positive matches:
       - @ConditionalOnClass found required classes 'org.springframework.jdbc.core.JdbcTemplate', 'org.springframework.transaction.TransactionManager' (OnClassCondition)
 
    DataSourceTransactionManagerAutoConfiguration.JdbcTransactionManagerConfiguration matched:
-      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource' (OnBeanCondition)
+      - @ConditionalOnSingleCandidate (types: jakarta.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource' (OnBeanCondition)
 
    DevToolsDataSourceAutoConfiguration matched:
       - Devtools devtools enabled. (OnEnabledDevToolsCondition)
@@ -295,11 +295,11 @@ Positive matches:
       - found 'session' scope (OnWebApplicationCondition)
 
    DispatcherServletAutoConfiguration.DispatcherServletConfiguration matched:
-      - @ConditionalOnClass found required class 'javax.servlet.ServletRegistration' (OnClassCondition)
+      - @ConditionalOnClass found required class 'jakarta.servlet.ServletRegistration' (OnClassCondition)
       - Default DispatcherServlet did not find dispatcher servlet beans (DispatcherServletAutoConfiguration.DefaultDispatcherServletCondition)
 
    DispatcherServletAutoConfiguration.DispatcherServletRegistrationConfiguration matched:
-      - @ConditionalOnClass found required class 'javax.servlet.ServletRegistration' (OnClassCondition)
+      - @ConditionalOnClass found required class 'jakarta.servlet.ServletRegistration' (OnClassCondition)
       - DispatcherServlet Registration did not find servlet registration bean (DispatcherServletAutoConfiguration.DispatcherServletRegistrationCondition)
 
    DispatcherServletAutoConfiguration.DispatcherServletRegistrationConfiguration#dispatcherServletRegistration matched:
@@ -312,7 +312,7 @@ Positive matches:
       - @ConditionalOnClass found required classes 'org.apache.catalina.startup.Tomcat', 'org.apache.coyote.UpgradeProtocol' (OnClassCondition)
 
    ErrorMvcAutoConfiguration matched:
-      - @ConditionalOnClass found required classes 'javax.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
       - found 'session' scope (OnWebApplicationCondition)
 
    ErrorMvcAutoConfiguration#basicErrorController matched:
@@ -338,10 +338,10 @@ Positive matches:
       - Cache org.springframework.boot.autoconfigure.cache.GenericCacheConfiguration automatic cache type (CacheCondition)
 
    HibernateJpaAutoConfiguration matched:
-      - @ConditionalOnClass found required classes 'org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean', 'javax.persistence.EntityManager', 'org.hibernate.engine.spi.SessionImplementor' (OnClassCondition)
+      - @ConditionalOnClass found required classes 'org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean', 'jakarta.persistence.EntityManager', 'org.hibernate.engine.spi.SessionImplementor' (OnClassCondition)
 
    HibernateJpaConfiguration matched:
-      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource' (OnBeanCondition)
+      - @ConditionalOnSingleCandidate (types: jakarta.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource' (OnBeanCondition)
 
    HttpEncodingAutoConfiguration matched:
       - @ConditionalOnClass found required class 'org.springframework.web.filter.CharacterEncodingFilter' (OnClassCondition)
@@ -397,8 +397,8 @@ Positive matches:
       - @ConditionalOnMissingBean (types: org.springframework.http.converter.json.MappingJackson2HttpMessageConverter ignored: org.springframework.hateoas.server.mvc.TypeConstrainedMappingJackson2HttpMessageConverter,org.springframework.data.rest.webmvc.alps.AlpsJsonHttpMessageConverter; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    JdbcTemplateAutoConfiguration matched:
-      - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.core.JdbcTemplate' (OnClassCondition)
-      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource' (OnBeanCondition)
+      - @ConditionalOnClass found required classes 'jakarta.sql.DataSource', 'org.springframework.jdbc.core.JdbcTemplate' (OnClassCondition)
+      - @ConditionalOnSingleCandidate (types: jakarta.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource' (OnBeanCondition)
 
    JdbcTemplateConfiguration matched:
       - @ConditionalOnMissingBean (types: org.springframework.jdbc.core.JdbcOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
@@ -411,13 +411,13 @@ Positive matches:
       - @ConditionalOnMissingBean (types: org.springframework.jmx.export.MBeanExporter; SearchStrategy: current) did not find any beans (OnBeanCondition)
 
    JmxAutoConfiguration#mbeanServer matched:
-      - @ConditionalOnMissingBean (types: javax.management.MBeanServer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnMissingBean (types: jakarta.management.MBeanServer; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    JmxAutoConfiguration#objectNamingStrategy matched:
       - @ConditionalOnMissingBean (types: org.springframework.jmx.export.naming.ObjectNamingStrategy; SearchStrategy: current) did not find any beans (OnBeanCondition)
 
    JpaBaseConfiguration#entityManagerFactory matched:
-      - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean,javax.persistence.EntityManagerFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean,jakarta.persistence.EntityManagerFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    JpaBaseConfiguration#entityManagerFactoryBuilder matched:
       - @ConditionalOnMissingBean (types: org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
@@ -437,10 +437,10 @@ Positive matches:
    JpaRepositoriesAutoConfiguration matched:
       - @ConditionalOnClass found required class 'org.springframework.data.jpa.repository.JpaRepository' (OnClassCondition)
       - @ConditionalOnProperty (spring.data.jpa.repositories.enabled=true) matched (OnPropertyCondition)
-      - @ConditionalOnBean (types: javax.sql.DataSource; SearchStrategy: all) found bean 'dataSource'; @ConditionalOnMissingBean (types: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean,org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnBean (types: jakarta.sql.DataSource; SearchStrategy: all) found bean 'dataSource'; @ConditionalOnMissingBean (types: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean,org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    JtaAutoConfiguration matched:
-      - @ConditionalOnClass found required class 'javax.transaction.Transaction' (OnClassCondition)
+      - @ConditionalOnClass found required class 'jakarta.transaction.Transaction' (OnClassCondition)
       - @ConditionalOnProperty (spring.jta.enabled) matched (OnPropertyCondition)
 
    LifecycleAutoConfiguration#defaultLifecycleProcessor matched:
@@ -468,19 +468,19 @@ Positive matches:
       - @ConditionalOnProperty (spring.devtools.restart.log-condition-evaluation-delta) matched (OnPropertyCondition)
 
    MultipartAutoConfiguration matched:
-      - @ConditionalOnClass found required classes 'javax.servlet.Servlet', 'org.springframework.web.multipart.support.StandardServletMultipartResolver', 'javax.servlet.MultipartConfigElement' (OnClassCondition)
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.multipart.support.StandardServletMultipartResolver', 'jakarta.servlet.MultipartConfigElement' (OnClassCondition)
       - found 'session' scope (OnWebApplicationCondition)
       - @ConditionalOnProperty (spring.servlet.multipart.enabled) matched (OnPropertyCondition)
 
    MultipartAutoConfiguration#multipartConfigElement matched:
-      - @ConditionalOnMissingBean (types: javax.servlet.MultipartConfigElement,org.springframework.web.multipart.commons.CommonsMultipartResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnMissingBean (types: jakarta.servlet.MultipartConfigElement,org.springframework.web.multipart.commons.CommonsMultipartResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    MultipartAutoConfiguration#multipartResolver matched:
       - @ConditionalOnMissingBean (types: org.springframework.web.multipart.MultipartResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    MybatisAutoConfiguration matched:
       - @ConditionalOnClass found required classes 'org.apache.ibatis.session.SqlSessionFactory', 'org.mybatis.spring.SqlSessionFactoryBean' (OnClassCondition)
-      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource' (OnBeanCondition)
+      - @ConditionalOnSingleCandidate (types: jakarta.sql.DataSource; SearchStrategy: all) found a primary bean from beans 'dataSource' (OnBeanCondition)
 
    MybatisAutoConfiguration#sqlSessionFactory matched:
       - @ConditionalOnMissingBean (types: org.apache.ibatis.session.SqlSessionFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
@@ -547,14 +547,14 @@ Positive matches:
       - @ConditionalOnBean (names: springSecurityFilterChain; SearchStrategy: all) found bean 'springSecurityFilterChain' (OnBeanCondition)
 
    ServletWebServerFactoryAutoConfiguration matched:
-      - @ConditionalOnClass found required class 'javax.servlet.ServletRequest' (OnClassCondition)
+      - @ConditionalOnClass found required class 'jakarta.servlet.ServletRequest' (OnClassCondition)
       - found 'session' scope (OnWebApplicationCondition)
 
    ServletWebServerFactoryAutoConfiguration#tomcatServletWebServerFactoryCustomizer matched:
       - @ConditionalOnClass found required class 'org.apache.catalina.startup.Tomcat' (OnClassCondition)
 
    ServletWebServerFactoryConfiguration.EmbeddedTomcat matched:
-      - @ConditionalOnClass found required classes 'javax.servlet.Servlet', 'org.apache.catalina.startup.Tomcat', 'org.apache.coyote.UpgradeProtocol' (OnClassCondition)
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.apache.catalina.startup.Tomcat', 'org.apache.coyote.UpgradeProtocol' (OnClassCondition)
       - @ConditionalOnMissingBean (types: org.springframework.boot.web.servlet.server.ServletWebServerFactory; SearchStrategy: current) did not find any beans (OnBeanCondition)
 
    SimpleCacheConfiguration matched:
@@ -640,17 +640,17 @@ Positive matches:
       - @ConditionalOnMissingBean (types: org.springframework.security.oauth2.client.registration.ClientRegistrationRepository; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    ValidationAutoConfiguration matched:
-      - @ConditionalOnClass found required class 'javax.validation.executable.ExecutableValidator' (OnClassCondition)
-      - @ConditionalOnResource found location classpath:META-INF/services/javax.validation.spi.ValidationProvider (OnResourceCondition)
+      - @ConditionalOnClass found required class 'jakarta.validation.executable.ExecutableValidator' (OnClassCondition)
+      - @ConditionalOnResource found location classpath:META-INF/services/jakarta.validation.spi.ValidationProvider (OnResourceCondition)
 
    ValidationAutoConfiguration#defaultValidator matched:
-      - @ConditionalOnMissingBean (types: javax.validation.Validator; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnMissingBean (types: jakarta.validation.Validator; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    ValidationAutoConfiguration#methodValidationPostProcessor matched:
       - @ConditionalOnMissingBean (types: org.springframework.validation.beanvalidation.MethodValidationPostProcessor; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    WebMvcAutoConfiguration matched:
-      - @ConditionalOnClass found required classes 'javax.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
       - found 'session' scope (OnWebApplicationCondition)
       - @ConditionalOnMissingBean (types: org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
@@ -685,7 +685,7 @@ Positive matches:
       - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    WebSocketServletAutoConfiguration matched:
-      - @ConditionalOnClass found required classes 'javax.servlet.Servlet', 'javax.websocket.server.ServerContainer' (OnClassCondition)
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'jakarta.websocket.server.ServerContainer' (OnClassCondition)
       - found 'session' scope (OnWebApplicationCondition)
 
    WebSocketServletAutoConfiguration.TomcatWebSocketConfiguration matched:
@@ -700,7 +700,7 @@ Negative matches:
 
    ActiveMQAutoConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required class 'javax.jms.ConnectionFactory' (OnClassCondition)
+         - @ConditionalOnClass did not find required class 'jakarta.jms.ConnectionFactory' (OnClassCondition)
 
    AopAutoConfiguration.AspectJAutoProxyingConfiguration.JdkDynamicAutoProxyConfiguration:
       Did not match:
@@ -712,7 +712,7 @@ Negative matches:
 
    ArtemisAutoConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required class 'javax.jms.ConnectionFactory' (OnClassCondition)
+         - @ConditionalOnClass did not find required class 'jakarta.jms.ConnectionFactory' (OnClassCondition)
 
    AtomikosJtaConfiguration:
       Did not match:
@@ -722,7 +722,7 @@ Negative matches:
       Did not match:
          - @ConditionalOnBean (types: org.springframework.batch.core.launch.JobLauncher; SearchStrategy: all) did not find any beans of type org.springframework.batch.core.launch.JobLauncher (OnBeanCondition)
       Matched:
-         - @ConditionalOnClass found required classes 'org.springframework.batch.core.launch.JobLauncher', 'javax.sql.DataSource' (OnClassCondition)
+         - @ConditionalOnClass found required classes 'org.springframework.batch.core.launch.JobLauncher', 'jakarta.sql.DataSource' (OnClassCondition)
 
    BatchAutoConfiguration.DataSourceInitializerConfiguration:
       Did not match:
@@ -948,7 +948,7 @@ Negative matches:
 
    JCacheCacheConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required class 'javax.cache.Caching' (OnClassCondition)
+         - @ConditionalOnClass did not find required class 'jakarta.cache.Caching' (OnClassCondition)
 
    JacksonHttpMessageConvertersConfiguration.MappingJackson2XmlHttpMessageConverterConfiguration:
       Did not match:
@@ -964,7 +964,7 @@ Negative matches:
 
    JmsAutoConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required class 'javax.jms.Message' (OnClassCondition)
+         - @ConditionalOnClass did not find required class 'jakarta.jms.Message' (OnClassCondition)
 
    JndiConnectionFactoryAutoConfiguration:
       Did not match:
@@ -974,7 +974,7 @@ Negative matches:
       Did not match:
          - @ConditionalOnProperty (spring.datasource.jndi-name) did not find property 'jndi-name' (OnPropertyCondition)
       Matched:
-         - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+         - @ConditionalOnClass found required classes 'jakarta.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
 
    JndiJtaConfiguration:
       Did not match:
@@ -992,11 +992,11 @@ Negative matches:
 
    JsonbAutoConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required class 'javax.json.bind.Jsonb' (OnClassCondition)
+         - @ConditionalOnClass did not find required class 'jakarta.json.bind.Jsonb' (OnClassCondition)
 
    JsonbHttpMessageConvertersConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required class 'javax.json.bind.Jsonb' (OnClassCondition)
+         - @ConditionalOnClass did not find required class 'jakarta.json.bind.Jsonb' (OnClassCondition)
 
    KafkaAutoConfiguration:
       Did not match:
@@ -1224,7 +1224,7 @@ Negative matches:
       Did not match:
          - @ConditionalOnProperty (spring.devtools.remote.secret) did not find property 'secret' (OnPropertyCondition)
       Matched:
-         - @ConditionalOnClass found required classes 'javax.servlet.Filter', 'org.springframework.http.server.ServerHttpRequest' (OnClassCondition)
+         - @ConditionalOnClass found required classes 'jakarta.servlet.Filter', 'org.springframework.http.server.ServerHttpRequest' (OnClassCondition)
 
    RepositoryRestMvcAutoConfiguration:
       Did not match:
@@ -1340,7 +1340,7 @@ Negative matches:
 
    WebSocketServletAutoConfiguration.Jetty10WebSocketConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required classes 'org.eclipse.jetty.websocket.javax.server.internal.JavaxWebSocketServerContainer', 'org.eclipse.jetty.websocket.server.JettyWebSocketServerContainer' (OnClassCondition)
+         - @ConditionalOnClass did not find required classes 'org.eclipse.jetty.websocket.jakarta.server.internal.jakartaWebSocketServerContainer', 'org.eclipse.jetty.websocket.server.JettyWebSocketServerContainer' (OnClassCondition)
 
    WebSocketServletAutoConfiguration.JettyWebSocketConfiguration:
       Did not match:
@@ -1354,7 +1354,7 @@ Negative matches:
       Did not match:
          - @ConditionalOnBean (types: org.springframework.boot.jdbc.XADataSourceWrapper; SearchStrategy: all) did not find any beans of type org.springframework.boot.jdbc.XADataSourceWrapper (OnBeanCondition)
       Matched:
-         - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'javax.transaction.TransactionManager', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+         - @ConditionalOnClass found required classes 'jakarta.sql.DataSource', 'jakarta.transaction.TransactionManager', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
 
 
 Exclusions:

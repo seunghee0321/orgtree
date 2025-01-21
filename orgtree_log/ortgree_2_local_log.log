@@ -1,3 +1,603 @@
-INFO  25-01-20 01:19:10[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:651] - Closing JPA EntityManagerFactory for persistence unit 'default'
-INFO  25-01-20 01:19:10[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
-INFO  25-01-20 01:19:10[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  25-01-21 12:53:27[restartedMain] [OrgtreeApplication:55] - Starting OrgtreeApplication using Java 1.8.0_432 on sjh with PID 8840 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+INFO  25-01-21 12:53:27[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.0.Final
+DEBUG 25-01-21 12:53:27[restartedMain] [OrgtreeApplication:56] - Running with Spring Boot v2.5.5, Spring v5.3.10
+INFO  25-01-21 12:53:27[restartedMain] [OrgtreeApplication:663] - The following profiles are active: local
+INFO  25-01-21 12:53:27[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 12:53:27[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 12:53:28[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 12:53:28[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 46 ms. Found 2 JPA repository interfaces.
+INFO  25-01-21 12:53:28[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8090 (http)
+INFO  25-01-21 12:53:28[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 12:53:28[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  25-01-21 12:53:28[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+INFO  25-01-21 12:53:28[restartedMain] [TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+INFO  25-01-21 12:53:28[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  25-01-21 12:53:28[restartedMain] [ServletWebServerApplicationContext:290] - Root WebApplicationContext: initialization completed in 1631 ms
+INFO  25-01-21 12:53:29[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  25-01-21 12:53:29[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  25-01-21 12:53:29[restartedMain] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  25-01-21 12:53:29[restartedMain] [Version:44] - HHH000412: Hibernate ORM core version 5.4.32.Final
+INFO  25-01-21 12:53:29[restartedMain] [Version:56] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+INFO  25-01-21 12:53:29[restartedMain] [Dialect:175] - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+INFO  25-01-21 12:53:30[restartedMain] [JtaPlatformInitiator:52] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+INFO  25-01-21 12:53:30[restartedMain] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  25-01-21 12:53:30[restartedMain] [JpaBaseConfiguration$JpaWebConfiguration:219] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  25-01-21 12:53:31[restartedMain] [DefaultSecurityFilterChain:51] - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@52863c0a, org.springframework.security.web.context.SecurityContextPersistenceFilter@663363f, org.springframework.security.web.header.HeaderWriterFilter@664ea0ee, org.springframework.security.web.authentication.logout.LogoutFilter@6991c1de, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@210f42cc, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@398376ad, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@48b9a023, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@4df29a44, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7f3e14cb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5128fda9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@645f0a37, org.springframework.security.web.session.SessionManagementFilter@856aac6, org.springframework.security.web.access.ExceptionTranslationFilter@49b1b442, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7a5bc9b]
+INFO  25-01-21 12:53:31[restartedMain] [OptionalLiveReloadServer:58] - LiveReload server is running on port 35729
+INFO  25-01-21 12:53:32[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 12:53:32[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8090 (http) with context path ''
+INFO  25-01-21 12:53:32[restartedMain] [OrgtreeApplication:61] - Started OrgtreeApplication in 5.808 seconds (JVM running for 19.235)
+INFO  25-01-21 12:54:52[http-nio-8090-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  25-01-21 12:54:52[http-nio-8090-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  25-01-21 12:54:52[http-nio-8090-exec-1] [DispatcherServlet:547] - Completed initialization in 1 ms
+DEBUG 25-01-21 12:54:52[http-nio-8090-exec-1] [LoggerInterceptor:26] - ■ LoggerInterceptor.preHandle() : START =================================
+DEBUG 25-01-21 12:54:52[http-nio-8090-exec-1] [LoggerInterceptor:27] - ◆ Request URL:http://localhost:8090/rest/admin/api/sync/employees
+DEBUG 25-01-21 12:54:52[http-nio-8090-exec-1] [LoggerInterceptor:39] - ■ LoggerInterceptor.preHandle() : END =================================
+DEBUG 25-01-21 12:55:07[http-nio-8090-exec-3] [LoggerInterceptor:26] - ■ LoggerInterceptor.preHandle() : START =================================
+DEBUG 25-01-21 12:55:07[http-nio-8090-exec-3] [LoggerInterceptor:27] - ◆ Request URL:http://localhost:8090/rest/admin/api/sync/employees
+DEBUG 25-01-21 12:55:07[http-nio-8090-exec-3] [LoggerInterceptor:39] - ■ LoggerInterceptor.preHandle() : END =================================
+DEBUG 25-01-21 12:55:14[http-nio-8090-exec-4] [LoggerInterceptor:26] - ■ LoggerInterceptor.preHandle() : START =================================
+DEBUG 25-01-21 12:55:14[http-nio-8090-exec-4] [LoggerInterceptor:27] - ◆ Request URL:http://localhost:8090/rest/admin/api/sync/employees
+DEBUG 25-01-21 12:55:14[http-nio-8090-exec-4] [LoggerInterceptor:39] - ■ LoggerInterceptor.preHandle() : END =================================
+INFO  25-01-21 12:56:27[Thread-17] [LocalContainerEntityManagerFactoryBean:651] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  25-01-21 12:56:27[Thread-17] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  25-01-21 12:56:27[Thread-17] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  25-01-21 12:56:28[restartedMain] [OrgtreeApplication:55] - Starting OrgtreeApplication using Java 1.8.0_432 on sjh with PID 8840 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 12:56:28[restartedMain] [OrgtreeApplication:56] - Running with Spring Boot v2.5.5, Spring v5.3.10
+INFO  25-01-21 12:56:28[restartedMain] [OrgtreeApplication:663] - The following profiles are active: local
+INFO  25-01-21 12:56:28[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 12:56:28[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 17 ms. Found 2 JPA repository interfaces.
+INFO  25-01-21 12:56:28[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8090 (http)
+INFO  25-01-21 12:56:28[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 12:56:28[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  25-01-21 12:56:28[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+INFO  25-01-21 12:56:28[restartedMain] [TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+INFO  25-01-21 12:56:28[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  25-01-21 12:56:28[restartedMain] [ServletWebServerApplicationContext:290] - Root WebApplicationContext: initialization completed in 445 ms
+INFO  25-01-21 12:56:28[restartedMain] [HikariDataSource:110] - HikariPool-2 - Starting...
+INFO  25-01-21 12:56:28[restartedMain] [HikariDataSource:123] - HikariPool-2 - Start completed.
+INFO  25-01-21 12:56:28[restartedMain] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  25-01-21 12:56:28[restartedMain] [Dialect:175] - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+INFO  25-01-21 12:56:28[restartedMain] [JtaPlatformInitiator:52] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+INFO  25-01-21 12:56:28[restartedMain] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  25-01-21 12:56:28[restartedMain] [JpaBaseConfiguration$JpaWebConfiguration:219] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  25-01-21 12:56:28[restartedMain] [DefaultSecurityFilterChain:51] - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ef1a57b, org.springframework.security.web.context.SecurityContextPersistenceFilter@5767d46c, org.springframework.security.web.header.HeaderWriterFilter@76bd6038, org.springframework.security.web.authentication.logout.LogoutFilter@5052ecc, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@648c59b0, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@1343cfdb, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@c6d66e8, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@3b8eebe1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7e63c8d9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@63c2db8d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3dc964f9, org.springframework.security.web.session.SessionManagementFilter@13cf91ec, org.springframework.security.web.access.ExceptionTranslationFilter@38723bf2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@41a68589]
+INFO  25-01-21 12:56:29[restartedMain] [OptionalLiveReloadServer:58] - LiveReload server is running on port 35729
+INFO  25-01-21 12:56:29[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 12:56:29[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8090 (http) with context path ''
+INFO  25-01-21 12:56:29[restartedMain] [OrgtreeApplication:61] - Started OrgtreeApplication in 1.178 seconds (JVM running for 195.601)
+INFO  25-01-21 12:56:29[restartedMain] [ConditionEvaluationDeltaLoggingListener:63] - Condition evaluation unchanged
+INFO  25-01-21 12:56:34[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:651] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  25-01-21 12:56:34[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-2 - Shutdown initiated...
+INFO  25-01-21 12:56:34[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-2 - Shutdown completed.
+INFO  25-01-21 12:59:50[restartedMain] [OrgtreeApplication:55] - Starting OrgtreeApplication using Java 1.8.0_432 on sjh with PID 13980 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+INFO  25-01-21 12:59:50[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.0.Final
+DEBUG 25-01-21 12:59:50[restartedMain] [OrgtreeApplication:56] - Running with Spring Boot v2.5.5, Spring v5.3.10
+INFO  25-01-21 12:59:50[restartedMain] [OrgtreeApplication:663] - The following profiles are active: local
+INFO  25-01-21 12:59:50[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 12:59:50[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 12:59:50[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 12:59:50[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 41 ms. Found 2 JPA repository interfaces.
+INFO  25-01-21 12:59:51[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8090 (http)
+INFO  25-01-21 12:59:51[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 12:59:51[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  25-01-21 12:59:51[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.53]
+INFO  25-01-21 12:59:51[restartedMain] [TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+INFO  25-01-21 12:59:51[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  25-01-21 12:59:51[restartedMain] [ServletWebServerApplicationContext:290] - Root WebApplicationContext: initialization completed in 1446 ms
+INFO  25-01-21 12:59:51[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  25-01-21 12:59:51[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  25-01-21 12:59:51[restartedMain] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  25-01-21 12:59:51[restartedMain] [Version:44] - HHH000412: Hibernate ORM core version 5.4.32.Final
+INFO  25-01-21 12:59:52[restartedMain] [Version:56] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+INFO  25-01-21 12:59:52[restartedMain] [Dialect:175] - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+INFO  25-01-21 12:59:52[restartedMain] [JtaPlatformInitiator:52] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+INFO  25-01-21 12:59:52[restartedMain] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  25-01-21 12:59:53[restartedMain] [JpaBaseConfiguration$JpaWebConfiguration:219] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  25-01-21 12:59:53[restartedMain] [DefaultSecurityFilterChain:51] - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@311d29e, org.springframework.security.web.context.SecurityContextPersistenceFilter@71efda18, org.springframework.security.web.header.HeaderWriterFilter@34a5de84, org.springframework.security.web.authentication.logout.LogoutFilter@6742e50f, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@6ed9ad72, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@3feb0dd2, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@58a6f6f9, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1d69d1db, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7fc2d94b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7aca2e42, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e19eaf6, org.springframework.security.web.session.SessionManagementFilter@329b56b0, org.springframework.security.web.access.ExceptionTranslationFilter@633b18c9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@50b30052]
+INFO  25-01-21 12:59:53[restartedMain] [OptionalLiveReloadServer:58] - LiveReload server is running on port 35729
+INFO  25-01-21 12:59:54[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8090"]
+INFO  25-01-21 12:59:54[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8090 (http) with context path ''
+INFO  25-01-21 12:59:54[restartedMain] [OrgtreeApplication:61] - Started OrgtreeApplication in 4.888 seconds (JVM running for 5.516)
+INFO  25-01-21 13:00:08[http-nio-8090-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  25-01-21 13:00:08[http-nio-8090-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  25-01-21 13:00:08[http-nio-8090-exec-1] [DispatcherServlet:547] - Completed initialization in 2 ms
+DEBUG 25-01-21 13:00:08[http-nio-8090-exec-1] [LoggerInterceptor:26] - ■ LoggerInterceptor.preHandle() : START =================================
+DEBUG 25-01-21 13:00:08[http-nio-8090-exec-1] [LoggerInterceptor:27] - ◆ Request URL:http://localhost:8090/rest/admin/api/sync/employees
+DEBUG 25-01-21 13:00:08[http-nio-8090-exec-1] [LoggerInterceptor:39] - ■ LoggerInterceptor.preHandle() : END =================================
+DEBUG 25-01-21 13:00:08[http-nio-8090-exec-1] [LoggerAspect:31] - ■ Controller ===> com.dbinc.cloudoffice.orgtree.controller.admin.api.ApiRestController.getEmployees()
+DEBUG 25-01-21 13:00:08[http-nio-8090-exec-1] [LoggerAspect:31] - ■ Service ===> com.dbinc.cloudoffice.orgtree.service.admin.api.ApiService.getActiveEmployeeList()
+DEBUG 25-01-21 13:01:28[http-nio-8090-exec-3] [LoggerInterceptor:26] - ■ LoggerInterceptor.preHandle() : START =================================
+DEBUG 25-01-21 13:01:28[http-nio-8090-exec-3] [LoggerInterceptor:27] - ◆ Request URL:http://localhost:8090/rest/admin/api/sync/employees
+DEBUG 25-01-21 13:01:28[http-nio-8090-exec-3] [LoggerInterceptor:39] - ■ LoggerInterceptor.preHandle() : END =================================
+DEBUG 25-01-21 13:01:28[http-nio-8090-exec-3] [LoggerAspect:31] - ■ Controller ===> com.dbinc.cloudoffice.orgtree.controller.admin.api.ApiRestController.getEmployees()
+DEBUG 25-01-21 13:01:28[http-nio-8090-exec-3] [LoggerAspect:31] - ■ Service ===> com.dbinc.cloudoffice.orgtree.service.admin.api.ApiService.getActiveEmployeeList()
+DEBUG 25-01-21 13:06:39[http-nio-8090-exec-5] [LoggerInterceptor:26] - ■ LoggerInterceptor.preHandle() : START =================================
+DEBUG 25-01-21 13:06:39[http-nio-8090-exec-5] [LoggerInterceptor:27] - ◆ Request URL:http://localhost:8090/rest/admin/api/sync/employees
+DEBUG 25-01-21 13:06:39[http-nio-8090-exec-5] [LoggerInterceptor:39] - ■ LoggerInterceptor.preHandle() : END =================================
+DEBUG 25-01-21 13:06:39[http-nio-8090-exec-5] [LoggerAspect:31] - ■ Controller ===> com.dbinc.cloudoffice.orgtree.controller.admin.api.ApiRestController.getEmployees()
+DEBUG 25-01-21 13:06:39[http-nio-8090-exec-5] [LoggerAspect:31] - ■ Service ===> com.dbinc.cloudoffice.orgtree.service.admin.api.ApiService.getActiveEmployeeList()
+INFO  25-01-21 13:13:18[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:651] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  25-01-21 13:13:18[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  25-01-21 13:13:18[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  25-01-21 15:40:26[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 15:40:26[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 10632 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 15:40:26[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 15:40:26[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 15:40:26[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 15:40:26[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 15:40:27[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 15:40:27[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 36 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 15:40:27[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 15:40:27[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 15:40:27[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:21)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 15:42:16[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 15:42:16[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 16068 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 15:42:16[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 15:42:16[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 15:42:16[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 15:42:16[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 15:42:17[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 15:42:17[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 35 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 15:42:17[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 15:42:17[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 15:42:17[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:21)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 15:50:28[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 15:50:28[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 7716 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 15:50:28[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 15:50:28[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 15:50:28[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 15:50:28[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 15:50:28[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 15:50:29[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 36 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 15:50:29[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 15:50:29[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 15:50:29[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:21)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 15:53:01[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 15:53:01[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 16580 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 15:53:01[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 15:53:01[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 15:53:01[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 15:53:01[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 15:53:02[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 15:53:02[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 35 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 15:53:02[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 15:53:02[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 15:53:02[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:21)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 16:13:53[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 16:13:53[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 13448 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 16:13:53[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 16:13:53[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 16:13:53[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 16:13:53[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 16:13:54[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 16:13:54[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 41 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 16:13:54[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 16:13:54[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 16:13:54[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:23)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 16:15:51[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 16:15:51[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 26004 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 16:15:51[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 16:15:51[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 16:15:51[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 16:15:51[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 16:15:53[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 16:15:53[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 95 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 16:15:53[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 16:15:53[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 16:15:53[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:23)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 16:52:40[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 16:52:40[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 16352 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 16:52:40[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 16:52:40[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 16:52:40[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 16:52:40[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 16:52:41[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 16:52:41[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 16:52:41[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 16:52:41[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 16:52:41[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:23)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 16:54:49[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 16:54:49[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 21380 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 16:54:49[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 16:54:49[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 16:54:49[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 16:54:49[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 16:54:49[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 16:54:49[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 16:54:50[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 16:54:50[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 16:54:50[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:23)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 19:39:02[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 19:39:02[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 23456 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 19:39:02[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 19:39:02[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 19:39:02[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 19:39:02[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 19:39:03[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 19:39:03[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 39 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 19:39:03[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 19:39:03[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 19:39:03[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:23)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 19:39:38[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 19:39:38[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 8940 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 19:39:38[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 19:39:38[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 19:39:38[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 19:39:38[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 19:39:39[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 19:39:39[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 41 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 19:39:39[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 19:39:39[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 19:39:39[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:23)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 20:38:21[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 20:38:21[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 4084 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 20:38:21[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 20:38:21[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 20:38:21[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 20:38:21[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 20:38:22[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 20:38:22[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 43 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 20:38:22[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 20:38:22[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 20:38:22[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:23)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 20:43:51[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 20:43:51[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 29604 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 20:43:51[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 20:43:51[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 20:43:51[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 20:43:51[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 20:43:52[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 20:43:52[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 20:43:52[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 20:43:52[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 20:43:52[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:23)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+INFO  25-01-21 20:44:42[background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+INFO  25-01-21 20:44:42[restartedMain] [OrgtreeApplication:53] - Starting OrgtreeApplication using Java 17.0.11 with PID 15904 (C:\Users\jooho\Desktop\orgtree\target\classes started by jooho in C:\Users\jooho\Desktop\orgtree)
+DEBUG 25-01-21 20:44:42[restartedMain] [OrgtreeApplication:54] - Running with Spring Boot v3.4.0, Spring v6.2.0
+INFO  25-01-21 20:44:42[restartedMain] [OrgtreeApplication:658] - The following 1 profile is active: "local"
+INFO  25-01-21 20:44:42[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  25-01-21 20:44:42[restartedMain] [DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  25-01-21 20:44:42[restartedMain] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-01-21 20:44:42[restartedMain] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+WARN  25-01-21 20:44:42[restartedMain] [AnnotationConfigServletWebServerApplicationContext:635] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+INFO  25-01-21 20:44:42[restartedMain] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 25-01-21 20:44:42[restartedMain] [SpringApplication:857] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'syncDeptMasterMapper' defined in file [C:\Users\jooho\Desktop\orgtree\target\classes\com\dbinc\cloudoffice\orgtree\mapper\api\SyncDeptMasterMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:662)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:605)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:564)
+	at org.springframework.beans.factory.BeanFactoryUtils.beanNamesForTypeIncludingAncestors(BeanFactoryUtils.java:260)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.getBeanNamesForType(OAuth2ClientConfiguration.java:418)
+	at org.springframework.security.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2AuthorizedClientManagerRegistrar.postProcessBeanDefinitionRegistry(OAuth2ClientConfiguration.java:186)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:148)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.dbinc.cloudoffice.orgtree.OrgtreeApplication.main(OrgtreeApplication.java:23)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)

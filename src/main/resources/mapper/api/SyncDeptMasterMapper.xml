@@ -4,14 +4,14 @@
 	<sql id="sqlFetchNextStatement">
 		<if test="fetchNext != null and fetchNext != ''">
 	        <![CDATA[
-	            LIMIT ${offset} , ${fetchNext}
+	            LIMIT #{offset} , #{fetchNext}
 	        ]]>
 		</if>
 	</sql>
 	
 	<delete id="deleteSyncDeptMaster" parameterType="Map">
 		DELETE FROM
-			sync_dept_master_${tempDomainId}
+			sync_dept_master_#{tempDomainId}
 		<where>
 			COMPANY_CD = #{companyCd}
 			AND DOMAIN_ID = #{domainId}
@@ -20,7 +20,7 @@
 		
 	<insert id="insertSyncDeptMaster" parameterType="Map" >
 		INSERT INTO 
-			sync_dept_master_${tempDomainId} (
+			sync_dept_master_#{tempDomainId} (
 				SYNC_DATE
 				, DOMAIN_ID
 				, COMPANY_CD
@@ -89,7 +89,7 @@
 			, #{createUsr}
 			, now()
 		FROM
-			sync_dept_master_${tempDomainId}
+			sync_dept_master_#{tempDomainId}
 		WHERE 
 			DEPT_CD NOT IN (SELECT DEPT_CD FROM DEPT_MASTER WHERE MANUAL_MNG_YN = 'Y' AND DOMAIN_ID = #{domainId} AND COMPANY_CD = #{companyCd})
 			AND DOMAIN_ID = #{domainId}

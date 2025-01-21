@@ -2,7 +2,7 @@ package com.dbinc.cloudoffice.orgtree.config;
 
 import java.util.Locale;
 
-import javax.servlet.http.HttpSessionListener;
+import jakarta.servlet.http.HttpSessionListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
