@@ -314,6 +314,4 @@ function fnInitGrid() {
   });
 }
 
-
-
 </script> 

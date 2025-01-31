@@ -38,7 +38,6 @@
 		              <button type="button" id="btnAddBccEmp" class="btn btn-success float-right" onclick="fnAddToMail('bcc')" ><i class="ace-icon fa fa-plus"></i> <spring:message code="text.add.hidden.reference" text="숨은참조추가"/></button>
 		              <button type="button" id="btnAddBccTeamEmp" class="btn btn-success float-right" onclick="fnAddToTeamMail('bcc')" ><i class="ace-icon fa fa-plus"></i> <spring:message code="text.add.team.hidden.reference" text="팀숨은참조추가"/></button>
 		             
-		              <button type="button" id="btnSendMail" class="btn btn-warning float-right"><i class="ace-icon fa fa-envelope-o"></i> <spring:message code="text.write.mail" text="메일작성"/></button>
 		              <button type="button" id="btnClose" class="btn btn-primary float-right"><i class="ace-icon fa fa-remove"></i> <spring:message code="text.close" text="닫기"/></button>
 		            </span>			
 				</div>
@@ -146,86 +145,8 @@
 				</div>
 				<!-- /.box -->			
 			</div>
-			
-			<div class="row">
-				<div class="col-md-12">
-
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.emp.email" text="이메일" />&nbsp;(<span id="emailCnt"></span> /100)</h3>
-						</div>
-						<!-- /.box-header -->
-						<!-- mail -->
-						<div class="box-body">
-							<div class="row" id="mailEmpForm">
-								<div class="col-md-4" style="padding-left:30px;padding-right:0px">
-									<div class="row">
-							        	<i class="ace-icon fa fa-angle-right bigger-100"></i>
-							           	<span style="margin-left: 2px;line-height: 18px;"> <spring:message code="text.recipient" text="받는사람"/></span>
-							        	<button class="btn-xs btn-outline-danger" onclick="fnDelAllMail('to')" style="float:right;margin-right:30px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.all" text="전체삭제"/></button>
-							           	<button class="btn-xs btn-outline-primary" onclick="fnDelSelMail('to')" style="float:right;margin-right:10px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.selection" text="선택삭제"/></button>
-						       		</div>
-						       		<div class="row" style="margin-top:5px;">
-						       			<select id="toEmpList" name="toEmpList" style="width:95%;min-height: 240px;" multiple></select>
-						       		</div>
-						        </div>
-						        <div class="col-md-4" style="padding-left:30px;padding-right:0px">
-									<div class="row">
-							        	<i class="ace-icon fa fa-angle-right bigger-100"></i>
-							           	<span style="margin-left: 2px;line-height: 18px;"> <spring:message code="text.reference" text="참조"/></span>
-							           	<button class="btn-xs btn-outline-danger" onclick="fnDelAllMail('cc')" style="float:right;margin-right:30px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.all" text="전체삭제"/></button>
-							           	<button class="btn-xs btn-outline-primary" onclick="fnDelSelMail('cc')" style="float:right;margin-right:10px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.selection" text="선택삭제"/></button>
-							        </div>
-						       		<div class="row" style="margin-top:5px;">
-						       			<select id="ccEmpList" name="ccEmpList" style="width:95%;min-height: 240px;" multiple></select>
-							    	</div>
-						        </div>
-						        <div class="col-md-4" style="padding-left:30px;padding-right:0px">
-									<div class="row">
-							        	<i class="ace-icon fa fa-angle-right bigger-100"></i>
-							           	<span style="margin-left: 2px;line-height: 18px;"> <spring:message code="text.hidden.reference" text="숨은참조"/></span>
-							           	<button class="btn-xs btn-outline-danger" onclick="fnDelAllMail('bcc')" style="float:right;margin-right:30px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.all" text="전체삭제"/></button>
-							        	<button class="btn-xs btn-outline-primary" onclick="fnDelSelMail('bcc')" style="float:right;margin-right:10px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.selection" text="선택삭제"/></button>
-							        </div>
-						       		<div class="row" style="margin-top:5px;">
-						       			<select id="bccEmpList" name="bccEmpList" style="width:95%;min-height: 240px;" multiple></select>
-									</div>
-						        </div>
-					        </div>
-						
-							<!-- 
-							<div id="mailEmpForm" class="col-xs-12">
-					      		<div style="width:32%;padding:5px;float:left;margin-left:30px;">
-						        	<i class="ace-icon fa fa-angle-right bigger-100"></i>
-						           	<span style="margin-left: 2px;line-height: 18px;"> <spring:message code="text.recipient" text="받는사람"/></span>
-						        	<button class="btn-xs btn-outline-danger" onclick="fnDelAllMail('to')" style="float:right;margin-right:10px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.all" text="전체삭제"/></button>
-						           	<button class="btn-xs btn-outline-primary" onclick="fnDelSelMail('to')" style="float:right;margin-right:10px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.selection" text="선택삭제"/></button>
-						        </div>
-				        		<div style="width:32%;padding:10px;float:left;margin-left:10px;">
-						        	<i class="ace-icon fa fa-angle-right bigger-100"></i>
-						           	<span style="margin-left: 2px;line-height: 18px;"> <spring:message code="text.reference" text="참조"/></span>
-						           	<button class="btn-xs btn-outline-danger" onclick="fnDelAllMail('cc')" style="float:right;margin-right:10px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.all" text="전체삭제"/></button>
-						           	<button class="btn-xs btn-outline-primary" onclick="fnDelSelMail('cc')" style="float:right;margin-right:10px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.selection" text="선택삭제"/></button>
-						        </div>
-						        <div style="width:32%;padding:10px;float:left;margin-left:10px;">
-						           	<i class="ace-icon fa fa-angle-right bigger-100"></i>
-						           	<span style="margin-left: 2px;line-height: 18px;"> <spring:message code="text.hidden.reference" text="숨은참조"/></span>
-						           	<button class="btn-xs btn-outline-danger" onclick="fnDelAllMail('bcc')" style="float:right;margin-right:10px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.all" text="전체삭제"/></button>
-						        	<button class="btn-xs btn-outline-primary" onclick="fnDelSelMail('bcc')" style="float:right;margin-right:10px;"><i class="ace-icon fa fa-minus"></i><spring:message code="text.delete.selection" text="선택삭제"/></button>
-						        </div>
-							    <select id="toEmpList" name="toEmpList" style="width:32%;min-height: 240px;margin-left:25px;" multiple></select>
-							    <select id="ccEmpList" name="ccEmpList" style="width:32%;min-height: 240px;margin-left:10px;" multiple></select>
-							    <select id="bccEmpList" name="bccEmpList" style="width:32%;min-height: 240px;margin-left:10px;" multiple></select>
-					    	</div>	
-					    	 -->
-				    	</div>
-		    		</div>
-				</div>
-				<!-- /.box -->			
-			</div>
 		</section>
 		<!-- /.content -->	
-
 	</div>
 
 <!-- Main Footer -->
@@ -319,12 +240,6 @@ function fnSetEvent() {
 		e.preventDefault();
 		fnResetDeptSearch();
 		fnReselGrid();
-	});
-	
-	//메일전송 버튼
-	$("#btnSendMail").off("click").on("click", function (e) {
-		e.preventDefault();
-		fnSendMail();
 	});
 	
 	$("#btnClose").off("click").on("click", function (e) {
@@ -455,25 +370,8 @@ function fnInitGrid() {
 	        , { name: 'addYn', 			index: 'addYn', 			width: '25%', 	align: 'center', 	sortable: false}
 	        , { name: 'posNm',			index: 'posNm',				width: '30%', 	align: 'center', 	sortable: false}
 	        , { name: 'empNo', 			index: 'empNo', 			width: '40%', 	align: 'center', 	sortable: false}
-	        ,
-
-			//{ name: 'email',			index: 'email',				width: '60%', 	align: 'left', 		sortable: false}  1/17 수정
-
-			//1/17 수정
-			{
-				name: 'email',
-				index: 'email',
-				width: '60%',
-				align: 'left',
-				sortable: false,
-				formatter: function (cellValue, options, rowObject) {
-					return `<button class="btn btn-link email-select-btn"
-                        onclick="selectEmployee('${cellValue}')"
-                        title="클릭하여 이메일 선택">
-                    ${cellValue}
-                </button>`;
-				}
-			}, { name: 'jobTelNo',		index: 'jobTelNo',			width: '50%', 	align: 'left', 		sortable: false}
+	        , { name: 'email',			index: 'email',				width: '60%', 	align: 'left', 		sortable: false}
+	        , { name: 'jobTelNo',		index: 'jobTelNo',			width: '50%', 	align: 'left', 		sortable: false}
 	        , { name: 'mobileTelNo', 	index: 'mobileTelNo', 		width: '50%', 	align: 'left', 		sortable: false}
 	        , { name: 'empStatusNm',	index: 'empStatusNm',		width: '30%', 	align: 'center', 	sortable: false}
         ],
@@ -495,6 +393,7 @@ function fnInitGrid() {
 				let msg = '<spring:message code="text.search.success" text="조회 성공하였습니다."/>';
 				gfnSuccessAlert(msgTitle, msg, 2000);
 	    	}
+
 	    },
 	    loadError: function(jqXHR, textStatus, errorThrown) {
       		let title = "";
@@ -503,25 +402,6 @@ function fnInitGrid() {
 	  	},
 	    resizeStop: gfnResizeStop
     });
-}
-
-//1/17 추가
-// 사원 선택 시 부모 창으로 이메일 전달
-function selectEmployee(email) {
-	if (window.opener) {
-		// 구체적인 타입과 출처를 명시하여 보안성 향상
-		window.opener.postMessage({
-			type: 'SELECT_EMAIL',
-			email: email,
-			source: 'organizationChart'
-		}, 'https://mail.google.com');
-
-		// 사용자 경험 개선을 위해 알림 메시지 수정
-		alert('선택한 이메일이 메일 작성 폼에 추가되었습니다.');
-		window.close();
-	} else {
-		alert("팝업 창으로 열려있지 않습니다.");
-	}
 }
 
 //검색조건 텍스트 유효성체크
@@ -605,10 +485,11 @@ function fnInitTree() {
 		}
 	});
 }
-
+let teamUserList = [];  // 이메일을 저장할 배열
+let teamPrevFlag = null;  // 이전 flag 값을 저장
 // 팀 메일 추가
 function fnAddToTeamMail(flag) {
-	let deptCd = $("#pDeptCd").val();
+	let deptCd = $("#pDeptCd").val(); //부서코드
 	if(deptCd == "") {
 		let msgTitle = "";
 		let msg = '부서가 선택되지 않았습니다.';
@@ -621,6 +502,14 @@ function fnAddToTeamMail(flag) {
 	params.domainId = gDomainId;
 	params.companyCd = $("#selScCompanyCd").val();
 	params.deptCd = deptCd;
+
+	// flag 값이 변경되면 teamUserList 초기화
+	if (teamPrevFlag !== flag) {
+		teamUserList = [];
+		gEmailCnt = 0; // 이메일 개수도 초기화
+	}
+	teamPrevFlag = flag; // 현재 flag 값을 저장
+
  	$.ajax({
 		type:'get',
 		url:apiUrl,
@@ -634,46 +523,32 @@ function fnAddToTeamMail(flag) {
 				gfnFailAlert(msgTitle, msg);
 				return false;
 			}
-			
-			//gEmailCnt = gEmailCnt + data.length; // 100명 안넘기면 총 인원에 추가
-			//$("#emailCnt").text(gEmailCnt);
+
 			for(let i = 0; i < data.length; i++) {
 				let email = data[i].email;
-				let empNm = data[i].empNm;
-				let deptNm = data[i].deptNm;
-				let posNm = data[i].posNm;
-				let dupChk = "N";
-				// 이미 추가되어있는 사용자인지 체크
-				$("#toEmpList option").each(function(){ 
-			  		if ($(this).val() == email) { 
-			    		dupChk = "Y"; 
-			    		return false; 
-			    	} 
-			  	});
-			  	$("#ccEmpList option").each(function(){ 
-			  	  if ($(this).val() == email) { 
-			  	  		dupChk = "Y"; 
-			  	    	return false; 
-			    	} 
-			  	});
-		    	$("#bccEmpList option").each(function(){ 
-			  	  if ($(this).val() == email) { 
-			  	  	 	dupChk = "Y"; 
-			  	    	return false; 
-			  	  } 
-			  	});
-		    	
-			  	if(dupChk == "N") {
-			  	  gEmailCnt = gEmailCnt + 1;
-			  	  $("#" + flag + "EmpList").append("<option value='" + email + "'>" + empNm + " " + posNm + " / " + deptNm + "</option>");
-			  	}
+				// 중복된 이메일이면 추가하지 않음
+				if (!teamUserList.includes(email)) {
+					teamUserList.push(email);  // 새로운 이메일만 추가
+					gEmailCnt = gEmailCnt + 1;
+				}
 			}
 			$("#emailCnt").text(gEmailCnt);
+			let flagValue = flag;
+			// Content Script로 메시지 전달
+			const event = new CustomEvent("sendDataToExtension", {
+				detail: {
+					action: "sendEmailData",
+					data: { flagValue, teamUserList }
+				}
+			});
+			window.dispatchEvent(event);
 		}
 	});
 }
 
-// 메일 추가
+let userList = [];  // 이메일을 저장할 배열
+let prevFlag = null;  // 이전 flag 값을 저장
+// 메일 삽입 처리
 function fnAddToMail(flag) {
 	let idx = $('#grdEmpList').jqGrid("getGridParam", "selarrrow");
 	if(idx.length <= 0) {
@@ -690,88 +565,33 @@ function fnAddToMail(flag) {
 		return false;
 	}
 	//gEmailCnt = gEmailCnt + idx.length; // 100명 안넘기면 총 인원에 추가
+
+	// flag 값이 변경되면 teamUserList 초기화
+	if (prevFlag !== flag) {
+		userList = [];
+		gEmailCnt = 0; // 이메일 개수도 초기화
+	}
+	prevFlag = flag; // 현재 flag 값을 저장
 	for(let i = 0; i < idx.length; i++) {
 		let rowId = idx[i];  
 		let email = $('#grdEmpList').jqGrid("getCell", rowId, "email");
-		let empNm = $('#grdEmpList').jqGrid("getCell", rowId, "empNm");
-		let deptNm = $('#grdEmpList').jqGrid("getCell", rowId, "deptNm");
-		let posNm = $('#grdEmpList').jqGrid("getCell", rowId, "posNm");
-	  	let dupChk = "N";
-	  	$("#toEmpList option").each(function(idx, item){ 
-	  		if ($(this).val() == email) { 
-	    		dupChk = "Y"; 
-	    		return false; 
-	    	} 
-	  	});
-	  	$("#ccEmpList option").each(function(){ 
-	  	  if ($(this).val() == email) { 
-	  	  		dupChk = "Y"; 
-	  	    	return false; 
-	    	} 
-	  	});
-    	$("#bccEmpList option").each(function(){ 
-  	    if ($(this).val() == email) { 
-  	  	 		dupChk = "Y"; 
-  	    	  return false; 
-  	    } 
-  	  });
-  	  if(dupChk == "N") {
+		// 중복된 이메일이면 추가하지 않음
+		if (!userList.includes(email)) {
+			userList.push(email);  // 새로운 이메일만 추가
+			gEmailCnt = gEmailCnt + 1;
+		}
   		gEmailCnt = gEmailCnt + 1;
-  	    $("#" + flag + "EmpList").append("<option value='" + email + "'>" + empNm + " " + posNm + " / " + deptNm + "</option>");
-  	  }
 	}
 	$("#emailCnt").text(gEmailCnt);
-}
-
-// 메일 전체삭제
-function fnDelAllMail(flag) {
-	let delCnt = $("#" + flag + "EmpList option").length;
-	gEmailCnt = gEmailCnt - delCnt;
-	$("#emailCnt").text(gEmailCnt);
-	$("#" + flag + "EmpList option").remove();
-}
-
-// 메일 선택삭제
-function fnDelSelMail(flag) {
-	let delCnt = $("#" + flag + "EmpList option:selected").length;
-	gEmailCnt = gEmailCnt - delCnt;
-	$("#emailCnt").text(gEmailCnt);
-	$("#" + flag + "EmpList option:selected").remove();
-}
-
-// 메일작성
-function fnSendMail() {
-	let toUserCnt = 0;
-	let toUserList = "";
-	$("#toEmpList option").each(function(){ 
-	    toUserList += $(this).val() + ";";
-	    toUserCnt++;
+	let flagValue = flag;
+	// Content Script로 메시지 전달
+	const event = new CustomEvent("sendDataToExtension", {
+		detail: {
+			action: "sendEmailData",
+			data: { flagValue, userList }
+		}
 	});
-	
-	let ccUserList = "";
-	let ccUserCnt = 0;
-	$("#ccEmpList option").each(function(){ 
-	    ccUserList += $(this).val() + ";";
-	    ccUserCnt++;
-	});
-	
-	let bccUserList = "";
-	let bccUserCnt = 0;
-	$("#bccEmpList option").each(function(){
-	    bccUserList += $(this).val() + ";";
-	    bccUserCnt++;
-	});
-	
-	if(toUserCnt < 1 && ccUserCnt < 1 && bccUserCnt < 1) {
-		let msgTitle = "";
-		let msg = '<spring:message code="text.emp.add.fail" text="사용자가 추가되지 않았습니다."/>';
-		gfnFailAlert(msgTitle, msg, 2000);
-	    return false;
-	}
-	
-	let mailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=" + toUserList + "&cc=" + ccUserList + "&bcc=" + bccUserList;
-	window.open(mailUrl, 'popup1', 'top=0,left=270,width=990,height=600,toolbar=0,location=0,status=0,menubar=0,scrollbars=0,resizable=no,');
-	
+	window.dispatchEvent(event);
 }
 </script>
 
