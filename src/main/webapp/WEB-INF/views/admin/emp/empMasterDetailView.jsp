@@ -8,67 +8,66 @@
 <!-- meta -->
 <%@ include file="/WEB-INF/views/admin/include/meta.jsp" %>
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-
-<!-- Header -->
-<%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
-
+<body class="hold-transition sidebar-mini sidebar-collapse">
+<div id="wrapper">
 <!-- main side menu -->
 <%@ include file="/WEB-INF/views/admin/include/sidebar.jsp" %>
 
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
-	
-		<!-- Content Header (Page header) -->
-		<section class="content-header">
-			<div class="row">
-				<div class="col-sm-6">
-					<h3 style="margin-top:0px; margin-bottom:0px;"><spring:message code="text.emp.detail" text="사용자상세"/></h3>
-				</div>
-				<div class="col-sm-6" style="text-align:right;">
-		            <span class="pull-right">
-		            	<button class="btn btn-primary float-right" id="btnSave"><i class="ace-icon fa fa-plus"></i><spring:message code="text.save" text="저장" /></button>
-		            	<button class="btn btn-primary float-right" id="btnDelete"><i class="ace-icon fa fa-trash-o"></i><spring:message code="text.delete" text="삭제" /></button>
-		            	<button class="btn btn-primary float-right" id="btnClose"><i class="ace-icon fa fa-floppy-o"></i><spring:message code="text.list" text="목록" /></button>
-		            </span>				
-				</div>
-			</div>
-		</section>
-		
-		<!-- Main content -->
-		<section class="content container-fluid">
-			<!-- 기본 정보 -->
-			<div class="row">
-				<div class="col-md-12">
-				
-					<!-- general form elements -->
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.emp.info" text="사용자정보"/></h3>
-						</div>
-						<!-- /.box-header -->
-						
-						<!-- form start -->
-						<form id="frmEmpMasterInfo" class="form-horizontal">
-							<div class="box-body">
-								<div class="form-group">
+	<div id="content-wrapper" class="d-flex flex-column">
+		<!-- Header -->
+		<%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
+		<!-- Main Content -->
+		<div id="content">
+			<!-- Content Header (Page header) -->
+			<nav class="navbar navbar-expand navbar-light bg-white topbar static-top">
+				<h1 class="h4 mb-0 text-gray-800">
+					<spring:message code="text.emp.detail" text="사용자상세" />
+				</h1>
+				<ul class="navbar-nav ml-auto">
+					<button type="button" id="btnSave" class="card border-left-primary shadow h-100 py-2">
+						<i class="fa fa-plus"></i> <spring:message code="text.save" text="저장"/>
+					</button>
+					<button type="button" id="btnDelete" class="card border-left-success shadow h-100 py-2">
+						<i class="fa fa-minus"></i> <spring:message code="text.delete" text="삭제"/>
+					</button>
+					<button type="button" id="btnClose" class="card border-left-info shadow h-100 py-2">
+						<i class="fa fa-file-alt"></i> <spring:message code="text.list" text="목록"/>
+					</button>
+				</ul>
+			</nav>
+
+			<!-- Main content -->
+			<div class="container-fluid">
+				<!-- 기본 정보 -->
+				<div class="row">
+					<div class="col-md-12">
+
+						<!-- general form elements -->
+						<div class="card shadow mb-4">
+							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+								<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-folder-open"></i> <spring:message code="text.emp.info" text="사용자정보"/></h6>
+							</div>
+
+							<!-- form start -->
+							<form id="frmEmpMasterInfo" class="card-body">
+								<div class="form-group row">
 									<label for="txtCompanyName" class="col-sm-1 control-label"><spring:message code="text.company" text="법인"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control is-valid-jihun" id="txtCompanyName" name="txtCompanyName" placeholder="<spring:message code="text.company.name" text="법인명"/>" readonly required>
-									</div>									
-									
+									</div>
+
 									<label for="txtDeptName" class="col-sm-1 control-label"><spring:message code="text.dept" text="부서"/></label>
 									<div class="col-sm-2">
-						                <div class="input-group">
+										<div class="input-group">
 											<input type="text" id="txtDeptName" name="txtDeptName" class="form-control is-valid-jihun" placeholder="<spring:message code="text.dept.name" text="법인명"/>" readonly required>
 											<span class="input-group-btn">
 												<button type="button" id="btnDeptSearch" class="btn btn-primary"><spring:message code="text.find" text="찾기"/></button>
 											</span>
-											
-						                </div>										
+
+										</div>
 									</div>
-																		
+
 									<label for="selHeadYn" class="col-sm-1 control-label"><spring:message code="text.emp.head" text="부서장 구분"/></label>
 									<div class="col-sm-2">
 										<select class="form-control" id="selHeadYn" name="selHeadYn">
@@ -79,82 +78,82 @@
 									</div>
 
 								</div>
-								
-								<div class="form-group">
+
+								<div class="form-group row">
 									<label for="txtEmail" class="col-sm-1 control-label"><spring:message code="text.emp.email" text="이메일"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control is-valid-jihun" id="txtEmail" name="txtEmail" placeholder="<spring:message code="text.email" text="이메일"/>" readonly required>
 									</div>
-									
+
 									<label for="txtEmpName" class="col-sm-1 control-label"><spring:message code="text.emp.name" text="성명"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control is-valid-jihun" id="txtEmpName" name="txtEmpName" placeholder="<spring:message code="text.emp.name" text="성명"/>" required onblur="javascript:gfnRegExpChk(this);">
 									</div>
-									
+
 									<label for="txtEmpEngName" class="col-sm-1 control-label"><spring:message code="text.emp.eng.name" text="영문성명"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control" id="txtEmpEngName" name="txtEmpEngName" placeholder="<spring:message code="text.emp.eng.name" text="영문성명"/>" onblur="javascript:gfnRegExpChk(this);">
 									</div>
-									
+
 									<label for="txtEmpNo" class="col-sm-1 control-label"><spring:message code="text.emp.no" text="사번"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control" id="txtEmpNo" name="txtEmpNo" placeholder="사번" onblur="javascript:gfnRegExpChk(this);">
 									</div>
 								</div>
-								
-								<div class="form-group">
+
+								<div class="form-group row">
 									<label for="selPosName" class="col-sm-1 control-label"><spring:message code="text.emp.pos" text="직위"/></label>
 									<div class="col-sm-2">
 										<select class="form-control" id="selPosName" name="selPosName">
 											<option value="" selected>-<spring:message code="text.select" text="선택"/>-</option>
 											<c:forEach items="${companyPosList}" var="option">
-												<option value="${option.code}">${option.codeNm}</option>  
+												<option value="${option.code}">${option.codeNm}</option>
 											</c:forEach>
 										</select>
 									</div>
-									 									
+
 									<label for="selEmpStatus" class="col-sm-1 control-label"><spring:message code="text.emp.status" text="재직상태"/></label>
 									<div class="col-sm-2">
 										<select class="form-control is-valid-jihun" id="selEmpStatus" name="selEmpStatus" required>
 											<option value="" selected>-<spring:message code="text.select" text="선택"/>-</option>
 											<c:forEach items="${companyStatusCdList}" var="option">
-												<option value="${option.code}">${option.codeNm}</option>  
+												<option value="${option.code}">${option.codeNm}</option>
 											</c:forEach>
 										</select>
 									</div>
-									
+
 									<label for="txtJobTelNo" class="col-sm-1 control-label"><spring:message code="text.emp.job.tel" text="사내전화"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control" id="txtJobTelNo" name="txtJobTelNo" placeholder="<spring:message code="text.emp.job.tel" text="사내전화"/>" onblur="javascript:gfnRegExpChk(this,2);">
 									</div>
-									
+
 									<label for="txtMobileTelNo" class="col-sm-1 control-label"><spring:message code="text.emp.mobile.tel" text="휴대폰"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control" id="txtMobileTelNo" name="txtMobileTelNo" placeholder="<spring:message code="text.emp.mobile.tel" text="휴대폰"/>" onblur="javascript:gfnRegExpChk(this,2);">
 									</div>
 								</div>
-								
-								<div class="form-group">
+
+								<div class="form-group row">
 									<label for="dpWoEnterDt" class="col-sm-1 control-label"><spring:message code="text.emp.enter.date" text="입사일"/></label>
 									<div class="col-sm-2">
 										<div class="input-group">
 											<input type="text" class="form-control pull-right date" id="dpWoEnterDt">
 											<div class="input-group-addon">
 												<i class="fa fa-calendar"></i>
-											</div>											
+											</div>
 										</div>
 									</div>
-									 									
+
 									<label for="dpWoQuitDt" class="col-sm-1 control-label"><spring:message code="text.emp.quit.date" text="퇴사일"/></label>
 									<div class="col-sm-2">
 										<div class="input-group">
 											<input type="text" class="form-control pull-right date" id="dpWoQuitDt">
 											<div class="input-group-addon">
 												<i class="fa fa-calendar"></i>
-											</div>											
+											</div>
 										</div>
 									</div>
-									
+
 									<label for="selManualMngYn" class="col-sm-1 control-label"><spring:message code="text.manual.manage" text="수동관리"/></label>
 									<div class="col-sm-2">
 										<select class="form-control" id="selManualMngYn" name="selManualMngYn">
@@ -163,7 +162,7 @@
 											<option value="N">N</option>
 										</select>
 									</div>
-									 									
+
 									<label for="selHiddenYn" class="col-sm-1 control-label"><spring:message code="text.emp.hidden" text="숨김"/></label>
 									<div class="col-sm-2">
 										<select class="form-control" id="selHiddenYn" name="selHiddenYn">
@@ -172,10 +171,10 @@
 											<option value="N">N</option>
 										</select>
 									</div>
-									
+
 								</div>
-								
-								<div class="form-group">
+
+								<div class="form-group row">
 									<label for="selLanguageCd" class="col-sm-1 control-label"><spring:message code="text.language.cd" text="언어코드"/></label>
 									<div class="col-sm-2">
 										<select class="form-control is-valid-jihun" id="selLanguageCd" name="selLanguageCd" required>
@@ -184,47 +183,44 @@
 											<option value="en-US"><spring:message code="text.eng" text="영어"/></option>
 										</select>
 									</div>
-									
+
 								</div>
-							</div>
-							<!-- /.box-body -->
-						</form>
-					</div>
-					<!-- /.box -->			
-				</div>
-			</div>
-
-			<div class="row" style="margin-bottom:10px;">
-				<div class="col-sm-12" style="text-align:right;">
-		            <span class="pull-right">
-		              <button class="btn btn-primary float-right" id="btnEmpDeptXrefAdd"><i class="ace-icon fa fa-plus"></i><spring:message code="text.registration" text="등록" /></button>
-		            </span>				
-				</div>
-			</div>				
-			<div class="row">
-				<div class="col-md-12">
-					<div class="box box-primary">
-						<!-- box header -->
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i><spring:message code="text.emp.xref.info" text="겸직정보"/></h3>
-						</div>				
-						<!-- box header end -->	
-						
-						<form id="frmAddYnList" class="form-horizontal">
-							<div id="dvGrdBoxAddYnList" class="box-body grid-box">
-								<table id="grdAddYnList"></table>
-							</div>
-						</form>
+								<!-- /.card-body -->
+							</form>
+						</div>
+						<!-- /.card -->
 					</div>
 				</div>
-			</div>
-		</section>
-		<!-- /.content -->	
-	</div>
 
+				<div class="row" style="margin-bottom:10px;">
+					<div class="col-sm-12" style="text-align:right;">
+						<span class="pull-right">
+						  <button class="btn btn-primary float-right" id="btnEmpDeptXrefAdd"><i class="ace-icon fa fa-plus"></i><spring:message code="text.registration" text="등록" /></button>
+						</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<!-- general form elements -->
+						<div class="card shadow mb-4">
+							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+								<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-folder-open"></i> <spring:message code="text.emp.xref.info" text="겸직정보"/></h6>
+							</div>
+
+							<form id="frmAddYnList" class="form-horizontal">
+								<div id="dvGrdBoxAddYnList" class="card-body grid-box">
+									<table id="grdAddYnList"></table>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.content -->
 <!-- Main Footer -->
 <%@ include file="/WEB-INF/views/admin/include/footer.jsp" %>
-
+	</div>
 </div>
 
 <!-- /.modal start -->
@@ -367,22 +363,22 @@ function fnSetData() {
 
 //부서선택 팝업 오픈
 function fnShowMdlDeptPicker() {
-	$("#mdlDeptPicker").modal({
-		remote : "/admin/dept/deptTreeViewModal.do"
+	$('#mdlDeptPicker .modal-content').load('/admin/dept/deptTreeViewModal.do', function () {
+		$('#mdlDeptPicker').modal('show');
 	});
 }
 
 //겸직정보 상세 팝업 오픈
 function fnShowMdlEmpDeptXref() {
-	$("#mdlEmpDeptXref").modal({
-		remote : "/admin/emp/empDeptXrefViewModal.do"
+	$('#mdlEmpDeptXref .modal-content').load('/admin/emp/empDeptXrefViewModal.do', function () {
+		$('#mdlEmpDeptXref').modal('show');
 	});
 }
 
 //겸직정보 등록 팝업 오픈
 function fnShowMdlEmpDeptXrefAdd() {
-	$("#mdlEmpDeptXrefAdd").modal({
-		remote : "/admin/emp/empDeptXrefAddModal.do"
+	$('#mdlEmpDeptXrefAdd .modal-content').load('/admin/emp/empDeptXrefAddModal.do', function () {
+		$('#mdlEmpDeptXrefAdd').modal('show');
 	});
 }
 

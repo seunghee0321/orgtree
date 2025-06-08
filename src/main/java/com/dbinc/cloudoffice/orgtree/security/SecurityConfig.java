@@ -104,7 +104,7 @@ public class SecurityConfig {
     http.csrf(csrf -> csrf.disable())
             .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/", "/service", "/resources/**", "/create", "/common/**", "/AdminLTE2/**", "/error/**").permitAll()
+                    .requestMatchers("/", "/service", "/resources/**", "/create", "/common/**", "/error/**").permitAll()
                     .requestMatchers("/rest/admin/api/**").permitAll()
                     //.requestMatchers("/user/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                     .requestMatchers("/user/**").hasAnyRole("ADMIN", "USER")

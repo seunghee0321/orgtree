@@ -1,75 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
+<!-- jQuery  -->
+<script src="/sbadmin2/vendor/jquery/jquery.min.js"></script>
 <!-- Main Header -->
 <header class="main-header">
 
-<!-- Logo -->
-<a href="#" class="logo" style="cursor : default;">
-  <!-- mini logo for sidebar mini 50x50 pixels -->
-  <span class="logo-mini"></span>
-  <!-- logo for regular state and mobile devices -->
-  <span class="logo-lg" style="float:left;"><b>Organization Admin</b></span>
-</a>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <a class="btn btn-link rounded-circle mr-3" data-widget="pushmenu" id="sidebarToggle" role="button"><i class="fa fa-bars"></i></a>
+        <!-- Navbar Right Menu -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Navbar Right Menu -->
 
-<!-- Header Navbar -->
-<nav class="navbar navbar-static-top" role="navigation">
-  <!-- Sidebar toggle button-->
-  <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-    <span class="sr-only">Toggle navigation</span>
-  </a>
-  <!-- Navbar Right Menu -->
-  <div class="navbar-custom-menu">
-    <ul class="nav navbar-nav">
-    
-      <!-- Messages: style can be found in dropdown.less-->
-      <!-- /.messages-menu -->
+            <!-- 매뉴얼 링크 -->
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link" href="https://docs.google.com/document/d/e/2PACX-1vSRn24tTkUVJvtFGsTq71hq652QEUmCyflbesb650g9cOg5sVK_TmJ3nq-i-ZvqLap0nvEpK-feCWdm/pub" target="_blank"><i class="fa fa-question"></i></a>
+            </li>
 
-	  <!-- 매뉴얼 링크 -->
-      <li>
-        <a href="https://docs.google.com/document/d/e/2PACX-1vSRn24tTkUVJvtFGsTq71hq652QEUmCyflbesb650g9cOg5sVK_TmJ3nq-i-ZvqLap0nvEpK-feCWdm/pub" target="_blank"><i class="fa fa-question"></i></a>
-      </li>
-
-      <!-- Sing out Menu -->
-      <li class="dropdown notifications-menu">
-        <!-- Menu toggle button -->
-        <a href="" class="dropdown-toggle" data-toggle="dropdown">
-          <i class="fa fa-power-off"></i>
-<!--           <span class="label label-warning">10</span> -->
-        </a>
-        <ul class="dropdown-menu">
-<!--           <li class="header">You have 10 notifications</li> -->
-          <li>
-            <!-- Inner Menu: contains the notifications -->
-            <ul class="menu">
-  			  <li>
-				<a href="/user/emp/empMasterListView.do" >
-				  <i class="fa fa-exchange"></i>&nbsp;&nbsp;User Site Home
-				</a>
-			  </li>              
-
-              <li>
-                <a id="aBtnSessionRefresh" style="cursor:pointer;">
-                  <i class="fa fa-sign-out"></i> Session Refresh
+            <!-- Sing out Menu -->
+            <li class="nav-item dropdown no-arrow mx-1">
+                <!-- Menu toggle button -->
+                <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-power-off"></i>
                 </a>
-              </li>
-              
-            </ul>
-          </li>
-<!--           <li class="footer"><a href="#">View all</a></li> -->
+                <ul class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                    aria-labelledby="userDropdown">
+                    <!-- <li class="header">You have 10 notifications</li> -->
+                    <li>
+                        <!-- Inner Menu: contains the notifications -->
+                        <ul class="menu">
+                          <li>
+                            <a href="/user/emp/empMasterListView.do" >
+                              <i class="fa fa-exchange"></i>&nbsp;&nbsp;User Site Home
+                            </a>
+                          </li>
+
+                          <li>
+                            <a id="aBtnSessionRefresh" style="cursor:pointer;">
+                              <i class="fa fa-sign-out"></i> Session Refresh
+                            </a>
+                          </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <!-- <li class="footer"><a href="#">View all</a></li> -->
+            </li>
         </ul>
-      </li>
-      
-      <!-- Tasks Menu -->
-	  <!-- Task menu end  -->
-	        
-      <!-- User Account Menu -->
-      <!-- User Account Menu end -->
-      
-    </ul>
-  </div>
-</nav>
+    </nav>
 </header>
 
 <form id="frmSessionRefresh" action="/logoutProcess.do" method="POST" style="display:none;">
@@ -80,10 +60,10 @@
 	<div id="gMdlCfmDialogBody" class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
+                <h6 id="gMdlTitle" class="modal-title">CLOUD OFFICE ORG TREE CONFIRM.</h6>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 id="gMdlTitle" class="modal-title">CLOUD OFFICE ORG TREE CONFIRM.</h4>
 			</div>
 			<div id="gMdlMsg" class="modal-body">
 				<p>Some Message</p>
@@ -98,9 +78,6 @@
 	<!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-        
-<!-- jQuery 3 -->
-<script src="/AdminLTE2/bower_components/jquery/dist/jquery.min.js"></script>
 
 <script type ="text/javascript">
 $(function() {

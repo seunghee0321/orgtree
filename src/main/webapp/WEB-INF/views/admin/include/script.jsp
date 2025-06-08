@@ -3,36 +3,39 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 3 -->
-<script src="/AdminLTE2/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="/AdminLTE2/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- jQuery  -->
+<script src="/sbadmin2/vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap 4 -->
+<script src="/sbadmin2/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- ChartJS -->
-<script src="/AdminLTE2/bower_components/chart.js/Chart.js"></script>
+<script src="/sbadmin2/vendor/chart.js/Chart.min.js"></script>
 
 <!-- AdminLTE App -->
-<script src="/AdminLTE2/dist/js/adminlte.min.js"></script>
+<script src="/sbadmin2/js/sb-admin-2.min.js"></script>
 
 <!-- bootstrap datepicker -->
-<script src="/AdminLTE2/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<script src="/AdminLTE2/bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ko.min.js"></script>
-
-<!-- JQGrid -->
-<script src="/AdminLTE2/etcplugins/jqgrid/i18n/grid.locale-en.js"></script>
-<script src="/AdminLTE2/etcplugins/jqgrid/jquery.jqGrid.src.js"></script>
+<script src="/sbadmin2/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/sbadmin2/plugins/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ko.min.js"></script>
 
 <!-- JSTree -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
 
 <!-- Toastr -->
-<script src="/AdminLTE2/etcplugins/toastr-master/build/toastr.min.js"></script>
+<script src="/sbadmin2/plugins/etcplugins/toastr-master/build/toastr.min.js"></script>
 
-<!-- iCheck -->
-<script src="/AdminLTE2/plugins/iCheck/icheck.min.js"></script>
+<!-- jqGrid Locale -->
+<script src="/sbadmin2/plugins/etcplugins/jqgrid/i18n/grid.locale-en.js"></script>
 
-<!-- jquery resize master -->
-<script src="/AdminLTE2/etcplugins/jquery.resize-master/jquery.resize.js"></script>
+<!--jqGrid JS-->
+<script src="/sbadmin2/plugins/etcplugins/jqgrid/jquery.jqGrid.src.js"></script>
+
+<!-- iCheck
+<script src="/AdminLTE2/plugins/iCheck/icheck.min.js"></script>-->
+
+<!-- jquery resize master
+<script src="/AdminLTE2/etcplugins/jquery.resize-master/jquery.resize.js"></script>-->
 
 <!-- common JS -->
 <script src="/common/common/common.js?ver=<%=System.currentTimeMillis()%>"></script>
@@ -181,7 +184,7 @@ function fnPostMove(url, param, target) {
 //유효성 체크 
 function gfnRegExpChk(obj, type) {
 	let val = obj.value;
-	let re=/[^ㄱ-ㅎ가-힣a-zA-Z0-9\-\_\.\@\s]/gi;
+	let re=/[^ㄱ-ㅎ가-힣a-zA-Z0-9\-\_\.\@\s]/gi;드
 	if(type == 2) {
 		re=/[^0-9\-]/gi;
 	}

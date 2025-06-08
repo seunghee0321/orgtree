@@ -4,10 +4,10 @@
 
 <!-- modal Header -->
 <div class="modal-header">
+	<h6 class="modal-title">CLOUD OFFICE DEPT TREE.</h6>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
-	<h4 class="modal-title">CLOUD OFFICE DEPT TREE.</h4>
 </div>
 <!-- modal Header -->
 
@@ -15,35 +15,32 @@
 <div id="mdlDeptPickerCP" class="modal-body" style="background-color:#f9f9f9;">
 
 	<!-- Main content -->
-	<section class="content container-fluid">
-	
+	<div class="content container-fluid">
+
 		<div class="row">
-			<!-- 조직도 트리 -->
 			<div class="col-md-12">
-				<div class="box box-info">
-					<div class="box-header with-border">
-						<h3 class="box-title"><i class="fa fa-folder-open"></i><spring:message code="text.dept.select" text="부서선택"/></h3>
+				<div class="card shadow mb-4">
+					<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+						<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-sitemap"></i> <spring:message code="text.dept.select" text="부서선택"/></h6>
 					</div>
-					<!-- /.box-header -->
-					
-					<div class="box-body">
-						
-						<div class="input-group">
-							<input type="text" class="form-control" id="txtDeptSearchTxt" name="txtDeptSearchTxt" placeholder="<spring:message code="text.dept.name" text="부서명"/>">
-							<span class="input-group-btn">
-								<button type="button" id="btnSearchTree" class="btn btn-info"><spring:message code="text.search" text="조회"/></button>
-							</span>
+					<!-- /.card-header -->
+					<div class="card-body">
+						<div class="row">
+							<div class="col-sm-12 d-flex align-items-center" style="gap: 5px; flex-wrap: nowrap;">
+								<!-- 부서명 입력박스 -->
+								<input type="text" class="form-control" id="txtDeptSearchTxt" name="txtDeptSearchTxt" placeholder="<spring:message code="text.dept.name" text="부서명"/>">
+								<span class="input-group-btn">
+									<button type="button" id="btnSearchTree" class="btn btn-info"><spring:message code="text.search" text="조회"/></button>
+								</span>
+							</div>
 						</div>
 						<div id="mdlTreeDeptList" style="height:350px;overflow:auto;"></div>
 					</div>
 				</div>
-			
 			</div>
 		</div>
-		
-	</section>
+	</div>
 	<!-- /.content -->
-
 </div>
 <!-- modal body -->
 

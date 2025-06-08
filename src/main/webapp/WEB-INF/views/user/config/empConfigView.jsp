@@ -8,113 +8,101 @@
 <!-- meta -->
 <%@ include file="/WEB-INF/views/user/include/meta.jsp" %>
 
-<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
-<div class="wrapper">
-
-<!-- Header -->
-<%@ include file="/WEB-INF/views/user/include/header.jsp" %>
-
-<!-- main side menu -->
-<%@ include file="/WEB-INF/views/user/include/sidebar.jsp" %>
-
+<body class="hold-transition sidebar-mini sidebar-collapse">
+<div id="wrapper">
+	<!-- main side menu -->
+	<%@ include file="/WEB-INF/views/user/include/sidebar.jsp" %>
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
-	
+	<div class="content-wrapper" class="d-flex flex-column">
+		<!-- Header -->
+		<%@ include file="/WEB-INF/views/user/include/header.jsp" %>
+
 		<!-- Content Header (Page header) -->
-		<section class="content-header">
-			<div class="row">
-				<div class="col-sm-6">
-					<h3 style="margin-top:0px; margin-bottom:0px;"><spring:message code="text.my.config" text="default text" /></h3>
-				</div>
-				<div class="col-sm-6" style="text-align:right;">
-		            <div class="btn-group">
-		              <button type="button" id="btnUpdate" class="btn btn-primary float-right"><i class="fa fa-save"></i> <spring:message code="text.save" text="저장"/></button>
-		            </div>				
-				</div>
-			</div>
-		</section>
-		
-		<!-- Main content -->
-		<section class="content container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-				
-					<!-- general form elements -->
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.my.config.info" text="개인설정정보"/></h3>
-						</div>
-						<!-- /.box-header -->
-						
-						<!-- form start -->
-						<form id="frmEmpConfigInfo" class="form-horizontal">
-							<div class="box-body">
-								<div class="form-group">
-									<label for="selLangCd" class="col-sm-1 control-label"><spring:message code="text.language.cd" text="언어코드"/></label>
-									<div class="col-sm-2">
-										<select class="form-control is-valid-jihun" id="selLangCd" name="selLangCd" required>
-											<option value="" selected>-<spring:message code="text.select" text="선택"/>-</option>
-											<option value="ko-KR"><spring:message code="text.kor" text="한국어"/></option>
-											<option value="en-US"><spring:message code="text.eng" text="영어"/></option>
-										</select>
+		<div id="content">
+			<nav class="navbar navbar-expand navbar-light bg-white topbar static-top">
+				<h1 class="h4 mb-0 text-gray-800">
+					<spring:message code="text.my.config" text="default text" />
+				</h1>
+				<ul class="navbar-nav ml-auto" style="text-align:right;">
+					<button type="button" id="btnUpdate" class="card border-left-primary shadow h-100 py-2"><i class="fa fa-save"></i> <spring:message code="text.save" text="저장"/></button>
+				</ul>
+			</nav>
+
+			<!-- Main content -->
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+
+						<!-- general form elements -->
+						<div class="card shadow mb-4">
+							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+								<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-folder-open"></i> <spring:message code="text.my.config.info" text="개인설정정보"/></h6>
+							</div>
+							<!-- /.box-header -->
+
+							<!-- form start -->
+							<form id="frmEmpConfigInfo" class="form-horizontal">
+								<div class="card-body">
+									<div class="form-group row">
+										<label for="selLangCd" class="col-sm-1 control-label"><spring:message code="text.language.cd" text="언어코드"/></label>
+										<div class="col-sm-2">
+											<select class="form-control is-valid-jihun" id="selLangCd" name="selLangCd" required>
+												<option value="" selected>-<spring:message code="text.select" text="선택"/>-</option>
+												<option value="ko-KR"><spring:message code="text.kor" text="한국어"/></option>
+												<option value="en-US"><spring:message code="text.eng" text="영어"/></option>
+											</select>
+										</div>
 									</div>
 								</div>
-							</div>
-							<!-- /.box-body -->
-						</form>
-					</div>
-					<!-- /.box -->			
-				</div>
-			</div>
-			
-			<!-- 등록/수정정보 -->
-			<div class="row">
-				<div class="col-md-12">
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.ins.upd.info" text="등록 / 수정 정보"/></h3>
+								<!-- /.box-body -->
+							</form>
 						</div>
-						<!-- /.box-header -->
-						
-						<form class="form-horizontal">
-							<div class="box-body">
-								<div class="form-group">
+						<!-- /.box -->
+					</div>
+				</div>
+
+				<!-- 등록/수정정보 -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card shadow mb-4">
+							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+								<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-folder-open"></i> <spring:message code="text.ins.upd.info" text="등록 / 수정 정보"/></h6>
+							</div>
+							<!-- /.box-header -->
+
+							<div class="card-body">
+								<div class="form-group row">
 									<label for="txtCreateMemberName" class="col-sm-1 control-label"><spring:message code="text.create.usr" text="최초등록자"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control" id="txtCreateUsrNm" name="txtCreateUsrNm" readonly>
 									</div>
-									
+
 									<label for="txtCreateDate" class="col-sm-1 control-label"><spring:message code="text.create.dt" text="최초등록일자"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control" id="txtCreateDt" name="txtCreateDt" readonly>
 									</div>
-									
+
 									<label for="txtUpdateMemberName" class="col-sm-1 control-label"><spring:message code="text.update.usr" text="최종수정자"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control" id="txtUpdateUsrNm" name="txtUpdateUsrNm" readonly>
 									</div>
-									
+
 									<label for="txtUpdateDate" class="col-sm-1 control-label"><spring:message code="text.update.dt" text="최종수정일자"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control" id="txtUpdateDt" name="txtUpdateDt" readonly>
 									</div>
 								</div>
 							</div>
-						</form>
-					</div>				
+						</div>
+					</div>
 				</div>
-			</div>			
-		</section>
-		<!-- /.content -->		
-		
+			</div>
+			<!-- /.content -->
+		</div>
+	<!-- Main Footer -->
+	<%@ include file="/WEB-INF/views/user/include/footer.jsp" %>
 	</div>
-
-<!-- Main Footer -->
-<%@ include file="/WEB-INF/views/user/include/footer.jsp" %>
-
 </div>
-<!-- ./wrapper -->
-
 <!-- script -->
 <%@ include file="/WEB-INF/views/user/include/script.jsp" %>
 

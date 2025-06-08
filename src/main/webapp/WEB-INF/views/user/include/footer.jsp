@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<footer class="main-footer">
+<footer class="sticky-footer bg-white">
 <!-- To the right -->
 <div id="divBuildLabel" class="pull-right hidden-xs">
   <b>Build No.</b> YYYYMMDD

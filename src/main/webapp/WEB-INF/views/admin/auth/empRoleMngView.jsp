@@ -4,110 +4,89 @@
 
 <!DOCTYPE html>
 <html>
-
 <!-- meta -->
 <%@ include file="/WEB-INF/views/admin/include/meta.jsp" %>
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-
-<!-- Header -->
-<%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
-
-<!-- main side menu -->
-<%@ include file="/WEB-INF/views/admin/include/sidebar.jsp" %>
+<body class="hold-transition sidebar-mini sidebar-collapse">
+<div id="wrapper">
+	<!-- main side menu -->
+	<%@ include file="/WEB-INF/views/admin/include/sidebar.jsp" %>
 
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
-	
-		<!-- Content Header (Page header) -->
-		<section class="content-header">
-			<div class="row">
-				<div class="col-sm-6">
-					<h3 style="margin-top:0px; margin-bottom:0px;"><spring:message code="text.admin.assign" text="관리자할당"/></h3>
-				</div>
-				<div class="col-sm-6" style="text-align:right;">
-		            <span class="pull-right">
-			            <button type="button" id="btnSearchList" class="btn btn-primary float-right"><i class="fa fa-search"></i> <spring:message code="text.search" text="조회"/></button>
-		            	<button type="button" id="btnAdd" class="btn btn-primary float-right"><i class="ace-icon fa fa-plus"></i><spring:message code="text.assign" text="할당"/></button>
-		            	<button type="button" id="btnCancel" class="btn float-right btn-primary"><i class="ace-icon fa fa-minus"><spring:message code="text.cancel" text="취소"/></i></button>
-		            </span>	
-		            			
-				</div>
-			</div>
-			
-		</section>
-		
-		<!-- Main content -->
-		<section class="content container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-				
-					<!-- general form elements -->
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.search.cond" text="조회조건"/></h3>
-						</div>
-						<!-- /.box-header -->
-						
-						<!-- form start -->
-						<form class="form-horizontal">
-							<div class="box-body">
-								<div class="form-group">
+	<div id="content-wrapper" class="d-flex flex-column">
+		<!-- Header -->
+		<%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
+		<!-- Main Content -->
+		<div id="content">
+			<!-- Content Header (Page header) -->
+			<nav class="navbar navbar-expand navbar-light bg-white topbar static-top">
+				<h1 id="contentTitle" class="h4 mb-0 text-gray-800">
+					<spring:message code="text.admin.assign" text="관리자할당"/>
+				</h1>
+				<ul class="navbar-nav ml-auto">
+					<button type="button" id="btnSearchList" class="card border-left-primary shadow h-100 py-2"><i class="fa fa-search"></i> <spring:message code="text.search" text="조회"/></button>
+					<button type="button" id="btnAdd" class="card border-left-success shadow h-100 py-2"><i class="ace-icon fa fa-plus"></i><spring:message code="text.assign" text="할당"/></button>
+					<button type="button" id="btnCancel" class="card border-left-info shadow h-100 py-2"><i class="ace-icon fa fa-minus"></i><spring:message code="text.cancel" text="취소"/></button>
+				</ul>
+			</nav>
+			<!-- Main content -->
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<!-- general form elements -->
+						<div class="card shadow mb-4">
+							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+								<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-folder-open"></i> <spring:message code="text.search.cond" text="조회조건"/></h6>
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body">
+								<div class="form-group row">
 									<label for="selScCompanyCd" class="col-sm-1 control-label"><spring:message code="text.company" text="법인"/></label>
 									<div class="col-sm-2">
 										<select class="form-control" id="selScCompanyCd" name="selScCompanyCd" onchange="fnReselGrid()">
 											<c:forEach items="${companyList}" var="option">
-												<option value="${option.companyCd}">${option.companyNm}</option>  
+												<option value="${option.companyCd}">${option.companyNm}</option>
 											</c:forEach>
 										</select>
 									</div>
-									
+
 									<label for="txtScSearchTxt" class="col-sm-1 control-label"><spring:message code="text.emp.name" text="성명"/></label>
 									<div class="col-sm-2">
 										<input type="text" class="form-control" id="txtScSearchTxt" name="txtScSearchTxt" onblur="javascript:gfnRegExpChk(this);" placeholder="<spring:message code="text.search.word" text="검색어"/>">
 									</div>
-									
 								</div>
-								
 							</div>
-							<!-- /.box-body -->
-						</form>
-					</div>
-					<!-- /.box -->			
-				</div>
-			</div>
-			
-			<div class="row">
-				<!-- general form elements -->
-				<div class="col-md-12">
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.admin.list" text="관리자목록"/></h3>
+							<!-- /.card-body -->
 						</div>
-						<!-- /.box-header -->
-						<!-- /.box-header -->
-						
-						<!-- form start -->
-						<form class="form-horizontal">
-							<div id="dvGrdBox" class="box-body grid-box">
-								<table id="grdAdminList"></table>
-								<div id="grdAdminListPager"></div>
-							</div>
-							<!-- /.box-body -->
-						</form>
+						<!-- /.box -->
 					</div>
 				</div>
-				<!-- /.box -->			
+			
+				<div class="row">
+					<!-- general form elements -->
+					<div class="col-md-12 col-sm-7">
+						<div class="card shadow mb-4">
+							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+								<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-folder-open"></i> <spring:message code="text.admin.list" text="관리자목록"/></h6>
+							</div>
+							<!-- form start -->
+							<form class="form-horizontal">
+								<div id="dvGrdBox" class="box-body grid-box">
+									<table id="grdAdminList"></table>
+									<div id="grdAdminListPager"></div>
+								</div>
+								<!-- /.card-body -->
+							</form>
+						</div>
+					</div>
+					<!-- /.card -->
+				</div>
 			</div>
-		</section>
-		<!-- /.content -->		
-		
+			<!-- /.content -->
+		</div>
+	<!-- Main Footer -->
+	<%@ include file="/WEB-INF/views/admin/include/footer.jsp" %>
 	</div>
-
-<!-- Main Footer -->
-<%@ include file="/WEB-INF/views/admin/include/footer.jsp" %>
-
 </div>
 
 <div class="modal fade " id="mdlEmpRoleAdd">
@@ -189,8 +168,7 @@ function fnSetEvent() {
 		e.preventDefault();
 		fnDeleteRoleAdminChk();
 	});
-	
-	
+
 }
 
 //검색 조건 및 그리드 초기화
@@ -208,9 +186,12 @@ function fnSetGridSize() {
 
 //법인할당버튼
 function fnShowMdlEmpRoleAdd() {
-	$("#mdlEmpRoleAdd").modal({
-		remote : "/admin/auth/empRoleAddModal.do"
+	$('#btnAdd').on('click', function () {
+		$('#mdlEmpRoleAdd .modal-content').load('/admin/auth/empRoleAddModal.do', function () {
+			$('#mdlEmpRoleAdd').modal('show');
+		});
 	});
+
 }
 
 //할당취소체크

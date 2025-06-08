@@ -8,82 +8,73 @@
 <!-- meta -->
 <%@ include file="/WEB-INF/views/admin/include/meta.jsp" %>
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-
-    <!-- Header -->
-    <%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
-
+<body class="hold-transition sidebar-mini sidebar-collapse">
+<div id="wrapper">
     <!-- main side menu -->
     <%@ include file="/WEB-INF/views/admin/include/sidebar.jsp" %>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h3 id="contentTitle" style="margin-top:0px; margin-bottom:0px;"><spring:message code="text.authkey.mng" text="인증키관리" /></h3>
-                </div>
-                <div class="col-sm-6" style="text-align:right;">
-		            <span class="pull-right" id="btnAdmins">
-		            </span>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Header -->
+        <%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Content Header (Page header) -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar static-top">
+                <h1 id="contentTitle" class="h4 mb-0 text-gray-800">
+                    <spring:message code="text.authkey.mng" text="인증키관리" />
+                </h1>
+                <ul class="navbar-nav ml-auto" id="btnAdmins">
                     <span class="pull-right" id="btnAdds" style="display:none;">
 		            	<button class="btn btn-primary float-right" id="btnSave"><i class="ace-icon fa fa-plus"></i> <spring:message code="text.registration" text="등록" /></button>
 		            	<button class="btn btn-primary float-right" id="btnClose"><i class="ace-icon fa fa-floppy-o"></i> <spring:message code="text.list" text="목록" /></button>
-		            </span>
-                </div>
-            </div>
-        </section>
+                    </span>
+                </ul>
+            </nav>
 
-        <!-- Main content -->
-        <section class="content container-fluid">
-
-            <div class="row">
-                <!-- 인증키 테이블 -->
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header">
-                            <h3 class="box-title"><i class="fa fa-folder-open"></i><spring:message code="text.authkey.info" text="인증키정보" /></h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div id="table1" style="padding:0;">
-                                <table id="simple-table" class="table">
-                                    <colgroup>
-                                        <col width="10%" />
-                                        <col width="20%" />
-                                        <col width="70%" />
-                                    </colgroup>
-                                    <tbody>
-                                    <tr>
-                                        <td class="table_padding font-bold confer_title_color"><label for="auteKeyInfo"><spring:message code="text.authkey" text="인증키" /></label></td>
-                                        <td><input type="text" class="form-control" id="auteKeyInfo" name="auteKeyInfo" style="" readonly/></td>
-                                        <td>
-                                            <button class="btn btn-primary float-right" id="btnCreateAuthKey"> <spring:message code="text.authkey.issue" text="발급" /></button>
-                                        </td>
-
-                                    </tr>
-
-                                    </tbody>
-                                </table>
+            <!-- Main content -->
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- 인증키 테이블 -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-folder-open"></i><spring:message code="text.authkey.info" text="인증키정보" /></h6>
                             </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div id="table1" style="padding:0;">
+                                    <table id="simple-table" class="table">
+                                        <colgroup>
+                                            <col width="10%" />
+                                            <col width="20%" />
+                                            <col width="70%" />
+                                        </colgroup>
+                                        <tbody>
+                                        <tr>
+                                            <td class="table_padding font-bold confer_title_color"><label for="auteKeyInfo"><spring:message code="text.authkey" text="인증키" /></label></td>
+                                            <td><input type="text" class="form-control" id="auteKeyInfo" name="auteKeyInfo" style="" readonly/></td>
+                                            <td>
+                                                <button class="btn btn-primary float-right" id="btnCreateAuthKey"> <spring:message code="text.authkey.issue" text="발급" /></button>
+                                            </td>
 
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
                         </div>
                     </div>
                 </div>
-                <!-- /.box -->
             </div>
-
-        </section>
         <!-- /.content -->
-
     </div>
-
     <!-- Main Footer -->
     <%@ include file="/WEB-INF/views/admin/include/footer.jsp" %>
-
+    </div>
 </div>
 <!-- ./wrapper -->
 
@@ -169,7 +160,6 @@
           let msg = '<spring:message code="text.issue.fail" text="발급 실패하였습니다."/>' + result.resultMsg;
           gfnFailAlert("", msg, gDelay2);
         }
-
       }
     });
   }

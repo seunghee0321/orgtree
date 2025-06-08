@@ -4,10 +4,10 @@
 
 <!-- modal Header -->
 <div class="modal-header">
+	<h6 class="modal-title">CLOUD OFFICE EMP INFO.</h6>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
-	<h4 class="modal-title">CLOUD OFFICE EMP INFO.</h4>
 </div>
 <!-- modal Header -->
 
@@ -24,77 +24,68 @@
 	            <span class="pull-right">
 		            <button type="button" id="btnMdlSearchList" class="btn btn-info float-right"><i class="fa fa-search"></i> <spring:message code="text.search" text="조회"/></button>
 	            </span>	
-	            			
 			</div>
 		</div>
-	
 	</section>
 
 	<!-- Main content -->
-	<section class="content container-fluid">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
 			
 				<!-- general form elements -->
-				<div class="box box-info">
-					<div class="box-header with-border">
-						<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.search.cond" text="조회조건"/></h3>
+				<div class="card shadow mb-4">
+					<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+						<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-folder-open"></i> <spring:message code="text.search.cond" text="조회조건"/></h6>
 					</div>
-					<!-- /.box-header -->
+					<!-- /.card-header -->
 					
 					<!-- form start -->
-					<form class="form-horizontal">
-						<div class="box-body">
-							<div class="form-group">
-								<label for="selMdlScCompanyCd" class="col-sm-1 control-label"><spring:message code="text.company" text="법인"/></label>
-								<div class="col-sm-3">
-									<select class="form-control" id="selMdlScCompanyCd" name="selMdlScCompanyCd" onchange="fnMdlReselGrid()">
-										<c:forEach items="${companyList}" var="option">
-											<option value="${option.companyCd}">${option.companyNm}</option>  
-										</c:forEach>
-									</select>
-								</div>
-								
-								<label for="txtMdlScSearchTxt" class="col-sm-1 control-label"><spring:message code="text.emp.name" text="성명"/></label>
-								<div class="col-sm-3">
-									<input type="text" class="form-control" id="txtMdlScSearchTxt" name="txtMdlScSearchTxt" onblur="javascript:gfnRegExpChk(this);" placeholder="<spring:message code="text.search.word" text="검색어"/>">
-								</div>
-								
+					<div class="card-body">
+						<div class="form-group row">
+							<label for="selMdlScCompanyCd" class="col-sm-1 control-label"><spring:message code="text.company" text="법인"/></label>
+							<div class="col-sm-3">
+								<select class="form-control" id="selMdlScCompanyCd" name="selMdlScCompanyCd" onchange="fnMdlReselGrid()">
+									<c:forEach items="${companyList}" var="option">
+										<option value="${option.companyCd}">${option.companyNm}</option>
+									</c:forEach>
+								</select>
 							</div>
-							
+
+							<label for="txtMdlScSearchTxt" class="col-sm-1 control-label"><spring:message code="text.emp.name" text="성명"/></label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="txtMdlScSearchTxt" name="txtMdlScSearchTxt" onblur="javascript:gfnRegExpChk(this);" placeholder="<spring:message code="text.search.word" text="검색어"/>">
+							</div>
+
 						</div>
-						<!-- /.box-body -->
-					</form>
+					</div>
+					<!-- /.card-body -->
 				</div>
-				<!-- /.box -->			
 			</div>
 		</div>
 		
 		<div class="row">
 			<!-- general form elements -->
-			<div class="col-md-12">
-				<div class="box box-info">
-					<div class="box-header with-border">
-						<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.emp.list" text="사용자목록"/></h3>
+			<div class="col-md-12 col-sm-7">
+				<div class="card shadow mb-4">
+					<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+						<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-folder-open"></i> <spring:message code="text.emp.list" text="사용자목록"/></h6>
 					</div>
-					<!-- /.box-header -->
-					<!-- /.box-header -->
-					
+
 					<!-- form start -->
 					<form class="form-horizontal">
 						<div id="dvGrdBox" class="box-body grid-box-cp">
 							<table id="grdRoleUserList"></table>
 							<div id="grdRoleUserListPager"></div>
 						</div>
-						<!-- /.box-body -->
+						<!-- /.card-body -->
 					</form>
 				</div>
 			</div>
-			<!-- /.box -->			
+			<!-- /.card -->
 		</div>
-	</section>
+	</div>
 	<!-- /.content -->
-
 </div>
 <!-- modal body -->
 
@@ -111,12 +102,11 @@
 </form>
 
 <script type ="text/javascript">
-let gMdlDomainId = "";
+//let gMdlDomainId = "";
 $(function() {
 	fnSetComponent();
 	fnSetEvent();
 }) // $(function()
-
 
 //화면 컴포넌트 초기화 
 function fnSetComponent() {

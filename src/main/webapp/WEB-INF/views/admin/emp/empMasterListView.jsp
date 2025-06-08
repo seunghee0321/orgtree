@@ -8,180 +8,186 @@
 <!-- meta -->
 <%@ include file="/WEB-INF/views/admin/include/meta.jsp" %>
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-
-<!-- Header -->
-<%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
-
-<!-- main side menu -->
-<%@ include file="/WEB-INF/views/admin/include/sidebar.jsp" %>
+<body id="page-top" class="sidebar-toggled">
+<div id="wrapper">
+	<!-- main side menu -->
+	<%@ include file="/WEB-INF/views/admin/include/sidebar.jsp" %>
 
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
-	
+	<div id="content-wrapper" class="d-flex flex-column">
+		<!-- Header -->
+		<%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
+		<!-- Main Content -->
+		<div id="content">
 		<!-- Content Header (Page header) -->
-		<section class="content-header">
-			<div class="row">
-				<div class="col-sm-6">
-					<h3 style="margin-top:0px; margin-bottom:0px;"><spring:message code="text.emp.mng" text="사용자관리" /></h3>
-				</div>
-				<div class="col-sm-6" style="text-align:right;">
-		            <span class="pull-right">
-			            <button type="button" id="btnSearchList" class="btn btn-primary float-right"><i class="fa fa-search"></i> <spring:message code="text.search" text="조회"/></button>
-			            <button class="btn btn-primary float-right" id="btnAdd"><i class="ace-icon fa fa-plus"></i> <spring:message code="text.registration" text="등록" /></button>
-			            <button type="button" id="btnDownExcel" class="btn btn-primary float-right"><i class="fa fa-file-excel-o"></i> <spring:message code="text.excel.download" text="엑셀다운로드"/></button>
-			            <button type="button" id="btnDownExcelForm" class="btn btn-primary float-right"><i class="fa fa-file-excel-o"></i> <spring:message code="text.excel.upload.form" text="업로드양식"/></button>
-			            <!-- 엑셀 업로드 form -->
-			            <form id="frmAttachedFiles" class="form-horizontal" enctype="multipart/form-data" style="display:inline;">
-							<div class="btn btn-primary btn-file">
-			                  <i class="fa fa-paperclip"></i> <spring:message code="text.excel.upload" text="엑셀업로드"/>
-			                  <input type="file" id="btnUploadExcel" name="btnUploadExcel">
-			                </div>
-						</form>	
-			            <form id="frmAttachedFilesGoogle" class="form-horizontal" enctype="multipart/form-data" style="display:inline;">
-							<div class="btn btn-primary btn-file">
-			                  <i class="fa fa-paperclip"></i> Google
-			                  <input type="file" id="btnGoogleUpload" name="btnGoogleUpload">
-			                </div>
-						</form>
-					</span>
-		            			
-				</div>
-			</div>
-			
-		</section>
+			<nav class="navbar navbar-expand navbar-light bg-white topbar static-top">
+				<h1 class="h4 mb-0 text-gray-800">
+					<spring:message code="text.emp.mng" text="사용자관리" />
+				</h1>
+				<ul class="navbar-nav ml-auto">
+					<button type="button" id="btnSearchList" class="card border-left-primary shadow h-100 py-2">
+						<i class="fas fa-search"></i> <spring:message code="text.search" text="조회"/>
+					</button>
+					<button id="btnAdd" class="card border-left-success shadow h-100 py-2">
+						<i class="fa fa-paper-plane"></i> <spring:message code="text.registration" text="등록" />
+					</button>
+					<button type="button" id="btnDownExcel" class="card border-left-info shadow h-100 py-2">
+						<i class="fas fa-plus"></i> <spring:message code="text.excel.download" text="엑셀다운로드"/>
+					</button>
+					<button type="button" id="btnDownExcelForm" class="card border-left-warning shadow h-100 py-2">
+						<i class="fas fa-plus"></i> <spring:message code="text.excel.upload.form" text="업로드양식"/>
+					</button>
+					<!-- 엑셀 업로드 form -->
+					<button type="button" class="card border-left-success shadow h-100 py-2" onclick="btnUploadExcel.click()">
+						<i class="fa fa-paperclip"></i> <spring:message code="text.excel.upload" text="엑셀업로드"/>
+					</button>
+					<form id="frmAttachedFiles" class="form-horizontal" enctype="multipart/form-data" style="display:inline;">
+						<input type="file" id="btnUploadExcel" name="btnUploadExcel" style="display: none;" onchange="fnUploadExcelRegChk()">
+					</form>
+
+					<!-- 구글 업로드 form -->
+					<button type="button" class="card border-left-info shadow h-100 py-2" onclick="btnGoogleUpload.click()">
+						<i class="fa fa-paperclip"></i> Google
+					</button>
+					<form id="frmAttachedFilesGoogle" class="form-horizontal" enctype="multipart/form-data" style="display:inline;">
+						<input type="file" id="btnGoogleUpload" name="btnGoogleUpload" style="display: none;" onchange="fnGoogleUploadChkMsg()">
+					</form>
+
+				</ul>
+		</nav>
 		
 		<!-- Main content -->
-		<section class="content container-fluid">
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
 				
 					<!-- general form elements -->
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.search.cond" text="조회조건"/></h3>
+					<div class="card shadow mb-4">
+						<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-folder-open"></i> <spring:message code="text.search.cond" text="조회조건"/></h6>
 						</div>
 						<!-- /.box-header -->
 						
-						<!-- form start -->
-						<form class="form-horizontal">
-							<div class="box-body">
-								<div class="form-group">
-									<label for="selScCompanyCd" class="col-sm-1 control-label"><spring:message code="text.company" text="법인"/></label>
-									<div class="col-sm-2">
-										<select class="form-control" id="selScCompanyCd" name="selScCompanyCd" onchange="fnChangeCompany()">
-											<c:forEach items="${companyList}" var="option">
-												<option value="${option.companyCd}">${option.companyNm}</option>  
-											</c:forEach>
-										</select>
-									</div>
-									
-									<label for="selScSearchCond" class="col-sm-1 control-label"><spring:message code="text.find.cond" text="검색조건"/></label>
-									<div class="col-sm-2">
-										<select class="form-control" id="selScSearchCond" name="selScSearchCond">
-											<!--  <option value="">-<spring:message code="text.select" text="선택"/>-</option> -->
-											<option value="empNm" selected> <spring:message code="text.emp.name" text="성명"/></option>
-											<option value="email"> <spring:message code="text.emp.email" text="이메일"/></option>
-											<option value="empNo"> <spring:message code="text.emp.no" text="사번"/></option>
-											<option value="jobTelNo"> <spring:message code="text.emp.job.tel" text="사내전화"/></option>
-											<option value="mobileTelNo"> <spring:message code="text.emp.mobile.tel" text="휴대폰"/></option>
-										</select>
-									</div>
-									<div class="col-sm-2">
-										<input type="text" class="form-control" id="txtScSearchTxt" name="txtScSearchTxt" onblur="javascript:gfnRegExpChk(this);" placeholder="<spring:message code="text.search.word" text="검색어"/>">
-									</div>									
-									
-									<label for="selScCompanyStatusCd" class="col-sm-1 control-label"><spring:message code="text.emp.status" text="재직상태"/></label>
-									<div class="col-sm-2">
-										<select class="form-control" id="selScCompanyStatusCd" name="selScCompanyStatusCd"></select>
-									</div>
-									
+						<div class="card-body">
+							<div class="form-group row">
+								<label for="selScCompanyCd" class="col-sm-1 control-label"><spring:message code="text.company" text="법인"/></label>
+								<div class="col-sm-2">
+									<select class="form-control" id="selScCompanyCd" name="selScCompanyCd" onchange="fnChangeCompany()">
+										<c:forEach items="${companyList}" var="option">
+											<option value="${option.companyCd}">${option.companyNm}</option>
+										</c:forEach>
+									</select>
 								</div>
-								<div class="form-group">
-									<label for="selAddYn" class="col-sm-1 control-label"><spring:message code="text.emp.add.yn" text="겸직여부"/></label>
-									<div class="col-sm-2">
-										<select class="form-control" id="selAddYn" name="selAddYn">
-											<option value="" selected>-<spring:message code="text.all" text="전체"/>-</option>
-											<option value="Y">Y</option>
-											<option value="N">N</option>
-										</select>
-									</div>
-									
-									<label for="selManualMngYn" class="col-sm-1 control-label"><spring:message code="text.manual.manage" text="수동관리"/></label>
-									<div class="col-sm-2">
-										<select class="form-control" id="selManualMngYn" name="selManualMngYn">
-											<option value="" selected>-<spring:message code="text.all" text="전체"/>-</option>
-											<option value="Y">Y</option>
-											<option value="N">N</option>
-										</select>
-									</div>	
-									
+
+								<label for="selScSearchCond" class="col-sm-1 control-label"><spring:message code="text.find.cond" text="검색조건"/></label>
+								<div class="col-sm-2">
+									<select class="form-control" id="selScSearchCond" name="selScSearchCond">
+										<!--  <option value="">-<spring:message code="text.select" text="선택"/>-</option> -->
+										<option value="empNm" selected> <spring:message code="text.emp.name" text="성명"/></option>
+										<option value="email"> <spring:message code="text.emp.email" text="이메일"/></option>
+										<option value="empNo"> <spring:message code="text.emp.no" text="사번"/></option>
+										<option value="jobTelNo"> <spring:message code="text.emp.job.tel" text="사내전화"/></option>
+										<option value="mobileTelNo"> <spring:message code="text.emp.mobile.tel" text="휴대폰"/></option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="txtScSearchTxt" name="txtScSearchTxt" onblur="javascript:gfnRegExpChk(this);" placeholder="<spring:message code="text.search.word" text="검색어"/>">
+								</div>
+
+								<label for="selScCompanyStatusCd" class="col-sm-1 control-label"><spring:message code="text.emp.status" text="재직상태"/></label>
+								<div class="col-sm-2">
+									<select class="form-control" id="selScCompanyStatusCd" name="selScCompanyStatusCd"></select>
+								</div>
+
+							</div>
+							<div class="form-group row">
+								<label for="selAddYn" class="col-sm-1 control-label"><spring:message code="text.emp.add.yn" text="겸직여부"/></label>
+								<div class="col-sm-2">
+									<select class="form-control" id="selAddYn" name="selAddYn">
+										<option value="" selected>-<spring:message code="text.all" text="전체"/>-</option>
+										<option value="Y">Y</option>
+										<option value="N">N</option>
+									</select>
+								</div>
+
+								<label for="selManualMngYn" class="col-sm-1 control-label"><spring:message code="text.manual.manage" text="수동관리"/></label>
+								<div class="col-sm-2">
+									<select class="form-control" id="selManualMngYn" name="selManualMngYn">
+										<option value="" selected>-<spring:message code="text.all" text="전체"/>-</option>
+										<option value="Y">Y</option>
+										<option value="N">N</option>
+									</select>
 								</div>
 							</div>
-							<!-- /.box-body -->
-						</form>
+						</div>
+							<!-- /.card-body -->
 					</div>
-					<!-- /.box -->			
+					<!-- /.card -->
 				</div>
 			</div>
 			
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-5">
 
-					<div class="box box-primary" style="height:552px;">
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.org.chart" text="조직도" /></h3>
+					<div class="card shadow mb-4">
+						<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-sitemap"></i> <spring:message code="text.org.chart"
+																														 text="조직도"/></h6>
 						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
+						<!-- /.card-header -->
+						<div class="card-body">
 							<div class="row">
-								<div class="col-sm-7">
-									<input type="text" class="form-control" id="txtDeptSearchTxt" name="txtDeptSearchTxt" placeholder=" <spring:message code="text.dept.name" text="부서명"/>">
+								<div class="col-sm-12 d-flex align-items-center" style="gap: 5px; flex-wrap: nowrap;">
+									<!-- 부서명 입력박스 -->
+									<input type="text" class="form-control" id="txtDeptSearchTxt"
+										   name="txtDeptSearchTxt"
+										   placeholder="<spring:message code='text.dept.name' text='부서명'/>"
+										   style="max-width: 300px; height: 38px;">
+
+									<!-- 조회 버튼 -->
+									<button type="button" id="btnSearchTree" class="btn btn-secondary" style="height: 38px; white-space: nowrap;">
+										<spring:message code="text.search" text="조회"/>
+									</button>
+
+									<!-- 초기화 버튼 -->
+									<button type="button" id="btnResetTree" class="btn btn-secondary" style="height: 38px; white-space: nowrap;">
+										<spring:message code="text.reset" text="초기화"/>
+									</button>
 								</div>
-								<span>
-							       	<button type="button" id="btnSearchTree" class="btn btn-secondary"><i class="fa fa-search"></i> <spring:message code="text.search" text="조회"/></button>
-							       	<button type="button" id="btnResetTree" class="btn btn-secondary"><i class="fa fa-trash-o"></i> <spring:message code="text.reset" text="초기화"/> </button>
-							    </span>	
 							</div>
-							<div id="treeDeptList" style="height:430px;overflow:auto;"></div>
-							<div>
-								<input class="form-check-input" type="checkbox" id="chkDeptUseYn" name="chkDeptUseYn" onclick="fnReselTree()"><span> <spring:message code="text.include.dept.use" text="사용안하는부서포함"/></span>
-							</div>
+							<div id="treeDeptList" style="height:380px;overflow:auto;"></div>
+							<input type="checkbox" id="chkDeptUseYn" name="chkDeptUseYn" onclick="fnReselTree()"><span> <spring:message
+								code="text.include.dept.use" text="사용안하는부서포함"/></span>
 						</div>
 					</div>
-				
 				</div>
-				
+
 				<!-- general form elements -->
-				<div class="col-md-9">
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.emp.list" text="사용자목록"/></h3>
+				<div class="col-md-9 col-sm-7">
+					<div class="card shadow mb-4">
+						<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-users"></i> <spring:message code="text.emp.list"
+																													   text="사용자목록"/></h6>
 						</div>
-						<!-- /.box-header -->
-						<!-- /.box-header -->
-						
+
 						<!-- form start -->
 						<form class="form-horizontal">
-							<div id="dvGrdBox" class="box-body grid-box">
+							<div id="dvGrdBox" class="card-body grid-box">
 								<table id="grdEmpList"></table>
 								<div id="grdEmpListPager"></div>
 							</div>
-							<!-- /.box-body -->
+							<!-- /.card-body -->
 						</form>
 					</div>
 				</div>
-				<!-- /.box -->			
+			<!-- /.card -->
 			</div>
-		</section>
+		</div>
 		<!-- /.content -->		
-		
 	</div>
-
-<!-- Main Footer -->
-<%@ include file="/WEB-INF/views/admin/include/footer.jsp" %>
-
+	<!-- Main Footer -->
+	<%@ include file="/WEB-INF/views/admin/include/footer.jsp" %>
+	</div>
 </div>
 <!-- ./wrapper -->
 <form id="frmHiddenParam">

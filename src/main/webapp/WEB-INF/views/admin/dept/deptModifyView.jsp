@@ -109,21 +109,16 @@
 				                  </tbody>
 				                </table>
 				            </div>
-				            
 						</div>
 					</div>
 				</div>
-				<!-- /.box -->			
+				<!-- /.card -->
 			</div>
-			
 		</section>
 		<!-- /.content -->		
-		
 	</div>
-
 <!-- Main Footer -->
 <%@ include file="/WEB-INF/views/admin/include/footer.jsp" %>
-
 </div>
 <!-- ./wrapper -->
 

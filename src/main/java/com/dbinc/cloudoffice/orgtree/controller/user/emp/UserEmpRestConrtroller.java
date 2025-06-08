@@ -51,7 +51,7 @@ public class UserEmpRestConrtroller {
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("LOGIN_SESSION_USER");       
         paramsMap.put("languageCd", sessionUser.getLanguageCd());
 
-        switch(paramsMap.get("searchCond").toString()) 
+        switch(paramsMap.get("searchCond").toString())
         {
 	        case "empNm" :
 	        	paramsMap.put("empNm", paramsMap.get("searchTxt").toString());

@@ -8,226 +8,222 @@
 <!-- meta -->
 <%@ include file="/WEB-INF/views/admin/include/meta.jsp" %>
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-
-<!-- Header -->
-<%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
-
-<!-- main side menu -->
-<%@ include file="/WEB-INF/views/admin/include/sidebar.jsp" %>
+<body class="hold-transition sidebar-mini sidebar-collapse">
+<div id="wrapper">
+	<!-- main side menu -->
+	<%@ include file="/WEB-INF/views/admin/include/sidebar.jsp" %>
 
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
-	
-		<!-- Content Header (Page header) -->
-		<section class="content-header">
-			<div class="row">
-				<div class="col-sm-6">
-					<h3 id="contentTitle" style="margin-top:0px; margin-bottom:0px;"><spring:message code="text.dept.mng" text="부서관리" /></h3>
-				</div>
-				<div class="col-sm-6" style="text-align:right;">
-		            <span class="pull-right" id="btnAdmins">
-		            	<button class="btn btn-primary float-right" id="btnAdd"><i class="ace-icon fa fa-plus"></i><spring:message code="text.add" text="추가" /></button>
-		            	<button class="btn btn-primary float-right" id="btnModify"><i class="ace-icon fa fa-pencil-square-o"></i><spring:message code="text.modify" text="수정" /></button>
-		            	<button type="button" id="btnDownExcelForm" class="btn btn-primary float-right"><i class="fa fa-file-excel-o"></i> <spring:message code="text.excel.upload.form" text="업로드양식"/></button>
-			            <!-- 엑셀 업로드 form -->
-			            <form id="frmAttachedFiles" class="form-horizontal" enctype="multipart/form-data" style="display:inline;">
-							<div class="btn btn-primary btn-file">
-			                  <i class="fa fa-paperclip"></i> <spring:message code="text.excel.upload" text="엑셀업로드"/>
-			                  <input type="file" id="btnUploadExcel" name="btnUploadExcel">
-			                </div>
-						</form>	
-		            </span>		
-		            <span class="pull-right" id="btnAdds" style="display:none;">
-		            	<button class="btn btn-primary float-right" id="btnSave"><i class="ace-icon fa fa-plus"></i> <spring:message code="text.registration" text="등록" /></button>
-		            	<button class="btn btn-primary float-right" id="btnClose"><i class="ace-icon fa fa-floppy-o"></i> <spring:message code="text.list" text="목록" /></button>
-		            </span>			
-				</div>
-			</div>
-		</section>
+	<div id="content-wrapper" class="d-flex flex-column">
+		<!-- Header -->
+		<%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
+		<!-- Main Content -->
+		<div id="content">
+			<!-- Content Header (Page header) -->
+			<nav class="navbar navbar-expand navbar-light bg-white topbar static-top">
+				<h1 id="contentTitle" class="h4 mb-0 text-gray-800">
+					<spring:message code="text.dept.mng" text="부서관리" />
+				</h1>
+				<ul class="navbar-nav ml-auto" id="btnAdmins">
+					<button class="card border-left-primary shadow h-100 py-2" id="btnAdd"><i class="ace-icon fa fa-plus"></i><spring:message code="text.add" text="추가" /></button>
+					<button class="card border-left-success shadow h-100 py-2" id="btnModify"><i class="ace-icon fa fa-file-alt"></i><spring:message code="text.modify" text="수정" /></button>
+					<button type="button" id="btnDownExcelForm" class="card border-left-warning shadow h-100 py-2"><i class="fas fa-plus"></i> <spring:message code="text.excel.upload.form" text="업로드양식"/></button>
+					<!-- 엑셀 업로드 form -->
+					<button type="button" class="card border-left-success shadow h-100 py-2" onclick="btnUploadExcel.click()">
+						<i class="fa fa-paperclip"></i> <spring:message code="text.excel.upload" text="엑셀업로드"/>
+					</button>
+					<form id="frmAttachedFiles" class="form-horizontal" enctype="multipart/form-data" style="display:inline;">
+						<input type="file" id="btnUploadExcel" name="btnUploadExcel" style="display: none;" onchange="fnUploadExcelRegChk()">
+					</form>
+
+				</ul>
+				<ul class="navbar-nav ml-auto" id="btnAdds" style="display:none;">
+					<button class="card border-left-primary shadow h-100 py-2" id="btnSave"><i class="ace-icon fa fa-plus"></i> <spring:message code="text.registration" text="등록" /></button>
+					<button class="card border-left-success shadow h-100 py-2" id="btnClose"><i class="ace-icon fa fa-file-alt"></i> <spring:message code="text.list" text="목록" /></button>
+				</ul>
+			</nav>
 		
-		<!-- Main content -->
-		<section class="content container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-				
-					<!-- general form elements -->
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.search.cond" text="조회조건"/></h3>
-						</div>
-						<!-- /.box-header -->
-						
-						<!-- form start -->
-						<form class="form-horizontal">
-							<div class="box-body">
-								<div class="form-group">
-									<label for="selScCompanyCd" class="col-sm-1 control-label"><spring:message code="text.company" text="법인"/></label>		
+			<!-- Main content -->
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+
+						<!-- general form elements -->
+						<div class="card shadow mb-4">
+							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+								<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-folder-open"></i> <spring:message code="text.search.cond" text="조회조건"/></h6>
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body">
+								<div class="form-group row">
+									<label for="selScCompanyCd" class="col-sm-1 control-label"><spring:message code="text.company" text="법인"/></label>
 									<div class="col-sm-2">
 										<select class="form-control" id="selScCompanyCd" name="selScCompanyCd" onchange="fnReselTree()">
 											<c:forEach items="${companyList}" var="option">
-												<option value="${option.companyCd}">${option.companyNm}</option>  
+												<option value="${option.companyCd}">${option.companyNm}</option>
 											</c:forEach>
 										</select>
 									</div>
-									
 								</div>
 							</div>
-							<!-- /.box-body -->
-						</form>
-					</div>
-					<!-- /.box -->			
-				</div>
-			</div>
-			
-			<div class="row">
-				<!-- 조직도 트리 -->
-				<div class="col-md-4">
-					<div class="box box-primary" style="height:602px;">
-						<div class="box-header with-border">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i> <spring:message code="text.org.chart" text="조직도" /></h3>
+							<!-- /.card-body -->
 						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<div class="row">
-								<div class="col-sm-8">
-								<input type="text" class="form-control" id="txtDeptSearchTxt" name="txtDeptSearchTxt" placeholder=" <spring:message code="text.dept.name" text="부서명"/>">
+						<!-- /.card -->
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-3 col-sm-5">
+
+						<div class="card shadow mb-4">
+							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+								<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-sitemap"></i> <spring:message code="text.org.chart"
+																															 text="조직도"/></h6>
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body">
+								<div class="row">
+									<div class="col-sm-12 d-flex align-items-center" style="gap: 5px; flex-wrap: nowrap;">
+										<!-- 부서명 입력박스 -->
+										<input type="text" class="form-control" id="txtDeptSearchTxt"
+											   name="txtDeptSearchTxt"
+											   placeholder="<spring:message code='text.dept.name' text='부서명'/>"
+											   style="max-width: 300px; height: 38px;">
+
+										<!-- 조회 버튼 -->
+										<button type="button" id="btnSearchTree" class="btn btn-secondary" style="height: 38px; white-space: nowrap;">
+											<spring:message code="text.search" text="조회"/>
+										</button>
+
+										<!-- 초기화 버튼 -->
+										<button type="button" id="btnResetTree" class="btn btn-secondary" style="height: 38px; white-space: nowrap;">
+											<spring:message code="text.reset" text="초기화"/>
+										</button>
+									</div>
 								</div>
-								<span>
-					            	<button type="button" id="btnSearchTree" class="btn btn-secondary"><i class="fa fa-search"></i> <spring:message code="text.search" text="조회"/></button>
-					            	<button type="button" id="btnResetTree" class="btn btn-secondary"><i class="fa fa-trash-o"></i> <spring:message code="text.reset" text="초기화"/> </button>
-					            </span>
-							</div>
-							<div id="treeDeptList" style="height:480px;overflow:auto;"></div>
-							<div>
-								<input class="form-check-input" type="checkbox" id="chkDeptUseYn" name="chkDeptUseYn" onclick="fnReselTree()"><span> <spring:message code="text.include.dept.use" text="사용안하는부서포함"/></span>
+								<div id="treeDeptList" style="height:480px;overflow:auto;"></div>
+								<input class="form-check-input" type="checkbox" id="chkDeptUseYn" name="chkDeptUseYn" onclick="fnReselTree()"><span> <spring:message
+									code="text.include.dept.use" text="사용안하는부서포함"/></span>
 							</div>
 						</div>
 					</div>
-				
-				</div>
-				
-				<!-- 부서 테이블 -->
-				<div class="col-md-8">
-					<div class="box box-primary">
-						<div class="box-header">
-							<h3 class="box-title"><i class="fa fa-folder-open"></i><spring:message code="text.dept.info" text="부서정보" /></h3>
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<div id="table1" style="padding:0; height:540px;">
-				                <table id="simple-table" class="table">
-				                  <colgroup>
-				                    <col width="35%" />
-				                    <col width="65%" />
-				                  </colgroup>
-				                  <tbody>
-				                      <td class="table_padding font-bold confer_title_color"><label for="companyName"><spring:message code="text.emp.company" text="회사"/></label></td>
-				                      <td><input type="text" class="form-control is-valid-jihun" id="companyName" name="companyName" readonly value='' /></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="parentDeptName"><spring:message code="text.dept.parent" text="상위부서" /></label></td>
-				                      <td><input type="text" class="form-control is-valid-jihun" id="parentDeptName" name="parentDeptName" readonly value='' /></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="deptCode"><spring:message code="text.dept.code" text="부서코드" /></label></td>
-				                      <td><input type="text" class="form-control is-valid-jihun" id="deptCode" name="deptCode" readonly value='' /></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="deptName"><spring:message code="text.dept.name" text="부서명"/></label></td>
-				                      <td><input type="text" class="form-control is-valid-jihun" id="deptName" name="deptName" readonly value='' /></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="deptEngName"><spring:message code="text.dept.eng" text="부서영문명" /></label></td>
-				                      <td><input type="text" class="form-control" id="deptEngName" name="deptEngName" readonly value='' /></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="deptOrd"><spring:message code="text.dept.ord" text="순서" /></label></td>
-				                      <td><input type="text" class="form-control" id="deptOrd" name="deptOrd" style="width:85px;" readonly maxlength="3"/></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="manualMngYn"><spring:message code="text.manual.manage" text="수동관리" /></label></td>
-				                      <td>
-				                      	<select class="form-control" name="manualMngYn" id="manualMngYn" readonly onFocus="this.initialSelect = this.selectedIndex;" onChange="this.selectedIndex = this.initialSelect;">
-				                          <option value="" selected>-<spring:message code="text.select" text="선택"/>-</option>
-				                          <option value="Y" ><spring:message code="text.use.yes" text="사용" /></option>
-				                          <option value="N" ><spring:message code="text.use.not" text="사용안함" /></option>
-				                        </select>
-				                      </td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="useYn"><spring:message code="text.use" text="사용여부" /></label></td>
-				                      <td>
-				                        <select class="form-control is-valid-jihun" name="useYn" id="useYn" readonly onFocus="this.initialSelect = this.selectedIndex;" onChange="this.selectedIndex = this.initialSelect;">
-				                          <option value="" selected>-<spring:message code="text.select" text="선택"/>-</option>
-				                          <option value="Y" ><spring:message code="text.use.yes" text="사용" /></option>
-				                          <option value="N" ><spring:message code="text.use.not" text="사용안함" /></option>
-				                        </select>
-				                      </td>
-				                    </tr>
-				                  </tbody>
-				                </table>
-				            </div>
-				            
-				            <div id="table2" style="padding:0;height:540px;display:none;">
-				                <table id="simple-table" class="table">
-				                  <colgroup>
-				                    <col width="35%" />
-				                    <col width="65%" />
-				                  </colgroup>
-				                  <tbody>
-				                      <td class="table_padding font-bold confer_title_color"><label for="companyName2"><spring:message code="text.emp.company" text="회사"/></label></td>
-				                      <td><input type="text" class="form-control is-valid-jihun" id="companyName2" name="companyName2" readonly required value='' /></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="parentDeptName2"><spring:message code="text.dept.parent" text="상위부서" /></label></td>
-				                      <td><input type="text" class="form-control is-valid-jihun" id="parentDeptName2" name="parentDeptName2" readonly required value='' /></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="deptCode2"><spring:message code="text.dept.code" text="부서코드" /></label></td>
-				                      <td><input type="text" class="form-control is-valid-jihun" id="deptCode2" name="deptCode2" value='' required onblur="javascript:gfnRegExpChk(this);"/></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="deptName2"><spring:message code="text.dept.name" text="부서명"/></label></td>
-				                      <td><input type="text" class="form-control is-valid-jihun" id="deptName2" name="deptName2" value='' required onblur="javascript:gfnRegExpChk(this);"/></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="deptEngName2"><spring:message code="text.dept.eng" text="부서영문명" /></label></td>
-				                      <td><input type="text" class="form-control" id="deptEngName2" name="deptEngName2" value='' onblur="javascript:gfnRegExpChk(this);"/></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="deptOrd2"><spring:message code="text.dept.ord" text="순서" /></label></td>
-				                      <td><input type="text" class="form-control is-valid-jihun" id="deptOrd2" name="deptOrd2" style="width:85px;" required maxlength="3" onblur="javascript:gfnRegExpChk(this,2);"/></td>
-				                    </tr>
-				                    <tr>
-				                      <td class="table_padding font-bold confer_title_color"><label for="manualMngYn2"><spring:message code="text.manual.manage" text="수동관리" /></label></td>
-				                      <td>
-				                      	<select class="form-control" name="manualMngYn2" id="manualMngYn2" >
-				                          <option value="" selected>-<spring:message code="text.select" text="선택"/>-</option>
-				                          <option value="Y" ><spring:message code="text.use.yes" text="사용" /></option>
-				                          <option value="N" ><spring:message code="text.use.not" text="사용안함" /></option>
-				                        </select>
-				                      </td>
-				                    </tr>
-				                  </tbody>
-				                </table>
-				            </div>
-				            
+
+					<!-- general form elements -->
+					<div class="col-md-9 col-sm-7">
+						<div class="card shadow mb-4">
+							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+								<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-users"></i> <spring:message code="text.dept.info" text="부서정보" /></h6>
+							</div>
+							<!-- /.box-header -->
+							<div class="card-body">
+								<div id="table1" style="padding:0; height:540px;">
+									<table id="simple-table" class="table">
+									  <colgroup>
+										<col width="35%" />
+										<col width="65%" />
+									  </colgroup>
+									  <tbody>
+										  <td class="table_padding font-bold confer_title_color"><label for="companyName"><spring:message code="text.emp.company" text="회사"/></label></td>
+										  <td><input type="text" class="form-control is-valid-jihun" id="companyName" name="companyName" readonly value='' /></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="parentDeptName"><spring:message code="text.dept.parent" text="상위부서" /></label></td>
+										  <td><input type="text" class="form-control is-valid-jihun" id="parentDeptName" name="parentDeptName" readonly value='' /></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="deptCode"><spring:message code="text.dept.code" text="부서코드" /></label></td>
+										  <td><input type="text" class="form-control is-valid-jihun" id="deptCode" name="deptCode" readonly value='' /></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="deptName"><spring:message code="text.dept.name" text="부서명"/></label></td>
+										  <td><input type="text" class="form-control is-valid-jihun" id="deptName" name="deptName" readonly value='' /></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="deptEngName"><spring:message code="text.dept.eng" text="부서영문명" /></label></td>
+										  <td><input type="text" class="form-control" id="deptEngName" name="deptEngName" readonly value='' /></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="deptOrd"><spring:message code="text.dept.ord" text="순서" /></label></td>
+										  <td><input type="text" class="form-control" id="deptOrd" name="deptOrd" style="width:85px;" readonly maxlength="3"/></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="manualMngYn"><spring:message code="text.manual.manage" text="수동관리" /></label></td>
+										  <td>
+											<select class="form-control" name="manualMngYn" id="manualMngYn" readonly onFocus="this.initialSelect = this.selectedIndex;" onChange="this.selectedIndex = this.initialSelect;">
+											  <option value="" selected>-<spring:message code="text.select" text="선택"/>-</option>
+											  <option value="Y" ><spring:message code="text.use.yes" text="사용" /></option>
+											  <option value="N" ><spring:message code="text.use.not" text="사용안함" /></option>
+											</select>
+										  </td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="useYn"><spring:message code="text.use" text="사용여부" /></label></td>
+										  <td>
+											<select class="form-control is-valid-jihun" name="useYn" id="useYn" readonly onFocus="this.initialSelect = this.selectedIndex;" onChange="this.selectedIndex = this.initialSelect;">
+											  <option value="" selected>-<spring:message code="text.select" text="선택"/>-</option>
+											  <option value="Y" ><spring:message code="text.use.yes" text="사용" /></option>
+											  <option value="N" ><spring:message code="text.use.not" text="사용안함" /></option>
+											</select>
+										  </td>
+										</tr>
+									  </tbody>
+									</table>
+								</div>
+
+								<div id="table2" style="padding:0;height:540px;display:none;">
+									<table id="simple-table" class="table">
+									  <colgroup>
+										<col width="35%" />
+										<col width="65%" />
+									  </colgroup>
+									  <tbody>
+										  <td class="table_padding font-bold confer_title_color"><label for="companyName2"><spring:message code="text.emp.company" text="회사"/></label></td>
+										  <td><input type="text" class="form-control is-valid-jihun" id="companyName2" name="companyName2" readonly required value='' /></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="parentDeptName2"><spring:message code="text.dept.parent" text="상위부서" /></label></td>
+										  <td><input type="text" class="form-control is-valid-jihun" id="parentDeptName2" name="parentDeptName2" readonly required value='' /></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="deptCode2"><spring:message code="text.dept.code" text="부서코드" /></label></td>
+										  <td><input type="text" class="form-control is-valid-jihun" id="deptCode2" name="deptCode2" value='' required onblur="javascript:gfnRegExpChk(this);"/></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="deptName2"><spring:message code="text.dept.name" text="부서명"/></label></td>
+										  <td><input type="text" class="form-control is-valid-jihun" id="deptName2" name="deptName2" value='' required onblur="javascript:gfnRegExpChk(this);"/></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="deptEngName2"><spring:message code="text.dept.eng" text="부서영문명" /></label></td>
+										  <td><input type="text" class="form-control" id="deptEngName2" name="deptEngName2" value='' onblur="javascript:gfnRegExpChk(this);"/></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="deptOrd2"><spring:message code="text.dept.ord" text="순서" /></label></td>
+										  <td><input type="text" class="form-control is-valid-jihun" id="deptOrd2" name="deptOrd2" style="width:85px;" required maxlength="3" onblur="javascript:gfnRegExpChk(this,2);"/></td>
+										</tr>
+										<tr>
+										  <td class="table_padding font-bold confer_title_color"><label for="manualMngYn2"><spring:message code="text.manual.manage" text="수동관리" /></label></td>
+										  <td>
+											<select class="form-control" name="manualMngYn2" id="manualMngYn2" >
+											  <option value="" selected>-<spring:message code="text.select" text="선택"/>-</option>
+											  <option value="Y" ><spring:message code="text.use.yes" text="사용" /></option>
+											  <option value="N" ><spring:message code="text.use.not" text="사용안함" /></option>
+											</select>
+										  </td>
+										</tr>
+									  </tbody>
+									</table>
+								</div>
+							</div>
 						</div>
 					</div>
+					<!-- /.card -->
 				</div>
-				<!-- /.box -->			
 			</div>
-			
-		</section>
 		<!-- /.content -->		
-		
 	</div>
-
-<!-- Main Footer -->
-<%@ include file="/WEB-INF/views/admin/include/footer.jsp" %>
-
+	<!-- Main Footer -->
+	<%@ include file="/WEB-INF/views/admin/include/footer.jsp" %>
+	</div>
 </div>
 <!-- ./wrapper -->
 
@@ -331,7 +327,6 @@ function fnSetEvent() {
 		fnUploadExcelRegChk();
 	});	
 }
-
 
 // 부서 테이블 데이터 초기화
 function fnResetData() {
